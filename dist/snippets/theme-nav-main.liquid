@@ -1,7 +1,25 @@
 <!-- /snippets/theme-nav-main.liquid -->
-
-<nav class="theme-nav-main" role="navigation">
+<nav class="Navigation" role="navigation">
   <ul class="inline">
-    {% include 'theme-nav' %}
+  {% for link in nav.links %}
+    {% if link.links %}
+      <li class="dropdown" aria-haspopup="true">
+        <a href="{{ link.url }}" class="nav-link{% if link.active %} active{% endif %}"{% if theme-nav == 'toggled' %} data-trigger="popup" data-target="{{ link.title | handleize | prepend: '#Nav_' }}"{% endif %}>
+          {{ link.title }}
+        </a>
+        <ul{% if theme-nav == 'toggled' %} id="{{ link.title | handleize | prepend: 'Nav_' }}"{% endif %} class="dropdown-menu">
+          {% for childlink in link.links %}
+            <li>
+              <a href="{{ childlink.url }}" class="nav-link{% if childlink.active %} active{% endif %}">{{ childlink.title }}</a>
+            </li>
+          {% endfor %}
+        </ul>
+      </li>
+    {% else %}
+      <li>
+        <a href="{{ link.url }}" class="nav-link{% if link.active %} active{% endif %}">{{ link.title }}</a>
+      </li>
+    {% endif %}
+  {% endfor %}
   </ul>
 </nav>

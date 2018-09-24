@@ -1,0 +1,98 @@
+//Mixins
+@mixin placeholder {
+  &.placeholder { @content; }
+  &:-moz-placeholder { @content; }
+  &::-moz-placeholder { @content; }
+  &::-webkit-input-placeholder { @content; }
+}
+
+@mixin minQuery($resolution){
+  @media screen and (min-width: $resolution){
+    @content;
+  }
+}
+
+@mixin maxQuery($resolution){
+  @media screen and (max-width: $resolution){
+    @content;
+  }
+}
+
+@mixin minmaxQuery($min, $max){
+  @media screen and (min-width: $min) and (max-width: $max){
+    @content;
+  }
+}
+
+@mixin flex() {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+@mixin inline-flex(){
+  display: inline-flex;
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+}
+@mixin align-items($position){
+  -webkit-box-align: $position;
+  -ms-flex-align: $position;
+  align-items: $position;
+}
+@mixin justify-content($position){
+  -webkit-box-pack: $position;
+  -ms-flex-pack: $position;
+  justify-content: $position;
+}
+@mixin flex-center(){
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+@mixin inline-flex-center(){
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+@mixin prefix($property, $value) { 
+  $prefixes: ("-webkit-","-moz-", "-o-", "-ms-", "");
+  @each $prefix in $prefixes {
+      #{$prefix}#{$property}: #{$value};
+  }
+}
+//Font Mixins
+@mixin newsB($font-size){
+  font-family: 'NewsGothicMT';
+  font-size: $font-size;
+  font-weight: 700;
+}
+@mixin newsI($font-size){
+  font-family: 'NewsGothicMT';
+  font-size: $font-size;
+  font-style: italic;
+  font-weight: 400;
+}
+@mixin newsR($font-size){
+  font-family: 'NewsGothicMT';
+  font-size: $font-size;
+  font-weight: 400;
+}
+@mixin miller($font-size){
+  font-family: 'MillerHeadline';
+  font-size: $font-size;
+  font-weight: 300;
+  font-style: normal;
+}

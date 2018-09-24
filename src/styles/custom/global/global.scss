@@ -1,0 +1,144 @@
+html{
+  font-size: 62.5%;
+}
+body{
+  background: white;
+  line-height: 2.4rem;
+  color: $primary-accent2;
+  @include newsR(1.2rem);
+}
+
+h1,.h1{
+  font-size: 2.4rem;
+  line-height: 3.6rem;
+}
+h2,.h2{
+  font-size: 2rem;
+  line-height: 3rem;
+}
+h3,.h3{
+  font-size: 1.8rem;
+  line-height: 2.7rem;
+}
+h4,.h4{
+  font-size: 1.5rem;
+  line-height: 2.3rem;
+}
+h5,.h5{
+  font-size: 1.2rem;
+  line-height: 1.8rem;
+}
+h6,.h6{
+  font-size: 1rem;
+  line-height: 1.7rem;
+}
+a,.a{
+  text-decoration: underline;
+  color: $primary-accent2;
+  transition: color .3s;
+  display: inline-block;
+  &:hover{
+    color: $gray;
+    text-decoration: none;
+  }
+}
+
+//Buttons
+button,
+.Btn{
+  border: 2px solid $primary-accent1;
+  color: $primary-accent1;
+  background-color: transparent;
+  text-transform: uppercase;
+  transition: color .3s, background-color .3s;
+  line-height: 1;
+  &:hover{
+    color: $white;
+    background-color: $primary-accent1;
+    cursor: pointer;
+  }
+}
+.Btn--primary{
+  border-color: $primary-accent1;
+  color: $primary-accent1;
+  background-color: $white;
+  &:hover{
+    color: $white;
+    background-color: $primary-accent1;
+  }
+}
+.Btn--secondary{
+  border-color: $primary-accent2;
+  color: $primary-accent2;
+  background-color: $white;
+  &:hover{
+    color: $white;
+    background-color: $primary-accent2;
+  }
+}
+.Btn--tertiary{
+  border-color: $white;
+  color: $white;
+  background-color: transparent;
+  &:hover{
+    color: transparent;
+    background-color: $white;
+  }
+}
+.Btn--small{
+  height: 35px;
+  padding-left: 25px;
+  padding-right: 25px;
+}
+.Btn--big{
+  height: 45px;
+  padding-left: 35px;
+  padding-right: 35px;
+}
+
+//Form
+form {
+  max-width: 100%;
+}
+
+//Input
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="search"],
+input[type="url"],
+select{
+  height: 45px;
+  border: 1px solid $gray;
+  padding-left: 15px;
+  &:invalid{
+    border: 2px solid $error;
+  }
+  &:focus{
+    border: 2px solid $primary-accent2;
+  }
+}
+
+
+.InputWrap{
+  position: relative;
+  label{
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    @include prefix(transform, translateY(-50%));
+    transition: top .3s;
+    color: $gray;
+  }
+  input,
+  select{
+    padding-top: 20px;
+  }
+}
+.InputWrap.active label,
+input:focus + label{
+  top: 9px;
+  color: $gray-dark;
+  transform: none;
+}
+

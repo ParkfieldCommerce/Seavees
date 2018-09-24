@@ -1,0 +1,84 @@
+<!-- Homepage Hero -->
+<div class="Hero margin-bottom-7x s-margin-bottom-2x">
+  <div class="Hero__image">
+    <img src="{{section.settings.hero_image | img_url:'master'}}" alt="{{section.settings.hero_image.alt}}">
+  </div>
+  <div class="Hero__text-container Hero__text-container--outer">
+    <h2 class="Hero__main">{{section.settings.hero_subtext}}</h2>
+    {% unless section.settings.hero_button_text_1 == blank %}
+    <button type="button" class="Hero__button Btn Btn--tertiary">{{section.settings.hero_button_text_1}}</button>
+    {% endunless %}
+    {% unless section.settings.hero_button_text_2 == blank %}
+    <button type="button" class="Hero__button Btn Btn--tertiary">{{section.settings.hero_button_text_2}}</button>
+    {% endunless %}
+  </div>
+</div>
+{% schema %}
+{
+  "name": "Hero",
+  "class":"homepage-hero",
+  "settings":[
+    {
+      "type":"header",
+      "content":"General Settings"
+    },
+    {
+      "id": "hero_image",
+      "type": "image_picker",
+      "label": "Desktop Image"
+    },
+    {
+      "id": "hero_image_wide",
+      "type": "image_picker",
+      "label": "Wide Desktop Image(>1800px)"
+    },
+    {
+      "id": "hero_image_2",
+      "type": "image_picker",
+      "label": "Mobile Image"
+    },
+    {
+      "type":"header",
+      "content":"Text Settings"
+    },
+    {
+      "id": "hero_maintext",
+      "type": "textarea",
+      "label": "Main Text"
+    },
+    {
+      "type":"header",
+      "content":"Button 1 Settings"
+    },
+    {
+      "id":"hero_button_text_1",
+      "type":"text",
+      "label":"Button Text"
+    },
+    {
+      "id": "hero_url_1",
+      "type":"url",
+      "label":"Button Url"
+    },
+    {
+      "type":"header",
+      "content":"Button 2 Settings"
+    },
+    {
+      "id":"hero_button_text_2",
+      "type":"text",
+      "label":"Button Text"
+    },
+    {
+      "id": "hero_url_2",
+      "type":"url",
+      "label":"Button Url"
+    }
+  ],
+  "presets":[{
+      "name": "Hero",
+      "category": "Homepage"
+    }
+  ]
+}
+{% endschema %}

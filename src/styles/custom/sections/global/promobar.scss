@@ -1,0 +1,13 @@
+.Promobar{
+  height: 40px;
+  width: 100%;
+  text-align: center;
+  @include flex-center();
+  .Promobar__text-content{
+    @include newsR(1.4rem);
+  }
+  a{
+    color: inherit;
+    text-decoration: none;
+  }
+}

@@ -23,7 +23,6 @@
 @import url('global/concrete-reset.scss');
 @import url('global/global.scss');
 @import url('global/grid.scss');
-@import url('global/forms.scss');
 
 /* Templates ==================================================================*/
 @import url('templates/collection.scss');
@@ -47,7 +46,7 @@
 @import url('global/helpers.scss');
 
 /* Optional extras ===========================================================*/
-// @import url('utils/additional-helpers.scss');
+@import url('utils/additional-helpers.scss');
 
 /* =============================================================================
    Shopify core helpers
@@ -62,5 +61,5 @@
 .shopify-preview-bar,
 #preview-bar-iframe,
 #admin_bar_iframe {
-  // display: none !important;
+  display: none !important;
 }

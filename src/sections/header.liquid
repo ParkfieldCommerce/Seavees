@@ -1,0 +1,43 @@
+<!-- /snippets/{{ section.id }}.liquid -->
+
+{% assign enable_search = section.settings.enable_search %}
+
+<header class="Header" role="banner">
+  <div class="container xl">
+    <div class="row flex v-center">
+      <div class="column s3 left">
+        {% include 'theme-logo' %}
+      </div>
+      <div class="column s4">
+        {% assign nav = linklists[section.settings.navigation] %}
+        {% include 'theme-nav-main' %}
+      </div>
+      <div class="column s5 right">
+        {% if customer %}
+          <a href="/account">{{ 'account.general.title' | t }}</a>
+        {% else %}
+          <a href="/account">{{ 'account.login.title' | t }}</a>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</header>
+
+{% include 'theme-nav-toggled' %}
+
+{% schema %}
+  {
+    "name": "Header",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Header"
+      },
+      {
+        "type":"link_list",
+        "id":"navigation",
+        "label":"Navigation"
+      }
+    ]
+  }
+{% endschema %}

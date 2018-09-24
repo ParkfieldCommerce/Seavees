@@ -29,7 +29,7 @@ $adjustAmount: 25%;
 // Space & Borders
 $columns: 12;
 $spacing: 10px;
-$gutter: $spacing*5;
+$gutter: $spacing*2;
 $borderRadius: 2px;
 $borderWeight: 2px;
 $borderStyle: solid;
@@ -54,9 +54,9 @@ $small: 0.625rem;
 
 // Screen Sizes
 $s: 600px;
-$m: 850px;
-$l: 1150px;
-$xl: 1450px;
+$m: 945px;
+$l: 1140px;
+$xl: 1170px;
 
 // Transitions
 $transitionProperty: all;
@@ -383,31 +383,11 @@ h1, h2, h3, h4, h5, h6,
 .h1, .h2, .h3, .h4, .h5, .h6 {
   display: block;
   font-family: inherit;
-  font-weight: $fontBold;
-  line-height: $lineHeight;
-  margin-bottom: $lineMargin;
-}
-h1, .h1 { font-size: $h1; }
-h2, .h2 { font-size: $h2; }
-h3, .h3 { font-size: $h3; }
-h4, .h4 { font-size: $h4; }
-h5, .h5 { font-size: $h5; }
-h6, .h6 { font-size: $h6; }
-
-p {
-  font-size: $p;
-  font-weight: $fontNormal;
-  line-height: $lineHeight;
-  margin-bottom: $lineMargin;
 }
 
 a {
-  color: $colorBrand;
   cursor: pointer;
   @include transition();
-  &:hover, &:focus {
-    color: darken($colorBrand, $adjustAmount);
-  }
 }
 
 hr {
@@ -465,10 +445,6 @@ select {
   padding: 0 $spacing*2;
   font-size: $h4;
   font-family: inherit;
-  background-color: $colorBackground;
-  border: $borderWeight $borderStyle $colorBorder;
-  border-radius: $borderRadius;
-  color: $colorText;
   @include prefixer(appearance, none);
   @include transition();
   &.error {
@@ -521,9 +497,6 @@ textarea {
 // Labels
 label {
   display: block;
-  font-size: $h5;
-  font-weight: $fontBold;
-  line-height: $lineHeight;
   margin-bottom: $lineMargin/2;
   @include clearfix();
 }
@@ -558,45 +531,6 @@ input[type="checkbox"] {
       }
     }
   }
-}
-
-// Buttons
-button, .button,
-input[type="button"],
-input[type="submit"],
-input[type="reset"] {
-  max-width: 100%;
-  height: $gutter;
-  line-height: ($gutter - $borderWeight*2);
-  padding: 0 $spacing*2;
-  font-size: $h4;
-  font-family: inherit;
-  background-color: $colorBrand;
-  border: $borderWeight $borderStyle $colorBrand;
-  border-radius: $borderRadius;
-  color: $colorBackground;
-  text-align: center;
-  cursor: pointer;
-  @include prefixer(appearance, none);
-  @include transition();
-  &:hover {
-    background-color: darken($colorBrand, $adjustAmount);
-    border-color: darken($colorBrand, $adjustAmount);
-    color: $colorBackground;
-  }
-  &:disabled, &.disabled {
-    cursor: default;
-    background-color: lighten($colorAlternate, $adjustAmount);
-    border-color: lighten($colorAlternate, $adjustAmount);
-    color: $colorText;
-    &:hover {
-      @extend .disabled;
-    }
-  }
-}
-a.button {
-  display: inline-block;
-  text-decoration: none;
 }
 
 .select-wrapper {
@@ -739,76 +673,6 @@ a.button {
   }
 }
 
-/* Forms =====================================================================*/
-
-form {
-  max-width: 100%;
-}
-
-// Basic form element spacing
-form#AddToCartForm,
-#ContactForm form,
-.popup form,
-form#customer_login,
-form#create_customer,
-#PasswordRecoverForm form,
-#PasswordResetForm form,
-#ActivateAccountForm form,
-form#address_form_new {
-  input[type="text"],
-  input[type="email"],
-  input[type="number"],
-  input[type="tel"],
-  input[type="password"],
-  textarea,
-  .select-wrapper,
-  .province-wrapper,
-  button, .button {
-    width: 100%;
-    @include clearfix();
-    &:not(:last-child) {
-      margin-bottom: $spacing*2;
-    }
-  }
-}
-
-// Wide forms
-form#AddToCartForm,
-form#contact_form,
-.popup form,
-form#customer_login,
-form#create_customer,
-#PasswordRecoverForm form,
-#PasswordResetForm form,
-#ActivateAccountForm form,
-form#CartPage {
-  display: block;
-  width: 100%;
-}
-
-// Small screen form element spacing
-@include s() {
-  button, .button,
-  input[type="button"],
-  input[type="submit"],
-  input[type="reset"],
-  input[type="text"],
-  input[type="email"],
-  input[type="number"],
-  input[type="tel"],
-  input[type="password"],
-  input[type="search"],
-  textarea,
-  .select-wrapper,
-  .province-wrapper {
-    width: 100%;
-    @include clearfix();
-    &:not(:last-child) {
-      margin-bottom: $spacing*2;
-    }
-  }
-}
-
 
 /* Templates ==================================================================*/
 /* Collection ================================================================*/
@@ -881,11 +745,6 @@ form#CartPage {
 // Section specific styles here
 
 /* Modules ===================================================================*/
-/* Header ====================================================================*/
-
-.theme-header {
-  padding: $gutter/2 0;
-}
 
 /* Logo ======================================================================*/
 
@@ -1386,7 +1245,183 @@ form#CartPage {
 
 
 /* Optional extras ===========================================================*/
-// @import url('utils/additional-helpers.scss');
+/* Optional Additional Helpers ================================================*/
+
+// Margin & Padding
+@for $i from 0 through 20 {
+  $space: $spacing*$i;
+  .margin-#{$i}x {
+    margin: $space;
+  }
+  .margin-top-#{$i}x {
+    margin-top: $space;
+  }
+  .margin-bottom-#{$i}x {
+    margin-bottom: $space;
+  }
+  .margin-left-#{$i}x {
+    margin-left: $space;
+  }
+  .margin-right-#{$i}x {
+    margin-right: $space;
+  }
+  .padding-#{$i}x {
+    padding: $space;
+  }
+  .padding-top-#{$i}x {
+    padding-top: $space;
+  }
+  .padding-bottom-#{$i}x {
+    padding-bottom: $space;
+  }
+  .padding-left-#{$i}x {
+    padding-left: $space;
+  }
+  .padding-right-#{$i}x {
+    padding-right: $space;
+  }
+}
+@include xl() {
+  @for $i from 0 through 20 {
+    $space: $spacing*$i;
+    .xl-margin-#{$i}x {
+      margin: $space;
+    }
+    .xl-margin-top-#{$i}x {
+      margin-top: $space;
+    }
+    .xl-margin-bottom-#{$i}x {
+      margin-bottom: $space;
+    }
+    .xl-margin-left-#{$i}x {
+      margin-left: $space;
+    }
+    .xl-margin-right-#{$i}x {
+      margin-right: $space;
+    }
+    .xl-padding-#{$i}x {
+      padding: $space;
+    }
+    .xl-padding-top-#{$i}x {
+      padding-top: $space;
+    }
+    .xl-padding-bottom-#{$i}x {
+      padding-bottom: $space;
+    }
+    .xl-padding-left-#{$i}x {
+      padding-left: $space;
+    }
+    .xl-padding-right-#{$i}x {
+      padding-right: $space;
+    }
+  }
+}
+@include l() {
+  @for $i from 0 through 20 {
+    $space: $spacing*$i;
+    .l-margin-#{$i}x {
+      margin: $space;
+    }
+    .l-margin-top-#{$i}x {
+      margin-top: $space;
+    }
+    .l-margin-bottom-#{$i}x {
+      margin-bottom: $space;
+    }
+    .l-margin-left-#{$i}x {
+      margin-left: $space;
+    }
+    .l-margin-right-#{$i}x {
+      margin-right: $space;
+    }
+    .l-padding-#{$i}x {
+      padding: $space;
+    }
+    .l-padding-top-#{$i}x {
+      padding-top: $space;
+    }
+    .l-padding-bottom-#{$i}x {
+      padding-bottom: $space;
+    }
+    .l-padding-left-#{$i}x {
+      padding-left: $space;
+    }
+    .l-padding-right-#{$i}x {
+      padding-right: $space;
+    }
+  }
+}
+@include m() {
+  @for $i from 0 through 20 {
+    $space: $spacing*$i;
+    .m-margin-#{$i}x {
+      margin: $space;
+    }
+    .m-margin-top-#{$i}x {
+      margin-top: $space;
+    }
+    .m-margin-bottom-#{$i}x {
+      margin-bottom: $space;
+    }
+    .m-margin-left-#{$i}x {
+      margin-left: $space;
+    }
+    .m-margin-right-#{$i}x {
+      margin-right: $space;
+    }
+    .m-padding-#{$i}x {
+      padding: $space;
+    }
+    .m-padding-top-#{$i}x {
+      padding-top: $space;
+    }
+    .m-padding-bottom-#{$i}x {
+      padding-bottom: $space;
+    }
+    .m-padding-left-#{$i}x {
+      padding-left: $space;
+    }
+    .m-padding-right-#{$i}x {
+      padding-right: $space;
+    }
+  }
+}
+@include s() {
+  @for $i from 0 through 20 {
+    $space: $spacing*$i;
+    .s-margin-#{$i}x {
+      margin: $space;
+    }
+    .s-margin-top-#{$i}x {
+      margin-top: $space;
+    }
+    .s-margin-bottom-#{$i}x {
+      margin-bottom: $space;
+    }
+    .s-margin-left-#{$i}x {
+      margin-left: $space;
+    }
+    .s-margin-right-#{$i}x {
+      margin-right: $space;
+    }
+    .s-padding-#{$i}x {
+      padding: $space;
+    }
+    .s-padding-top-#{$i}x {
+      padding-top: $space;
+    }
+    .s-padding-bottom-#{$i}x {
+      padding-bottom: $space;
+    }
+    .s-padding-left-#{$i}x {
+      padding-left: $space;
+    }
+    .s-padding-right-#{$i}x {
+      padding-right: $space;
+    }
+  }
+}
+
 
 /* =============================================================================
    Shopify core helpers
@@ -1401,5 +1436,5 @@ form#CartPage {
 .shopify-preview-bar,
 #preview-bar-iframe,
 #admin_bar_iframe {
-  // display: none !important;
+  display: none !important;
 }

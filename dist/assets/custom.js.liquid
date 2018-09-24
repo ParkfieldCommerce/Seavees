@@ -1,0 +1,19 @@
+class Theme{
+  constructor(){
+    this.globalInit = this.globalInit.bind(this);
+  }
+
+  globalInit(){
+    this.handleInputValidation();
+  }
+  handleInputValidation(){
+    let inputs = $('.js-inputCheck input, .js-inputCheck select');
+    inputs.change(function(){
+      if($(this).val() != ''){
+        $(this).parent().addClass('active');
+      }else{
+        $(this).parent().removeClass('active');
+      }
+    });
+  }
+}
