@@ -1,5 +1,37 @@
 .Header{
   padding-top: 40px;
-  position: relative;
+  padding-bottom: 40px;
+  position: absolute;
+  left: 0;
+  width: 100%;
   z-index: 20;
+}
+.Header__content{
+  position: relative;
+  z-index: 2;
+}
+.Header__logo{
+  position: relative;
+}
+.Header__logo-image{
+  vertical-align: middle;
+}
+.Header__logo-image--dark{
+  position: absolute;
+  left: 0;
+  top: 50%;
+  opacity: 0;
+  @include prefix(transform, translateY(-50%));
+}
+.Header.active{
+  background: $white;
+  .Header__logo-image--light{
+    opacity: 0;
+  }
+  .Header__logo-image--dark{
+    opacity: 1;
+  }
+  .Nav__link{
+    color: $primary-accent2;
+  }
 }

@@ -11,14 +11,17 @@ body{
 h1,.h1{
   font-size: 2.4rem;
   line-height: 3.6rem;
+  font-family: 'Miller';
 }
 h2,.h2{
   font-size: 2rem;
   line-height: 3rem;
+  font-family: 'Miller';
 }
 h3,.h3{
   font-size: 1.8rem;
   line-height: 2.7rem;
+  font-family: 'Miller';
 }
 h4,.h4{
   font-size: 1.5rem;
@@ -42,8 +45,31 @@ a,.a{
     text-decoration: none;
   }
 }
-
+.Link--accent{
+  color: $primary-accent1;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+.Link--partial-accent{
+  position: relative;
+  text-decoration: none !important;
+  font-family: 'Miller';
+  &:after{
+    content:'';
+    display: inline-block;
+    position: absolute;
+    left: 0;
+    bottom: -5px;
+    height: 2px;
+    background-color: $primary-accent1;
+    width: 50%;
+  }
+}
 //Buttons
+a.Btn{
+  display: inline-block;
+  text-decoration: none;
+}
 button,
 .Btn{
   border: 2px solid $primary-accent1;
@@ -81,17 +107,19 @@ button,
   color: $white;
   background-color: transparent;
   &:hover{
-    color: transparent;
+    color: $gray-dark;
     background-color: $white;
   }
 }
 .Btn--small{
   height: 35px;
+  line-height: 35px;
   padding-left: 25px;
   padding-right: 25px;
 }
 .Btn--big{
   height: 45px;
+  line-height: 45px;
   padding-left: 35px;
   padding-right: 35px;
 }

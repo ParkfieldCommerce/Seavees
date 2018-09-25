@@ -1,14 +1,18 @@
 /* Variables */
-@import 'custom/settings/variables.scss';
-@import 'custom/settings/fonts.scss.liquid';
-@import 'custom/settings/mixins.scss';
+@import url('settings/variables.scss.liquid');
+@import url('custom/settings/variables.scss');
+@import url('custom/settings/fonts.scss.liquid');
+@import url('custom/settings/mixins.scss');
 
 /* Global */
-@import 'custom/global/global.scss';
+@import url('custom/global/global.scss');
 
 /* Sections */
-@import 'custom/sections/global/promobar.scss';
-@import 'custom/sections/global/header.scss';
+@import url('custom/sections/global/promobar.scss');
+@import url('custom/sections/global/header.scss');
+@import url('custom/sections/global/navigation.scss');
 
 /* Homepage */
-@import 'custom/sections/homepage/hero.scss';
+@import url('custom/sections/homepage/hero.scss');
+@import url('custom/sections/homepage/info.scss');
+@import url('custom/sections/homepage/collection-grid.scss');

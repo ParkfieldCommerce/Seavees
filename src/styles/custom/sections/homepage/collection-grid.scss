@@ -1,0 +1,21 @@
+.CollectionGrid{
+  @include flex();
+  flex-wrap: wrap;
+  width: $m;
+  max-width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+.CollectionGrid__collection{
+  width: 100%;
+  position: relative;
+  @include minQuery($s){
+    width: 50%;
+  }
+}
+.CollectionGrid__collection:last-child{
+  width: 100%;
+}
+.CollectionGrid__image{
+  vertical-align: middle;
+}

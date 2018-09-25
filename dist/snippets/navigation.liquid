@@ -1,0 +1,45 @@
+<!-- /snippets/theme-nav-main.liquid -->
+<nav class="Nav" role="navigation">
+  <ul class="Nav__menu Nav__menu--one js-nav-menu">
+  {% for link in nav.links %}
+    {% if link.levels > 0 %}
+      <li class="Nav__dropdown-container" aria-haspopup="true">
+        <a href="{{ link.url }}" class="Nav__link Nav__link--one{% if link.active %} active{% endif %}">
+          {{ link.title }}
+        </a>
+        <ul class="Nav__dropdown-menu Nav__menu--two">
+          <div class="Nav__menu-container Nav__menu-container--two">
+          {% for childlink in link.links %}
+            <li class="Nav__menu--two__link">
+              <a href="{{ childlink.url }}" class="Nav__link Nav__link--two{% if childlink.active %} active{% endif %}">
+                {% if childlink.type == 'collection_link' %}
+                <div class="Nav__link__image">
+                  <img src="{{childlink.object.image | img_url:'master'}}" alt="{{collection.image.alt}}">
+                </div>
+                {% endif %}
+                <span>{{ childlink.title }}</span>
+              </a>
+              {% if childlink.levels > 0 %}
+              <ul class="Nav__dropdown-menu Nav__menu--three">
+                <div class="Nav__menu-container Nav__menu-container--three">
+                {% for grandchildlink in childlink.links %}
+                <li>
+                  <a class="Nav__link Nav__link--three{% if childlink.active %} active{% endif %}" href="{{grandchildlink.url}}">{{grandchildlink.title}}</a>
+                </li>
+                {% endfor %}
+                </div>
+              </ul>
+              {% endif %}
+            </li>
+          {% endfor %}
+          </div>
+        </ul>
+      </li>
+    {% else %}
+      <li>
+        <a href="{{ link.url }}" class="Nav__link Nav__link--one{% if link.active %} active{% endif %}">{{ link.title }}</a>
+      </li>
+    {% endif %}
+  {% endfor %}
+  </ul>
+</nav>

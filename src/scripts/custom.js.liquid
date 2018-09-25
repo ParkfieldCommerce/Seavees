@@ -5,6 +5,7 @@ class Theme{
 
   globalInit(){
     this.handleInputValidation();
+    this.initHeader();
   }
   handleInputValidation(){
     let inputs = $('.js-inputCheck input, .js-inputCheck select');
@@ -14,6 +15,18 @@ class Theme{
       }else{
         $(this).parent().removeClass('active');
       }
+    });
+  }
+  initHeader(){
+    let menu = $('.js-nav-menu');
+    let header = $('.js-header');
+    
+    menu.mouseenter(function(){
+      header.addClass('active');
+    });
+
+    header.mouseleave(function(){
+      header.removeClass('active');
     });
   }
 }

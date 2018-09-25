@@ -1,0 +1,110 @@
+.Nav__link{
+  color: $white;
+  text-transform: uppercase;
+  text-decoration: none;
+  font-size: 1.4rem;
+}
+.Nav__menu--one{
+  @include flex();
+  @include justify-content(space-between);
+}
+.Nav__link--one{
+  position: relative;
+  &:after{
+    content:'';
+    position: absolute;
+    display: block;
+    left: 0;
+    bottom: 0;
+    height: 1px;
+    width: 0;
+    background-color: $primary-accent1;
+    transition: width .3s;
+  }
+  &:hover{
+    color: $primary-accent1 !important;
+    &:after{
+      width: 80%;
+    }
+  }
+}
+.Nav__dropdown-container{
+  &:hover{
+    .Nav__link--one{
+      color: $primary-accent1;
+      &:after{
+        width: 80%;
+      }
+    }
+    .Nav__menu--two{
+      opacity: 1;
+      @include flex();
+    }
+  }
+}
+.Nav__dropdown-menu{
+  transition: opacity .3s;
+}
+.Nav__menu-container{
+  margin-left: auto;
+  margin-right: auto;
+  @include flex();
+}
+.Nav__menu-container--two{
+  width: 1100px;
+  max-width: 100%;
+  @include justify-content(space-between);
+}
+.Nav__menu-container--three{
+  width: 850px;
+  max-width: 100%;
+  @include justify-content(space-around);
+}
+.Nav__menu--two{
+  padding-top: 100px;
+  position: absolute;
+  left: 0;
+  width: 100%;
+  background-color: $white;
+  opacity: 0;
+  display: none;
+}
+.Nav__menu--two__link{
+  flex: 1;
+  text-align: center;
+  padding-bottom: 60px;
+  img{
+    @include prefix(filter, grayscale(1));
+    opacity: .4;
+    transition: opacity .3s;
+    max-height: 95px;
+    max-width: 95%;
+  }
+  &:hover{
+    .Nav__link--two{
+      color: $primary-accent1;
+    }
+    img{
+      opacity: 1;
+      @include prefix(filter, grayscale(0));
+    }
+    .Nav__menu--three{
+      opacity: 1;
+    }
+  }
+}
+.Nav__menu--three{
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -70px;
+  height: 70px;
+  line-height: 70px;
+  background-color: $gray-lighter;
+  opacity: 0;
+}
+.Nav__link--three{
+  &:hover{
+    color: $primary-accent1 !important;
+  }
+}

@@ -1,18 +1,35 @@
 <!-- Homepage Hero -->
 <div class="Hero margin-bottom-7x s-margin-bottom-2x">
   <div class="Hero__image">
-    <img src="{{section.settings.hero_image | img_url:'master'}}" alt="{{section.settings.hero_image.alt}}">
+    <img
+      src="{{section.settings.hero_image | img_url:'master'}}"
+      srcset="{{section.settings.hero_image_mobile | img_url:'master'}} 550w,
+             {{section.settings.hero_image | img_url:'master'}} 1000w,
+             {{section.settings.hero_image_wide | img_url:'master'}} 1800w"
+      alt="{{section.settings.hero_image.alt}}"
+    >
   </div>
-  <div class="Hero__text-container Hero__text-container--outer">
-    <h2 class="Hero__main">{{section.settings.hero_subtext}}</h2>
-    {% unless section.settings.hero_button_text_1 == blank %}
-    <button type="button" class="Hero__button Btn Btn--tertiary">{{section.settings.hero_button_text_1}}</button>
-    {% endunless %}
-    {% unless section.settings.hero_button_text_2 == blank %}
-    <button type="button" class="Hero__button Btn Btn--tertiary">{{section.settings.hero_button_text_2}}</button>
-    {% endunless %}
+  <div class="Hero__text-container">
+    <div class="container">
+      <div class="row collapse">
+        <div class="column l12 m12 s12">
+          <h2 class="Hero__main">{{section.settings.hero_maintext}}</h2>
+          {% unless section.settings.hero_button_text_1 == blank %}
+          <a class="Hero__button Btn Btn--tertiary Btn--big">{{section.settings.hero_button_text_1}}</a>
+          {% endunless %}
+          {% unless section.settings.hero_button_text_2 == blank %}
+          <a class="Hero__button Btn Btn--tertiary Btn--big">{{section.settings.hero_button_text_2}}</a>
+          {% endunless %}
+        </div>
+      </div>
+    </div>
   </div>
 </div>
+<style>
+  .Hero__main{
+    color: {{section.settings.hero_maintext_color}};
+  }
+</style>
 {% schema %}
 {
   "name": "Hero",
@@ -33,7 +50,7 @@
       "label": "Wide Desktop Image(>1800px)"
     },
     {
-      "id": "hero_image_2",
+      "id": "hero_image_mobile",
       "type": "image_picker",
       "label": "Mobile Image"
     },
@@ -45,6 +62,12 @@
       "id": "hero_maintext",
       "type": "textarea",
       "label": "Main Text"
+    },
+    {
+      "id":"hero_maintext_color",
+      "type":"color",
+      "label":"Color",
+      "default":"#FFF"
     },
     {
       "type":"header",

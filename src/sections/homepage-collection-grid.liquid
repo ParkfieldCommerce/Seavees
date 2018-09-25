@@ -1,0 +1,62 @@
+<div class="CollectionGrid margin-bottom-4x">
+    {% for block in section.blocks %}
+      <div class="CollectionGrid__collection CollectionGrid__collection--{{forloop.index}}">
+        <a href="{{block.settings.link_url}}">
+          <img
+            class="CollectionGrid__image"
+            src="{{block.settings.image | img_url:'master'}}"
+            srcset="{{block.settings.image_mobile | img_url:'master'}} 550w,
+                  {{block.settings.image | img_url:'master'}} 1000w"
+            alt="{{block.settings.image.alt}}"
+          >
+          <span class="Link--partial-accent">{{block.settings.link_text}}</span>
+        </a>
+      </div>
+    {% endfor %}
+  </div>
+{% schema %}
+{
+  "name": "Featured Collections Grid",
+  "blocks":[
+  {
+    "type":"collection",
+    "name":"Collection",
+    "limit": 3,
+    "settings": [
+      {
+        "type":"header",
+        "content":"Image Settings"
+      },
+      {
+        "id": "image",
+        "type": "image_picker",
+        "label": "Image"
+      },
+      {
+        "id": "image_mobile",
+        "type": "image_picker",
+        "label": "Image"
+      },
+      {
+        "type":"header",
+        "content":"Link Settings"
+      },
+      {
+        "id": "link_text",
+        "type": "text",
+        "label": "Text"
+      },
+      {
+        "id": "link_url",
+        "type":"url",
+        "label":"Url"
+      }
+    ]
+  }],
+  "presets":[{
+      "name": "Featured Collections Grid",
+      "category": "Homepage"
+    }
+  ]
+}
+{% endschema %}

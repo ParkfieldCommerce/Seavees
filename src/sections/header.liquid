@@ -2,22 +2,28 @@
 
 {% assign enable_search = section.settings.enable_search %}
 
-<header class="Header" role="banner">
-  <div class="container xl">
-    <div class="row flex v-center">
-      <div class="column s3 left">
-        {% include 'theme-logo' %}
-      </div>
-      <div class="column s4">
-        {% assign nav = linklists[section.settings.navigation] %}
-        {% include 'theme-nav-main' %}
-      </div>
-      <div class="column s5 right">
-        {% if customer %}
-          <a href="/account">{{ 'account.general.title' | t }}</a>
-        {% else %}
-          <a href="/account">{{ 'account.login.title' | t }}</a>
-        {% endif %}
+<header class="Header js-header" role="banner">
+  <div class="Header__content">
+    <div class="container xl">
+      <div class="row flex v-center">
+        <div class="column l3 left">
+          <div class="Header__logo">
+            {% include 'theme-logo' %}
+          </div>
+        </div>
+        <div class="column l5">
+          {% assign nav = linklists[section.settings.navigation] %}
+          {% include 'navigation' %}
+        </div>
+        <div class="column l4 right">
+          <div class="Header__user">
+            {% if customer %}
+              <a href="/account">{{ 'account.general.title' | t }}</a>
+            {% else %}
+              <a href="/account">{{ 'account.login.title' | t }}</a>
+            {% endif %}
+          </div>
+        </div>
       </div>
     </div>
   </div>

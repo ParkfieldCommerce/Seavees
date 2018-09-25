@@ -1,0 +1,88 @@
+<!-- Homepage About -->
+{% assign info = section.settings %}
+<div class="Info container m margin-bottom-6x s-margin-bottom-3x">
+  <div class="row flex v-center row--{{section.settings.layout}}">
+    <div class="column l6 m6 s12">
+      <div class="Info__image">
+        <img src="{{info.image | img_url:'master'}}" alt="{{info.image.alt}}">
+      </div>
+    </div>
+    <div class="column l6 m6 s12">
+      <div class="Info__content">
+        <div class="Info__text-container">
+          <h2 class="Info__heading h1">{{ info.heading }}</h2>
+          <p class="Info__body">{{info.body}}</p>
+          {% unless info.link_text == blank %}
+          <a href="{{info.link_url}}" class="Info__link Link--accent">{{info.link_text}}</a>
+          {% endunless %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% schema %}
+{
+  "name": "Info Section",
+  "class":"homepage-info",
+  "settings":[
+    {
+      "type":      "select",
+      "id":        "layout",
+      "label":     "Layout",
+      "options": [
+        {
+          "value": "normal",
+          "label": "Image - Text"
+        },
+        {
+          "value": "reversed",
+          "label": "Text - Image"
+        }
+      ],
+      "default":   "normal"
+    },
+    {
+      "type":"header",
+      "content":"Image Settings"
+    },
+    {
+      "type":"image_picker",
+      "id":"image",
+      "label":"Image"
+    },
+    {
+      "type":"header",
+      "content":"Text Settings"
+    },
+    {
+      "type":"text",
+      "id":"heading",
+      "label":"Heading"
+    },
+    {
+      "type":"textarea",
+      "id":"body",
+      "label":"Body"
+    },
+    {
+      "type":"header",
+      "content":"Link Settings"
+    },
+    {
+      "id":"link_text",
+      "type":"text",
+      "label":"Link Text"
+    },
+    {
+      "id": "link_url",
+      "type":"url",
+      "label":"Link Url"
+    }
+  ],
+  "presets":[{
+      "name": "Info Section",
+      "category": "Homepage"
+    }
+  ]
+}
+{% endschema %}

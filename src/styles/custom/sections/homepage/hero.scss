@@ -1,5 +1,4 @@
 .Hero{
-  margin-top: -75px;
   z-index: 1;
   position: relative;
 }
@@ -9,10 +8,37 @@
     vertical-align: middle;
   }
 }
-
+.Hero__text-container{
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  @include prefix(transform, translate(-50%,-50%));
+  z-index: 2;
+  text-align: center;
+  width: 100%;
+}
 .Hero__main{
-  @include miller(3.6rem);
+  @include miller(2.4rem);
   margin-bottom: 10px;
   line-height: 1.25;
   text-transform: uppercase;
+  margin-bottom: 40px;
+  @include minQuery($s){
+    font-size: 3.6rem;
+    margin-bottom: 70px;
+  }
+}
+
+.Hero__button{
+  font-size: 1.6rem;
+  max-width: 100%;
+  margin-bottom: 30px;
+  min-width: 200px;
+  padding-left: 20px;
+  padding-right: 20px;
+  @include minQuery($s){
+    min-width: 170px;
+    margin-left: 15px;
+    margin-right: 15px;
+  }
 }
