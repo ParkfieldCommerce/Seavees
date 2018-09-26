@@ -1,19 +1,19 @@
-<div class="CollectionGrid margin-bottom-4x">
-    {% for block in section.blocks %}
-      <div class="CollectionGrid__collection CollectionGrid__collection--{{forloop.index}}">
-        <a href="{{block.settings.link_url}}">
-          <img
-            class="CollectionGrid__image"
-            src="{{block.settings.image | img_url:'master'}}"
-            srcset="{{block.settings.image_mobile | img_url:'master'}} 550w,
-                  {{block.settings.image | img_url:'master'}} 1000w"
-            alt="{{block.settings.image.alt}}"
-          >
-          <span class="Link--partial-accent">{{block.settings.link_text}}</span>
-        </a>
-      </div>
-    {% endfor %}
-  </div>
+<section class="CollectionGrid margin-bottom-4x">
+  {% for block in section.blocks %}
+    <div class="CollectionGrid__collection CollectionGrid__collection--{{forloop.index}}">
+      <a href="{{block.settings.link_url}}">
+        <img
+          class="CollectionGrid__image"
+          src="{{block.settings.image | img_url:'master'}}"
+          srcset="{{block.settings.image_mobile | img_url:'master'}} 550w,
+                {{block.settings.image | img_url:'master'}} 1000w"
+          alt="{{block.settings.image.alt}}"
+        >
+        <span class="Link--partial-accent">{{block.settings.link_text}}</span>
+      </a>
+    </div>
+  {% endfor %}
+</section>
 {% schema %}
 {
   "name": "Featured Collections Grid",

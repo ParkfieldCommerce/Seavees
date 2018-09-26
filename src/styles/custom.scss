@@ -6,6 +6,7 @@
 
 /* Global */
 @import url('custom/global/global.scss');
+@import url('custom/global/socialbar.scss');
 
 /* Sections */
 @import url('custom/sections/global/promobar.scss');
@@ -16,3 +17,5 @@
 @import url('custom/sections/homepage/hero.scss');
 @import url('custom/sections/homepage/info.scss');
 @import url('custom/sections/homepage/collection-grid.scss');
+@import url('custom/sections/homepage/quote.scss');
+@import url('custom/sections/homepage/media.scss');

@@ -1,0 +1,59 @@
+<section class="Media margin-bottom-10x s-margin-bottom-6x">
+  <div class="container">
+    <div class="row">
+      <div class="column l12 m12 s12">
+        <h5 class="Media__heading">{{section.settings.heading}}</h5>
+        <div class="Media__logos">
+        {% for block in section.blocks %}
+          <div  class="Media__logo">
+            {% if block.settings.url %}
+            <a href="{{block.settings.url}}" target="_blank" rel="nofollow">
+            {% endif %}
+              <img src="{{block.settings.image | img_url:'master'}}" alt="{{block.settings.image.alt}}">
+            {% if block.settings.url %}
+            </a>
+            {% endif %}
+          </div>
+        {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% schema %}
+{
+  "name": "Media Section",
+  "settings":[{
+    "type":"text",
+    "id":"heading",
+    "label":"Section Heading"
+  }],
+  "blocks":[
+  {
+    "type":"media",
+    "name":"Media Logo",
+    "limit": 6,
+    "settings": [
+      {
+        "type":"header",
+        "content":"Image Settings"
+      },
+      {
+        "id": "image",
+        "type": "image_picker",
+        "label": "Image"
+      },
+      {
+        "id": "url",
+        "type":"url",
+        "label":"Url"
+      }
+    ]
+  }],
+  "presets":[{
+      "name": "Media Section",
+      "category": "Homepage"
+    }
+  ]
+}
+{% endschema %}

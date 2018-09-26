@@ -1,0 +1,47 @@
+.Quote{
+  span{
+    display: block;
+  }
+  @include minQuery($s){
+    span{display: none;}
+  }
+}
+.Quote__image{
+  max-width: 100%;
+  width: 50px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 10px;
+  @include minQuery($s){
+    width: 65px;
+  }
+}
+.Quote__quote{
+  position: relative;
+  @include miller(1.8rem);
+  line-height: 28px;
+  &:after{
+    content:'';
+    display: block;
+    position: relative;
+    width: 80px;
+    height: 2px;
+    background-color: $primary-accent1;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 15px;
+    margin-bottom: 15px;
+  }
+  @include minQuery($s){
+    @include miller(2.6rem);
+    line-height: 38px;
+  }
+}
+.Quote__source{
+  color: $gray;
+  line-height: 1;
+  @include newsB(1.2rem);
+  @include minQuery($s){
+    @include newsB(1.8rem);
+  }
+}

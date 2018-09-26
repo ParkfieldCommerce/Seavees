@@ -49,20 +49,26 @@ a,.a{
   color: $primary-accent1;
   text-transform: uppercase;
   font-weight: bold;
+  &:hover{
+    color: $primary-accent1;
+    text-decoration: none;
+  }
 }
 .Link--partial-accent{
   position: relative;
   text-decoration: none !important;
   font-family: 'Miller';
+  color: $white;
   &:after{
     content:'';
     display: inline-block;
     position: absolute;
     left: 0;
-    bottom: -5px;
+    bottom: -15px;
     height: 2px;
     background-color: $primary-accent1;
     width: 50%;
+    transition: width .3s;
   }
 }
 //Buttons

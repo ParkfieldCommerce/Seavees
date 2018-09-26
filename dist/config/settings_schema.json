@@ -146,28 +146,13 @@
       },
       {
         "type": "text",
-        "id": "social_fancy_link",
-        "label": "Fancy"
-      },
-      {
-        "type": "text",
-        "id": "social_google_plus_link",
-        "label": "Google+"
-      },
-      {
-        "type": "text",
-        "id": "social_youtube_link",
-        "label": "YouTube"
-      },
-      {
-        "type": "text",
         "id": "social_vimeo_link",
         "label": "Vimeo"
       },
       {
         "type": "text",
-        "id": "social_medium_link",
-        "label": "Medium"
+        "id": "social_spotify_link",
+        "label": "Spotify"
       },
       {
         "type": "header",

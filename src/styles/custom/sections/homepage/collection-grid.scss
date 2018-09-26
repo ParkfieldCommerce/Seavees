@@ -9,8 +9,31 @@
 .CollectionGrid__collection{
   width: 100%;
   position: relative;
+  a{
+    text-decoration: none;
+  }
+  .Link--partial-accent{
+    position: absolute;
+    bottom: 30px;
+    left: 15px;
+    z-index: 2;
+    font-size: 1.8rem;
+  }
+  &:hover{
+    .Link--partial-accent{
+      &:after{
+        width: 100%;
+      }
+    }
+  }
+
   @include minQuery($s){
     width: 50%;
+    .Link--partial-accent{
+      bottom: 64px;
+      left: 40px;
+      font-size: 2.6rem;
+    }
   }
 }
 .CollectionGrid__collection:last-child{
