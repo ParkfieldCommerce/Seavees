@@ -1,7 +1,23 @@
 .SocialBar{
   height: 75px;
   width:100%;
-  line-height: 75px;
   background-color: $primary-accent2;
   text-align: right;
+  @include flex();
+  @include align-items(center);
+  @include justify-content(center);
+  ul{
+    width: 300px;
+    margin-left: auto;
+    margin-right: auto;
+    @include flex();
+    @include justify-content(space-between);
+    @include minQuery($m){
+      margin-right: initial;
+    }
+  }
+}
+
+.Social__icon{
+  vertical-align: middle;
 }

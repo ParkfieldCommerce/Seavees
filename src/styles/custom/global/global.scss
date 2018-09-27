@@ -73,7 +73,7 @@ a,.a{
 }
 //Buttons
 a.Btn{
-  display: inline-block;
+  @include inline-flex-center();
   text-decoration: none;
 }
 button,
@@ -83,7 +83,7 @@ button,
   background-color: transparent;
   text-transform: uppercase;
   transition: color .3s, background-color .3s;
-  line-height: 1;
+  @include flex-center();
   &:hover{
     color: $white;
     background-color: $primary-accent1;
@@ -119,13 +119,11 @@ button,
 }
 .Btn--small{
   height: 35px;
-  line-height: 35px;
   padding-left: 25px;
   padding-right: 25px;
 }
 .Btn--big{
   height: 45px;
-  line-height: 45px;
   padding-left: 35px;
   padding-right: 35px;
 }

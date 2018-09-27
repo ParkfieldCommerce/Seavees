@@ -10,8 +10,36 @@
 {% include 'socialbar' %}
 <footer class="theme-footer" role="contentinfo">
   <div class="container center">
-    <div class="row l-table">
-      <div class="column l7 m12 s12 l-right v-middle">
+    <div class="row">
+      <div class="column l5 m5 s12">
+        {% if section.settings.footer_menu_1 %}
+        {% assign footerMenu = linklists[section.settings.footer_menu_1] %}
+        <nav>
+          <h5>{{footerMenu.title}}</h5>
+          <ul>
+            {% for link in footerMenu.links %}
+            <li>
+              <a href="{{link.url}}">{{link.title}}</a>
+            </li>
+            {% endfor %}
+          </ul>
+        </nav>
+        {% endif %}
+        {% if section.settings.footer_menu_2 %}
+        {% assign footerMenu = linklists[section.settings.footer_menu_2] %}
+        <nav>
+          <h5>{{footerMenu.title}}</h5>
+          <ul>
+            {% for link in footerMenu.links %}
+            <li>
+              <a href="{{link.url}}">{{link.title}}</a>
+            </li>
+            {% endfor %}
+          </ul>
+        </nav>
+        {% endif %}
+      </div>
+      <div class="column l7 m7 s12">
         {% if show_subscribe %}
           {% include 'form-subscribe' %}
         {% endif %}
@@ -31,6 +59,16 @@
         "type": "checkbox",
         "id": "show_social",
         "label": "Show social media icons"
+      },
+      {
+        "type":"link_list",
+        "id":"footer_menu_1",
+        "label":"Footer Menu 1"
+      },
+      {
+        "type":"link_list",
+        "id":"footer_menu_2",
+        "label":"Footer Menu 2"
       },
       {
         "type": "header",

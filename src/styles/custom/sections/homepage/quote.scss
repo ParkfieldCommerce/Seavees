@@ -3,7 +3,7 @@
     display: block;
   }
   @include minQuery($s){
-    span{display: none;}
+    span{display: inline-block;}
   }
 }
 .Quote__image{
