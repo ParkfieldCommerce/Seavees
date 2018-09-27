@@ -85,7 +85,6 @@ select {
   font-size: $h4;
   font-family: inherit;
   @include prefixer(appearance, none);
-  @include transition();
   &.error {
     border-color: $colorHighlight;
   }

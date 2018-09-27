@@ -1,9 +1,23 @@
 .Info{
+  width: 1040px;
   @include minQuery($s){
     .row--reversed{
       flex-flow: row-reverse;
     }
   }
+}
+
+.Info__row--normal{
+  .Info__content{
+    text-align: right;
+  }
+}
+
+.Info__text-container{
+  width: 360px;
+  max-width: 100%;
+  display: inline-block;
+  text-align: left;
 }
 .Info__heading{
   margin-bottom: 25px;

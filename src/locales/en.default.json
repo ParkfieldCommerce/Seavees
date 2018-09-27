@@ -122,6 +122,7 @@
   },
   "subscribe": {
     "title": "Subscribe",
+    "email": "Join Our Mailing List",
     "confirmation": "Thank you for subscribing!"
   },
   "cart": {

@@ -1,7 +1,7 @@
 <!-- Homepage About -->
 {% assign info = section.settings %}
-<section class="Info container m margin-bottom-6x s-margin-bottom-3x">
-  <div class="row flex v-center row--{{section.settings.layout}}">
+<section class="Info container margin-bottom-6x s-margin-bottom-3x">
+  <div class="row flex v-center Info__row--{{section.settings.layout}} row--{{section.settings.layout}}">
     <div class="column l6 m6 s12">
       <div class="Info__image">
         <img src="{{info.image | img_url:'master'}}" alt="{{info.image.alt}}">

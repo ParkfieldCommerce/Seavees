@@ -1,22 +1,20 @@
 <!-- /snippets/form-subscribe.liquid -->
 
 {% if form_success == blank %}{% assign form_success = 'subscribe.confirmation' | t %}{% endif %}
-{% if form_email_placeholder == blank %}{% assign form_email_placeholder = 'form.email' | t %}{% endif %}
-{% if form_button_text == blank %}{% assign form_button_text = 'subscribe.title' | t %}{% endif %}
+{% if form_email_placeholder == blank %}{% assign form_email_placeholder = 'subscribe.email' | t %}{% endif %}
 
 {% form 'customer' %}
-
   {{ form.errors | default_errors }}
-
   {% if form.posted_successfully? %}
     <p class="note form-success">{{ form_success }}</p>
   {% else %}
     <input type="email" value="{% if customer %}{{ customer.email }}{% endif %}" placeholder="{{ form_email_placeholder }}" name="contact[email]" aria-label="{{ form_email_placeholder }}" autocorrect="off" autocapitalize="off">
     <input type="hidden" name="contact[tags]" value="newsletter">
     <input type="hidden" name="customer[accepts_marketing]" value="" />
-    {% if form_show_button %}
-      <input type="submit" name="subscribe" class="button" value="{{ form_button_text }}">
-    {% endif %}
+    <button type="submit">
+      <svg width="8" height="12" viewBox="0 0 8 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M1.04856 10.938L7 5.98924L1 1.00012" stroke="#979797"/>
+      </svg>
+    </button>
   {% endif %}
-
 {% endform %}

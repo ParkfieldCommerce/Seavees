@@ -1,0 +1,80 @@
+.Footer__nav-row{
+  flex-wrap: wrap;
+  @include maxQuery($s){
+    .column:first-child{
+      order: 2;
+    }
+    .column:nth-child(2){
+      order: 3;
+    }
+    .column:last-child{
+      order: 1;
+    }
+  }
+}
+.Footer__nav{
+  text-transform: uppercase;
+}
+.Footer__nav__heading{
+  font-weight: bold;
+  margin-bottom: 10px;
+  @include minQuery($s){
+    margin-bottom: 20px;
+  }
+}
+.Footer__nav__link{
+  text-decoration: none;
+  line-height: 2.5;
+  @include maxQuery($s){
+    line-height: 2;
+    color: $gray-dark;
+  }
+}
+
+.Footer__form{
+  position: relative;
+  display: inline-block;
+  input[type="email"]{
+    border-right: none;
+    border-left: none;
+    border-top: none;
+    padding-left: 10px;
+    transition: border none;
+    width: 263px;
+    font-style: italic;
+    color: $gray-dark;
+  }
+  button[type="submit"]{
+    position: absolute;
+    top: 0;
+    right: 0;
+    border: none;
+    height: 100%;
+    width: 30px;
+    text-align: right;
+    &:hover{
+      background: transparent;
+      svg path{
+        stroke: black;
+      }
+    }
+  }
+}
+
+.Footer__copyright-row{
+  @include maxQuery($s){
+    .column:first-child{
+      order: 2;
+    }
+    .column:nth-child(2){
+      order: 3;
+    }
+    .column:last-child{
+      order: 1;
+    }
+  }
+}
+.Footer__copyright{
+  font-size: 1rem;
+  color: $gray-dark;
+}

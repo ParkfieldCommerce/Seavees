@@ -6,12 +6,13 @@
 
 /* Global */
 @import url('custom/global/global.scss');
-@import url('custom/global/socialbar.scss');
 
 /* Sections */
 @import url('custom/sections/global/promobar.scss');
 @import url('custom/sections/global/header.scss');
 @import url('custom/sections/global/navigation.scss');
+@import url('custom/sections/global/socialbar.scss');
+@import url('custom/sections/global/footer.scss');
 
 /* Homepage */
 @import url('custom/sections/homepage/hero.scss');
@@ -19,3 +20,7 @@
 @import url('custom/sections/homepage/collection-grid.scss');
 @import url('custom/sections/homepage/quote.scss');
 @import url('custom/sections/homepage/media.scss');
+
+/* Nested Collection */
+@import url('custom/sections/collection-nested/nestedcollection.scss');
+@import url('custom/sections/collection-nested/collection-product.scss');

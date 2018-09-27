@@ -1,0 +1,82 @@
+<div class="NestedCollection">
+  <div class="NestedCollection__banner">
+    <img
+      src="{{section.settings.hero_image | img_url:'master'}}"
+      srcset="{{section.settings.hero_image_mobile | img_url:'master'}} 550w,
+              {{section.settings.hero_image | img_url:'master'}} 1000w,
+              {{section.settings.hero_image_wide | img_url:'master'}} 1800w"
+      alt="{{section.settings.hero_image.alt}}"
+    >
+    <h1 class="NestedCollection__heading">{{collection.title}}</h1>
+  </div>
+{% for block in section.blocks %}
+  {% assign collection = collections[block.settings.collection] %}
+  {% if block.settings.image %}{% assign hasImage = true %}{% else %}{% assign hasImage = false %}{% endif %}
+  <div class="container l">
+    <div class="NestedCollection__collection grid">
+      <div class="cell cell-tall">
+        <div class="NestedCollection__collection__info">
+          <div class="NestedCollection__collection__heading-container">
+            <img class="NestedCollection__collection__image" src="{{collection.image | img_url:'master'}}" alt="{{collection.featured_image.alt}}">
+            <h2 class="NestedCollection__collection__title h1 Link--partial-accent">{{collection.title}}</h2>
+          </div>
+          <p class="NestedCollection__collection__body">{{collection.description}}</p>
+        </div>
+      </div>
+      {% for product in collection.products %}
+        <div class="cell">
+          {% include 'collection-product' %}
+        </div>
+        {% if forloop.index == 2 %}
+          <div class="cell-image">
+            {% if hasImage %}
+            <img class="NestedCollection__collection__deco-image" src="{{block.settings.image | img_url:'master'}}" alt="{{block.settings.image.alt}}">
+            {% endif %}
+          </div>
+        {% endif %}
+      {% endfor %}
+      </div>
+  </div>
+{% endfor %}
+</div>
+
+{% schema %}
+{
+  "name": "Nested Collection",
+  "settings":[
+    {
+      "id": "hero_image",
+      "type": "image_picker",
+      "label": "Desktop Image"
+    },
+    {
+      "id": "hero_image_wide",
+      "type": "image_picker",
+      "label": "Wide Desktop Image(>1800px)"
+    },
+    {
+      "id": "hero_image_mobile",
+      "type": "image_picker",
+      "label": "Mobile Image"
+    }
+  ],
+  "blocks":[
+    {
+      "type":"collection",
+      "name":"Collection",
+      "settings": [
+        {
+          "type":"collection",
+          "id":"collection",
+          "label":"Collection"
+        },
+        {
+          "id": "image",
+          "type": "image_picker",
+          "label": "Image"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

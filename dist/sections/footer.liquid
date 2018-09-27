@@ -8,42 +8,51 @@
 {% assign form_success = section.settings.form_success %}
 
 {% include 'socialbar' %}
-<footer class="theme-footer" role="contentinfo">
-  <div class="container center">
-    <div class="row">
-      <div class="column l5 m5 s12">
+<footer class="Footer padding-bottom-4x" role="contentinfo">
+  <div class="container l">
+    <div class="Footer__nav-row flex row margin-bottom-5x s-margin-bottom-3x">
+      <div class="column l2 m3 s12 left s-center s-margin-bottom-3x">
         {% if section.settings.footer_menu_1 %}
         {% assign footerMenu = linklists[section.settings.footer_menu_1] %}
-        <nav>
-          <h5>{{footerMenu.title}}</h5>
+        <nav class="Footer__nav">
+          <h5 class="Footer__nav__heading">{{footerMenu.title}}</h5>
           <ul>
             {% for link in footerMenu.links %}
             <li>
-              <a href="{{link.url}}">{{link.title}}</a>
+              <a class="Footer__nav__link" href="{{link.url}}">{{link.title}}</a>
             </li>
             {% endfor %}
           </ul>
         </nav>
         {% endif %}
+      </div>
+      <div class="column l2 m3 s12 left s-center">
         {% if section.settings.footer_menu_2 %}
         {% assign footerMenu = linklists[section.settings.footer_menu_2] %}
-        <nav>
-          <h5>{{footerMenu.title}}</h5>
+        <nav class="Footer__nav">
+          <h5 class="Footer__nav__heading">{{footerMenu.title}}</h5>
           <ul>
             {% for link in footerMenu.links %}
             <li>
-              <a href="{{link.url}}">{{link.title}}</a>
+              <a class="Footer__nav__link" href="{{link.url}}">{{link.title}}</a>
             </li>
             {% endfor %}
           </ul>
         </nav>
         {% endif %}
       </div>
-      <div class="column l7 m7 s12">
+      <div class="column l8 m6 s12 right s-center s-margin-bottom-3x">
         {% if show_subscribe %}
-          {% include 'form-subscribe' %}
+          <div class="Footer__form">
+            {% include 'form-subscribe' %}
+          </div>
         {% endif %}
       </div>
+    </div>
+    <div class="Footer__copyright-row flex v-end">
+      <div class="column l4 m4 s12 left s-center s-margin-bottom-3x"><img src="{{'CA64.png' | asset_url}}" alt=""></div>
+      <div class="column l4 m4 s12 center"><span class="Footer__copyright">&copy; {{ 'now' | date: "%Y" }} SEAVEES. ALL RIGHTS RESERVED.</span></div>
+      <div class="column l4 m4 s12 right s-center s-margin-bottom-5x"><img src="{{'1Planet.png' | asset_url}}" alt=""></div>
     </div>
   </div>
 </footer>
@@ -84,12 +93,6 @@
         "id": "form_email_placeholder",
         "placeholder": "Email address",
         "label": "Email placeholder"
-      },
-      {
-        "type": "text",
-        "id": "form_button_text",
-        "label": "Button",
-        "placeholder": "Subscribe"
       },
       {
         "type": "textarea",
