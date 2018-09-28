@@ -27,11 +27,9 @@
         <div class="cell">
           {% include 'collection-product' %}
         </div>
-        {% if forloop.index == 2 %}
+        {% if forloop.index == 2 and hasImage %}
           <div class="cell-image">
-            {% if hasImage %}
             <img class="NestedCollection__collection__deco-image" src="{{block.settings.image | img_url:'master'}}" alt="{{block.settings.image.alt}}">
-            {% endif %}
           </div>
         {% endif %}
       {% endfor %}
@@ -40,6 +38,65 @@
 {% endfor %}
 </div>
 
+<script>
+let products = [];
+//Used for Filters
+let colors = {};
+let heights = [];
+let materials = [];
+let sizes = [];
+
+//Used for Individual Products
+let product = {};
+{% for block in section.blocks %}
+  {% for product in collections[block.settings.collection].products %}
+    colors["{{product.metafields.c_f.colorway}}"]="{{product.metafields.c_f.color_swatch}}";
+
+    product = {
+      id:"{{product.id}}",
+      color:"{{product.metafields.c_f.colorway}}",
+      sizes:[],
+      height:[],
+      material:''
+    };
+    
+    //Getting Available Sizes for Product
+    {% for variant in product.variants %}
+      {% if variant.available %}
+      {% assign size = variant.option1 | split:' ' | last %}
+      product.sizes.push({{size | plus: 0 }});
+      if(sizes.indexOf({{size | plus: 0 }}) === -1){
+        sizes.push({{size | plus: 0 }})
+      }
+      {% endif %}
+    {% endfor %}
+
+    {% for tag in product.tags %}
+      {% if tag contains 'style:' %}//should be height
+        {% assign styleTag = tag | split:'style: ' | last %}
+        product.height.push('{{styleTag}}');
+        if(heights.indexOf('{{styleTag}}') === -1){
+          heights.push('{{styleTag}}')
+        }
+      {% endif %}
+      {% if tag contains 'material:' %}
+        {% assign materialTag = tag | split:'material: ' | last %}
+        product.material = '{{ materialTag }}';
+        if(materials.indexOf('{{materialTag}}') === -1){
+          materials.push('{{materialTag}}')
+        }
+      {% endif %}
+    {% endfor %}
+    products.push(product);
+  {% endfor %}
+{% endfor %}
+
+console.log(colors);
+console.log(sizes);
+console.log(heights);
+console.log(materials);
+
+</script>
 {% schema %}
 {
   "name": "Nested Collection",

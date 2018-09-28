@@ -37,14 +37,20 @@
 }
 .NestedCollection__collection__body{
   margin-top: 30px;
+  text-align: left;
 }
 
 .grid{
   display: grid;
+  grid-row-gap: 20px;
+  grid-column-gap: 10px;
   grid-template-columns: 1fr 1fr 1fr;
   @include maxQuery($s){
     grid-template-columns: 1fr 1fr;
   }
+}
+.cell{
+  text-align: center;
 }
 .cell-tall{
   @include maxQuery($s){
@@ -54,4 +60,11 @@
 }
 .cell-image{
   grid-row: 2 / 4;
+  @include maxQuery($s){
+    grid-column: 1 / 3;
+    grid-row: 4/ 4;
+  }
+  img{
+    margin-top: 50px;
+  }
 }

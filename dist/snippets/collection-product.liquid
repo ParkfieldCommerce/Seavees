@@ -1,5 +1,4 @@
 <!-- /snippets/collection-product.liquid -->
-
 {% assign sold_out = true %}
 {% assign on_sale = false %}
 {% assign sale_price = product.price | money %}
@@ -21,6 +20,7 @@
 
   <p>
     <a href="{{ product.url | within: collection }}">{{ product.title }}</a><br>
+    in {{product.metafields.c_f.colorway}}
     {% if on_sale %}
       {% if product.price_varies %}
         {{ 'product.on_sale_from_html' | t: price: sale_price }}
