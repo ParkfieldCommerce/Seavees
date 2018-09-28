@@ -190,9 +190,11 @@ class NestedFilter{
 
       return style && options;
     });
-
     console.log(validProducts);
-    console.log(activeFilters);
+    $('.cell').hide();
+    _.each(validProducts,function(product){
+      $('#'+product.id).show();
+    });
   }
 }
 
