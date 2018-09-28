@@ -1,0 +1,41 @@
+<ul class="NestedFilter js-nestedFilter">
+  <li>
+    <button class="js-filterOption" type="button">Style</button>
+    <ul class="NestedFilter__values js-filter js-filterStyles">
+      {% for block in section.blocks %}
+        {% assign collection = collections[block.settings.collection] %}
+        <button type="button" value="style_{{collection.title}}">
+          <img
+            class="NestedCollection__collection__deco-image"
+            src="{{collection.image | img_url:'master'}}"
+            alt="{{collection.image.alt}}">
+          <span>{{collection.title}}</span>
+        </button>
+      {% endfor %}
+    </ul>
+  </li>
+  <li>
+    <button class="js-filterOption" type="button">Size</button>
+    <ul class="NestedFilter__values js-filter js-filterSizes">
+      
+    </ul>
+  </li>
+  <li>
+    <button class="js-filterOption" type="button">Height</button>
+    <ul class="NestedFilter__values js-filter js-filterHeights">
+      
+    </ul>
+  </li>
+  <li>
+    <button class="js-filterOption" type="button">Color</button>
+    <ul class="NestedFilter__values js-filter js-filterColors">
+      
+    </ul>
+  </li>
+  <li>
+    <button class="js-filterOption" type="button">Material</button>
+    <ul class="NestedFilter__values js-filter js-filterMaterials">
+      
+    </ul>
+  </li>
+</ul>

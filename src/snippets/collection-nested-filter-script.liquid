@@ -1,0 +1,201 @@
+<script>
+class NestedFilter{
+  constructor(){
+    this.products = [];
+    //Used for Filters
+    this.sizes = [];
+    this.heights = [];
+    this.colors = {};
+    this.materials = [];
+
+    this.activeFilters = [];
+
+
+    this.initFilter = this.initFilter.bind(this);
+  }
+
+  initFilter(){
+    this.getAllFilterData();
+    this.populateFilterValues();
+    this.applyEventHandlers();
+  }
+
+  getAllFilterData(){
+    let product = {};
+    {% for block in section.blocks %}
+      {% assign collection = collections[block.settings.collection] %}
+      {% for product in collection.products %}
+        this.colors["{{product.metafields.c_f.colorway}}"]="{{product.metafields.c_f.color_swatch}}";
+
+        product = {
+          id:"{{product.id}}",
+          color:"{{product.metafields.c_f.colorway}}",
+          style:"{{collection.title}}",
+          size:[],
+          height:[],
+          material:''
+        };
+        
+        //Getting Available Sizes for Product
+        {% for variant in product.variants %}
+          {% if variant.available %}
+          {% assign size = variant.option1 | split:' ' | last %}
+          product.size.push({{size | plus: 0 }});
+          if(this.sizes.indexOf({{size | plus: 0 }}) === -1){
+            this.sizes.push({{size | plus: 0 }})
+          }
+          {% endif %}
+        {% endfor %}
+
+        {% for tag in product.tags %}
+          {% if tag contains 'style:' %}//should be height
+            {% assign styleTag = tag | split:'style: ' | last %}
+            product.height.push('{{styleTag}}');
+            if(this.heights.indexOf('{{styleTag}}') === -1){
+              this.heights.push('{{styleTag}}')
+            }
+          {% endif %}
+          {% if tag contains 'material:' %}
+            {% assign materialTag = tag | split:'material: ' | last %}
+            product.material = '{{ materialTag }}';
+            if(this.materials.indexOf('{{materialTag}}') === -1){
+              this.materials.push('{{materialTag}}')
+            }
+          {% endif %}
+        {% endfor %}
+        this.products.push(product);
+      {% endfor %}
+    {% endfor %}
+  }
+
+  populateFilterValues(){
+    let sizeValues = $('.js-filterSizes');
+    let heightValues = $('.js-filterHeights');
+    let colorValues = $('.js-filterColors');
+    let materialValues = $('.js-filterMaterials');
+    //Add Sizes
+    _.each(this.sizes,function(size){
+      let sizeValue = '<li><button type="button" value="size_'+size+'">'+size+'</button></li>';
+      sizeValues.append(sizeValue);
+    });
+
+    //Add Height
+    _.each(this.heights,function(height){
+      let heightValue = '<li><button type="button" value="height_'+height+'">'+height+'</button></li>';
+      heightValues.append(heightValue);
+    });
+
+
+    //Add Colors
+    _.forIn(this.colors,function(hex, colorName){
+      let colorValue = '<li><button type="button" value="color_'+colorName+'" style="background-color:'+hex+'"></button></li>';
+      colorValues.append(colorValue);
+    });
+
+    //Add Material
+    _.each(this.materials,function(material){
+      let materialValue = '<li><button type="button" value="material_'+material+'">'+material+'</button></li>';
+      materialValues.append(materialValue);
+    });
+  }
+
+  applyEventHandlers(){
+    let filterClass = this;
+    let filterOptions = $('.js-filterOption');
+    let filterValues = $('.js-filter button');
+
+    filterOptions.click(function(){
+      filterClass.handleOptionClick($(this));
+    });
+
+    filterValues.click(function(){
+      filterClass.handleValueClick($(this));
+    });
+  }
+
+  handleOptionClick(e){
+    console.log(e);
+  }
+  
+  handleValueClick(e){
+    this.updateFilter(e);
+    this.updateProducts();
+  }
+
+  updateFilter(e){
+    let selectedValue = e.val();
+    let selectedOption = selectedValue.split('_')[0];
+    let activeFilters = this.activeFilters;
+
+    if(_.isEmpty(activeFilters)){
+      activeFilters.push(selectedValue);
+    }else{
+      if(selectedOption === 'style'){//Allows multiple selections within the style option
+        if(_.includes(activeFilters, selectedValue)){
+          _.remove(activeFilters, function(filter){
+            return filter === selectedValue;
+          });
+        }else{
+          activeFilters.push(selectedValue);
+        }
+      }else{//Allows only one selection within that option
+        let activeFilterOptions = _.map(activeFilters, function(filter){
+          return filter.split('_')[0];
+        });
+
+        if(_.includes(activeFilterOptions, selectedOption)){
+          if(_.includes(activeFilters, selectedValue)){//If its the exact same value, remove it entirely
+            _.remove(activeFilters, function(filter){
+              return filter === selectedValue;
+            });
+          }else{//If its the same option but different value, remove old value and push in the new value
+            _.remove(activeFilters, function(filter){
+              let testOption = filter.split('_')[0];
+              return selectedOption === testOption;
+            });
+            activeFilters.push(selectedValue);
+          }
+        }else{
+          activeFilters.push(selectedValue);
+        }
+      }
+    }
+
+    this.activeFilters = activeFilters;
+  }
+  updateProducts(){
+    let activeFilters = this.activeFilters;
+    let products = this.products;
+
+    let validProducts = _.filter(this.products, function(product){
+      let style = true;
+      let options = true;
+
+      _.each(activeFilters, function(filter){
+        let filterOption = filter.split('_')[0];
+        let filterValue = filter.split('_')[1];
+
+        if(_.isArray(product[filterOption])){
+          if(!_.includes(product[filterOption], filterValue)){
+            options = false;
+            return false;
+          }
+        }else{
+          if(product[filterOption] !== filterValue){
+            options = false;
+            return false;
+          }
+        }
+      });
+
+      return style && options;
+    });
+
+    console.log(validProducts);
+    console.log(activeFilters);
+  }
+}
+
+const Filter = new NestedFilter();
+Filter.initFilter();
+</script>

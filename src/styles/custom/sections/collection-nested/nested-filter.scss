@@ -1,0 +1,6 @@
+.NestedFilter{
+  @include flex();
+  input[type="checkbox"]{
+    display: inline-block;
+  }
+}
