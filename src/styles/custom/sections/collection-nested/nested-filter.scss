@@ -1,17 +1,25 @@
 .NestedCollection__filter-container{
   position: relative;
+  height: 65px;
+  @include flex-center();
 }
 .NestedFilter{
-  @include flex();
+  @include inline-flex();
 }
 .NestedFilter__option{
   border: none;
   width: 90px;
   @include justify-content(flex-start);
   color: $gray;
+  font-style: italic;
   &:hover{
     color: $primary-accent1;
     background-color: transparent;
+  }
+  &:after{
+    font-family: 'Material Icons';
+    font-style: normal;
+    content:'\e5cf';
   }
 }
 .NestedFilter__option.active{
@@ -19,8 +27,11 @@
 }
 .NestedFilter__values-container{
   display: none;
+  padding-top: 10px;
+  padding-bottom: 10px;
   position: absolute;
   width: 100%;
+  top: 65px;
   left: 0;
   right: 0;
   background-color: $gray-light;
@@ -30,9 +41,110 @@
   margin-left: auto;
   margin-right: auto;
   @include flex();
+  flex-wrap: wrap;
 }
+.NestedFilter__value{
+  border: none;
+  color: #c5c5c5;
+  font-size: 1.2rem;
+  transition: color .3s, border-color .3s;
+  margin-right: 25px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  &:hover{
+    background: transparent;
+    color: $primary-accent1;
+    border-color: $primary-accent1;
+  }
+}
+.NestedFilter__value.active{
+  color: $primary-accent1;
+}
+
+.NestedFilter__value--style{
+  flex-wrap: wrap;
+  color: $gray-dark;
+  width: 70px;
+  img{
+    max-width: 100%;
+    opacity: .5;
+    @include prefix(filter, grayscale(1));
+    transition: opacity .3s;
+  }
+  div{
+    margin-top: 15px;
+    width: 100%;
+  }
+}
+.NestedFilter__value--style.active{
+  img{
+    opacity: 1;
+  }
+}
+
+.NestedFilter__value--size{
+  font-size: 1.2rem;
+  font-weight: 700;
+  height: 30px;
+  width: 30px;
+  border: 2px solid $gray;
+  border-radius: 30px;
+  color: $gray;
+}
+.NestedFilter__value--size.active{
+  border-color: $primary-accent1;
+  color: $primary-accent1;
+}
+
+.NestedFilter__value--height,
+.NestedFilter__value--material{
+  font-size: 1.8rem;
+}
+.NestedFilter__value--height.active,
+.NestedFilter__value--material.active{
+  text-decoration: underline;
+}
+
+.NestedFilter__value--color{
+  width: 30px;
+  height: 30px;
+  border-radius: 30px;
+  border: 2px solid transparent;
+}
+.NestedFilter__value--color.active{
+  border: 2px solid $primary-accent1;
+}
+
 .NestedFilter__option-container.active{
+  .NestedFilter__option{
+    color: $primary-accent1;
+    &:after{
+      content:'\e5ce';
+    }
+  }
   .NestedFilter__values-container{
-    display: block;
+    @include flex-center();
+  }
+}
+
+.ActiveFilters{
+  @include inline-flex();
+  @include justify-content(flex-end);
+}
+.ActiveFilters__value{
+  border: none;
+  position: relative;
+  margin-left: 20px;
+  &:after{
+    font-family: "Material Icons";
+    content:'\e5cd';
+    position: absolute;
+    right: -11px;
+    top: -6px;
+    font-size: 1.5rem;
+  }
+  &:hover{
+    color: $primary-accent1;
+    background: transparent;
   }
 }

@@ -5,12 +5,12 @@
       <ul class="NestedFilter__values container l js-filter js-filterStyles">
         {% for block in section.blocks %}
           {% assign collection = collections[block.settings.collection] %}
-          <button type="button" value="style_{{collection.title}}">
+          <button class="NestedFilter__value NestedFilter__value--style js-filterValue" type="button" value="style_{{collection.title}}">
             <img
               class="NestedCollection__collection__deco-image"
               src="{{collection.image | img_url:'master'}}"
               alt="{{collection.image.alt}}">
-            <span>{{collection.title}}</span>
+            <div>{{collection.title}}</div>
           </button>
         {% endfor %}
       </ul>
@@ -48,4 +48,7 @@
       </ul>
     </div>
   </li>
+</ul>
+<ul class="ActiveFilters js-activeFilters">
+
 </ul>

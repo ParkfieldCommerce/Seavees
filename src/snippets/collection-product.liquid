@@ -1,7 +1,7 @@
 <!-- /snippets/collection-product.liquid -->
 {% assign sold_out = true %}
 {% assign on_sale = false %}
-{% assign sale_price = product.price | money %}
+{% assign sale_price = product.price | money_without_trailing_zeros %}
 
 {% if product.available %}
   {% assign sold_out = false %}
@@ -18,26 +18,26 @@
     </a>
   {% endif %}
 
-  <p>
-    <a href="{{ product.url | within: collection }}">{{ product.title }}</a><br>
-    in {{product.metafields.c_f.colorway}}
-    {% if on_sale %}
-      {% if product.price_varies %}
-        {{ 'product.on_sale_from_html' | t: price: sale_price }}
+  <p class="CollectionProduct__info">
+    <a href="{{ product.url | within: collection }}" class="CollectionProduct__title">{{ product.title }}</a>
+    <span class="CollectionProduct__color">
+    in {{product.metafields.c_f.colorway}} | 
+    </span>
+    <span class="CollectionProduct__price">
+      {% if on_sale %}
+        {{sale_price}}
       {% else %}
-        <b>{{ 'product.on_sale_html' | t: price: sale_price }}</b>
+        {% if product.price_varies %}
+          {% assign price = product.price | money_without_trailing_zeros %}
+          {{ 'product.priced_from_html' | t: price: price }}
+        {% else %}
+          {{ product.price | money_without_trailing_zeros }}
+        {% endif %}
       {% endif %}
-    {% else %}
-      {% if product.price_varies %}
-        {% assign price = product.price | money %}
-        {{ 'product.priced_from_html' | t: price: price }}
-      {% else %}
-        {{ product.price | money }}
+      {% if on_sale %}
+        <span class="hidden">{{ 'product.original_price' | t }}</span>
+        <s>{{ product.compare_at_price | money_without_trailing_zeros }}</s>
       {% endif %}
-    {% endif %}
-    {% if on_sale %}
-      <span class="hidden">{{ 'product.original_price' | t }}</span>
-      <s>{{ product.compare_at_price | money }}</s>
-    {% endif %}
+    </span>
   </p>
 </div>

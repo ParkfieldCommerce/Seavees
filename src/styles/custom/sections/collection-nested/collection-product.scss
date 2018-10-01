@@ -4,3 +4,17 @@
     max-height: 173px;
   }
 }
+.CollectionProduct__info{
+  text-transform: uppercase;
+}
+.CollectionProduct__title{
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  text-decoration: none;
+  display: block;
+  line-height: 1;
+}
+.CollectionProduct__price,
+.CollectionProduct__color{
+  font-size: 1.0rem;
+}

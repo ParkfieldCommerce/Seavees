@@ -2,7 +2,13 @@
 
 {% assign enable_search = section.settings.enable_search %}
 
-<header class="Header js-header" role="banner">
+{% assign darkHeaderTemplates = 'product' %}
+{% assign headerColorModifier = 'is-light' %}
+{% if darkHeaderTemplates contains template %}
+  {% assign headerColorModifier = 'is-dark' %}
+{% endif %}
+
+<header class="Header js-header Header--{{headerColorModifier}}" role="banner">
   <div class="Header__content">
     <div class="container xl">
       <div class="row flex v-center">

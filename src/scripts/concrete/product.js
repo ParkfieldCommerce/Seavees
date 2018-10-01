@@ -82,6 +82,7 @@ concrete.Product = (function() {
     },
 
     _updateVariantId: function(evt) {
+      console.log(evt.variant);
       var variant = evt.variant;
       if (variant)
         $(this.selectors.variantId).val(variant.id);

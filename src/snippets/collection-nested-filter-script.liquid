@@ -77,27 +77,30 @@ class NestedFilter{
     let colorValues = $('.js-filterColors');
     let materialValues = $('.js-filterMaterials');
     //Add Sizes
-    _.each(this.sizes,function(size){
-      let sizeValue = '<li><button type="button" value="size_'+size+'">'+size+'</button></li>';
+    let sortedSizes = _.sortBy(this.sizes,function(size){
+      return size;
+    })
+    _.each(sortedSizes,function(size){
+      let sizeValue = '<li><button class="NestedFilter__value NestedFilter__value--size js-filterValue" type="button" value="size_'+size+'">'+size+'</button></li>';
       sizeValues.append(sizeValue);
     });
 
     //Add Height
     _.each(this.heights,function(height){
-      let heightValue = '<li><button type="button" value="height_'+height+'">'+height+'</button></li>';
+      let heightValue = '<li><button class="NestedFilter__value NestedFilter__value--height js-filterValue" type="button" value="height_'+height+'">'+height+'</button></li>';
       heightValues.append(heightValue);
     });
 
 
     //Add Colors
     _.forIn(this.colors,function(hex, colorName){
-      let colorValue = '<li><button type="button" value="color_'+colorName+'" style="background-color:'+hex+'"></button></li>';
+      let colorValue = '<li><button class="NestedFilter__value NestedFilter__value--color js-filterValue" type="button" value="color_'+colorName+'" style="background-color:'+hex+'"></button></li>';
       colorValues.append(colorValue);
     });
 
     //Add Material
     _.each(this.materials,function(material){
-      let materialValue = '<li><button type="button" value="material_'+material+'">'+material+'</button></li>';
+      let materialValue = '<li><button class="NestedFilter__value NestedFilter__value--material js-filterValue" type="button" value="material_'+material+'">'+material+'</button></li>';
       materialValues.append(materialValue);
     });
   }
@@ -133,6 +136,7 @@ class NestedFilter{
   
   handleValueClick(e){
     let value = e.val();
+
     this.updateFilter(value);
     this.updateProducts();
     this.updateStyleSections();
@@ -177,7 +181,36 @@ class NestedFilter{
       }
     }
 
+    this.updateActiveFiltersDOM(activeFilters);
     this.activeFilters = activeFilters;
+  }
+
+  updateActiveFiltersDOM(activeFilters){
+    let activeFiltersDOM = $('.js-activeFilters');
+    let filter = this;
+
+
+    //Sets Filter Value state and updates the active filter removal buttons
+    $('.js-filterValue').removeClass('active');
+    activeFiltersDOM.empty();
+    _.each(activeFilters, function(filter){
+      $('.js-filterValue[value="'+filter+'"]').addClass('active');
+      activeFiltersDOM.append('<li><button class="ActiveFilters__value js-activeFilter" type="button" value="'+filter+'">'+filter.split('_')[1]+'</button></li>');
+    });
+
+
+    //Handles Removal of Filter Value
+    $('.js-activeFilter').click(function(){
+      $(this).remove();
+      let filterToRemove = $(this).val();
+      _.remove(activeFilters, function(filter){
+        return filter === filterToRemove;
+      });
+      $('.js-filterValue[value="'+filterToRemove+'"]').removeClass('active');
+
+      filter.activeFilters = activeFilters;
+      filter.updateProducts();
+    });
   }
 
   updateProducts(){
@@ -218,8 +251,7 @@ class NestedFilter{
 
       return (style || nostyles) && options;
     });
-    console.log(activeFilters);
-    console.log(validProducts);
+
     $('.js-collectionProduct').hide();
     _.each(validProducts,function(product){
       $('#Product-'+product.id).show();

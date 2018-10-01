@@ -1,5 +1,6 @@
 .NestedCollection__banner{
   position: relative;
+  img{vertical-align: middle;}
 }
 .NestedCollection__heading{
   position: absolute;
@@ -38,6 +39,7 @@
 .NestedCollection__collection__body{
   margin-top: 30px;
   text-align: left;
+  font-style: italic;
 }
 
 .NestedCollection__grid{

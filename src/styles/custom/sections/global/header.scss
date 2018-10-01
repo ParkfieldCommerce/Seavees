@@ -23,7 +23,8 @@
   opacity: 0;
   @include prefix(transform, translateY(-50%));
 }
-.Header.active{
+.Header.active,
+.Header--is-dark{
   background: $white;
   .Header__logo-image--light{
     opacity: 0;
@@ -34,4 +35,8 @@
   .Nav__link{
     color: $primary-accent2;
   }
+}
+
+.Header--is-dark{
+  position: static;
 }
