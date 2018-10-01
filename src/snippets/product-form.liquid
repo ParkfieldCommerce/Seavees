@@ -16,6 +16,9 @@
               <option value="{{ value | escape }}"{% if option.selected_value == value %} selected="selected"{% endif %}>{{ value }}</option>
             {% endfor %}
           </select>
+          {% for value in option.values %}
+          <button type="button">{{value}}</button>
+          {% endfor %}
         </div>
         {% if option.name == 'color' or option.name == 'Color' %}
         <ul class="swatches">
