@@ -1,6 +1,38 @@
+.NestedCollection__filter-container{
+  position: relative;
+}
 .NestedFilter{
   @include flex();
-  input[type="checkbox"]{
-    display: inline-block;
+}
+.NestedFilter__option{
+  border: none;
+  width: 90px;
+  @include justify-content(flex-start);
+  color: $gray;
+  &:hover{
+    color: $primary-accent1;
+    background-color: transparent;
+  }
+}
+.NestedFilter__option.active{
+  color: $primary-accent1;
+}
+.NestedFilter__values-container{
+  display: none;
+  position: absolute;
+  width: 100%;
+  left: 0;
+  right: 0;
+  background-color: $gray-light;
+  z-index: 2;
+}
+.NestedFilter__values{
+  margin-left: auto;
+  margin-right: auto;
+  @include flex();
+}
+.NestedFilter__option-container.active{
+  .NestedFilter__values-container{
+    display: block;
   }
 }

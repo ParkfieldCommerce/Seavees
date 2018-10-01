@@ -2,6 +2,9 @@
 class NestedFilter{
   constructor(){
     this.products = [];
+    //Used for Option
+    this.activeOption = '';
+
     //Used for Filters
     this.sizes = [];
     this.heights = [];
@@ -114,16 +117,29 @@ class NestedFilter{
   }
 
   handleOptionClick(e){
-    console.log(e);
+    let option = e.val();
+    let activeOption = this.activeOption;
+
+    $('.js-optionContainer').removeClass('active');
+    if(option === activeOption){
+      activeOption = '';
+    }else{
+      activeOption = option;
+      $('.js-optionContainer-'+activeOption).addClass('active');
+    }
+
+    this.activeOption = activeOption;
   }
   
   handleValueClick(e){
-    this.updateFilter(e);
+    let value = e.val();
+    this.updateFilter(value);
     this.updateProducts();
+    this.updateStyleSections();
   }
 
-  updateFilter(e){
-    let selectedValue = e.val();
+  updateFilter(selected){
+    let selectedValue = selected;
     let selectedOption = selectedValue.split('_')[0];
     let activeFilters = this.activeFilters;
 
@@ -163,38 +179,76 @@ class NestedFilter{
 
     this.activeFilters = activeFilters;
   }
+
   updateProducts(){
     let activeFilters = this.activeFilters;
     let products = this.products;
 
     let validProducts = _.filter(this.products, function(product){
-      let style = true;
+      let style = false;
+      let nostyles = true; //Stays true if none of the style filters were selected
       let options = true;
 
       _.each(activeFilters, function(filter){
         let filterOption = filter.split('_')[0];
         let filterValue = filter.split('_')[1];
 
-        if(_.isArray(product[filterOption])){
-          if(!_.includes(product[filterOption], filterValue)){
-            options = false;
-            return false;
+        if(filterOption === 'style'){
+          nostyles = false;
+          if(product[filterOption] === filterValue){
+            style = true;
           }
         }else{
-          if(product[filterOption] !== filterValue){
-            options = false;
-            return false;
+          if(filterOption === 'size'){
+            filterValue = parseFloat(filterValue);
+          }
+          if(_.isArray(product[filterOption])){
+            if(!_.includes(product[filterOption], filterValue)){
+              options = false;
+              return false;
+            }
+          }else{
+            if(product[filterOption] != filterValue){
+              options = false;
+              return false;
+            }
           }
         }
       });
 
-      return style && options;
+      return (style || nostyles) && options;
     });
+    console.log(activeFilters);
     console.log(validProducts);
-    $('.cell').hide();
+    $('.js-collectionProduct').hide();
     _.each(validProducts,function(product){
-      $('#'+product.id).show();
+      $('#Product-'+product.id).show();
     });
+  }
+
+  updateStyleSections(){
+    //Handles showing the style info, when the style values are selected
+
+    //Style DOM Classes
+    let styleInfo = '.js-collectionInfo';
+    let styleImage = '.js-collectionImage';
+
+    let activeFilters = this.activeFilters;
+    let activeFilterOptions = _.map(activeFilters, function(filter){
+      return filter.split('_')[0];
+    });
+
+    if(_.includes(activeFilterOptions,'style')){
+      $(styleInfo).hide();
+      $(styleImage).hide();
+      _.each(activeFilters, function(filter){
+        $(styleInfo + '[data-style="'+filter+'"]').show();
+        $(styleImage + '[data-style="'+filter+'"]').show();
+      });
+    }else{
+      $(styleInfo).show();
+      $(styleImage).show();
+    }
   }
 }
 
