@@ -1,0 +1,28 @@
+.ProductImages{
+  width: 560px;
+  max-width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+.ProductImage__main{
+  display: none;
+  @include minQuery($s){
+    display: block;
+  }
+}
+.ProductThumbs__container{
+  position: relative;
+}
+.ProductThumbs__image{
+  border-bottom: 2px solid transparent;
+  transition: border-color .3s;
+}
+.ProductThumbs__image.active{
+  border-color: $primary-accent1;
+}
+.ProductThumbs__dots{
+  position: absolute;
+  bottom: 15px;
+  left: 50%;
+  @include prefix(transform, translateX(-50%));
+}

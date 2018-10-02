@@ -19,6 +19,11 @@
 // =require vendor/focus.js
 
 /*!
+ * blazy.min.js
+ */
+// =require vendor/blazy.min.js
+
+/*!
  * rivets-cart.js
  */
 // =require vendor/rivets-cart.js

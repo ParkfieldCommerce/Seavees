@@ -1,0 +1,115 @@
+.ProductForm__container{
+  text-align: center;
+}
+.ProductForm__title-container{
+  margin-bottom: 20px;
+}
+.ProductForm__title{
+  width: 250px;
+  @include newsR(2.4rem);
+  text-align: center;
+  max-width: 100%;
+  text-transform: uppercase;
+}
+.ProductForm__title-gender{
+  font-size: 1.4rem;
+  color: #c5c5c5;
+  display: block;
+  margin-bottom: 5px;
+  text-align: center;
+  text-transform: uppercase;
+}
+.ProductForm__price{
+  display: block;
+  text-align: center;
+  @include newsR(2.4rem);
+  @include lineHeading-center(40%);
+  &:after{
+    margin-top: 15px;
+  }
+}
+.ProductForm__option{
+  label,
+  select{
+    display: none;
+  }
+}
+.ProductForm__values--size{
+  @include flex();
+  @include justify-content(center);
+  flex-wrap: wrap;
+  width: 190px;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 100%;
+  margin-bottom: 20px;
+}
+.ProductForm__value--size{
+  height: 30px;
+  width: 30px;
+  border-radius: 30px;
+  font-size: 1rem;
+  color: $primary-accent2;
+  @include flex();
+  border-color: transparent;
+  transition: border-color .3s, color .3s;
+  font-weight: bold;
+  &:hover{
+    color: $primary-accent2;
+    border-color: $primary-accent1;
+    background-color: transparent;
+  }
+}
+.ProductForm__value--size.active{
+  border-color: $primary-accent1;
+}
+.ProductForm__fit-guide-trigger{
+  border: none;
+  text-decoration: underline;
+  color: $primary-accent2;
+  font-size: 1rem;
+  @include inline-flex();
+  margin-bottom: 10px;
+  &:hover{
+    text-decoration: none;
+    background: transparent;
+    color: $gray;
+  }
+}
+
+.ProductForm__values--color{
+  @include flex();
+  @include justify-content(space-between);
+  flex-wrap: wrap;
+  width: 140px;
+  margin-left: auto;
+  margin-right: auto;
+  li{
+    width: 25%;
+    margin-bottom: 5px;
+  }
+}
+.ProductForm__value--color{
+  height: 25px;
+  width: 25px;
+  border-radius: 25px;
+  border: 2px solid transparent;
+}
+.ProductForm__value--color.active{
+  border: 2px solid $primary-accent1;
+}
+.ProductForm__option--color-title{
+  font-size: 1.4rem;
+  color: #c5c5c5;
+  margin-bottom: 20px;
+  margin-top: 5px;
+  display: inline-block;
+}
+
+.ProductForm__submit{
+  margin-left: auto;
+  margin-right: auto;
+  width: 150px;
+  padding: 0;
+  text-align: center;
+}

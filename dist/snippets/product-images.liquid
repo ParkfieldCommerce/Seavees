@@ -1,13 +1,19 @@
-<div id="ProductPhoto">
-  <img srcset="{{ product.featured_image | img_url: '1024x1024', scale: 2 }} 2x" src="{{ product.featured_image | img_url: '1024x1024' }}"{% if image.alt %} alt="{{ image.alt | escape }}"{% endif %}>
+<div class="ProductImages margin-bottom-5x">
+  <div id="ProductPhoto" class="ProductImage__main">
+    <img srcset="{{ product.featured_image | img_url: '1024x1024', scale: 2 }} 2x" src="{{ product.featured_image | img_url: '1024x1024' }}"{% if image.alt %} alt="{{ image.alt | escape }}"{% endif %}>
+  </div>
+
+  {% if product.images.size > 1 %}
+    <div class="ProductThumbs__container">
+      <div id="ProductThumbs" class="ProductThumbs__slider js-thumbsSlider">
+        {% for image in product.images %}
+        <div class="ProductThumbs__slide">
+          <img class="ProductThumbs__image js-thumbsImage {% if forloop.index == 1 %}active{% endif %}" srcset="{{ product.featured_image | img_url: '512x512', scale: 2 }} 2x" src="{{ image | img_url: '512x512' }}"{% if image.alt %} alt="{{ image.alt | escape }}"{% endif %}>
+        </div>
+        {% endfor %}
+      </div>
+      <div class="ProductThumbs__dots js-thumbsDots"></div>
+    </div>
+  {% endif %}
 </div>
 
-{% if product.images.size > 1 %}
-  <div id="ProductThumbs">
-    {% for image in product.images %}
-    <div>
-      <img srcset="{{ product.featured_image | img_url: '512x512', scale: 2 }} 2x" src="{{ image | img_url: '512x512' }}"{% if image.alt %} alt="{{ image.alt | escape }}"{% endif %}>
-    </div>
-    {% endfor %}
-  </div>
-{% endif %}

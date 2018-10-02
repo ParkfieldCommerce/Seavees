@@ -1,92 +1,94 @@
-<h1 itemprop="name">{{ product.title }}</h1>
+<div class="ProductForm__container">
+  <div class="ProductForm__title-container">
+    {% if product.title contains "Mens -" or product.title contains "Womens -" or product.title contains "Kids -" %}
+    <span class="ProductForm__title-gender">{{ product.title | split: '-' | first }}</span>
+    {% endif %}
+    <h1 class="ProductForm__title" itemprop="name">
+      {{ product.title | remove: "Mens -" | remove: "Womens -" | remove: "Big Kids -" | remove: "Little Kids -" | remove: "Kids -" }}
+    </h1>
+    <span class="hidden">{{ 'product.regular_price' | t }}</span>
+    <span id="ProductPrice" class="ProductForm__price h1" itemprop="price" content="{{ current_variant.price | divided_by: 100.00 }}">
+      {{ current_variant.price | money_without_trailing_zeros }}
+    </span>
+  </div>
+  {% if on_sale %}
+    <p id="OnSale">
+      <span class="hidden">{{ 'product.original_price' | t }}</span>
+      <span>{{ 'product.original_price' | t }}</span>
+      <s id="ComparePrice">{{ product.compare_at_price | money_without_trailing_zeros }}</s>
+    </p>
+  {% endif %}
+  <div class="center" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+    <meta itemprop="priceCurrency" content="{{ shop.currency }}">
+    <link itemprop="availability" href="http://schema.org/{% if product.available %}InStock{% else %}OutOfStock{% endif %}">
 
-<div itemprop="offers" itemscope itemtype="http://schema.org/Offer">
-  <meta itemprop="priceCurrency" content="{{ shop.currency }}">
-  <link itemprop="availability" href="http://schema.org/{% if product.available %}InStock{% else %}OutOfStock{% endif %}">
+    <form action="/cart/add" method="post" enctype="multipart/form-data" id="AddToCartForm">
+      {% unless product.options.size == 1 and product.variants[0].title == 'Default Title' %}
+        {% for option in product.options_with_values %}
+          <div class="ProductForm__option ProductForm__option--{{option.name}}">
+            <label {% if option.name == 'default' %}class="hidden" {% endif %}for="SingleOptionSelector-{{ forloop.index }}">
+              {{ option.name }}
+            </label>
+            <select class="single-option-selector ProductForm__option-selector--{{option.name}} js-selector--{{option.name}}" id="SingleOptionSelector-{{ forloop.index }}" data-index="option{{ forloop.index }}">
+              {% for value in option.values %}
+                <option value="{{ value | escape }}"{% if option.selected_value == value %} selected="selected"{% endif %}>{{ value | remove:'mens' | remove:'womens' | remove:'kids' }}</option>
+              {% endfor %}
+            </select>
+            {% if option.name contains 'Size' %}
+              <div class="ProductForm__values ProductForm__values--size">
+              {% for value in option.values %}
+              <button class="ProductForm__value ProductForm__value--size js-sizeVariantButton" type="button" value="{{value}}">{{ value | remove:'Mens' | remove:'Womens' | remove:'Kids' }}</button>
+              {% endfor %}
+              </div>
+              <button class="ProductForm__fit-guide-trigger js-fitGuideTrigger" type="button">Fit Guide</button>
+            {% endif %}
+            {% if option.name == 'color' or option.name == 'Color' %}
+              <ul class="ProductForm__values ProductForm__values--color">
+                {% paginate collections.all.products by 1000 %}
+                  {% for prod in collections.all.products %}
+                    {% if product.title == prod.title and product.type == prod.type and product.metafields.c_f.product_material == prod.metafields.c_f.product_material %}
+                      <li>
+                        <a href="{{prod.url}}" class="ProductForm__value ProductForm__value--color {% if product.url == prod.url %}active{% endif %}" style="background-color: {{prod.metafields.c_f.color_swatch}}" title="{{prod.metafields.c_f.colorway}}"></a>
+                      </li>
+                    {% endif %}
+                  {% endfor %}
+                {% endpaginate %}
+              </ul>
+              <span class="ProductForm__option--color-title">{{product.metafields.c_f.colorway}}</span>
+            {% endif %}
+          </div>
+        {% endfor %}
+      {% endunless %}
 
-  <form action="/cart/add" method="post" enctype="multipart/form-data" id="AddToCartForm" data-cart-submit>
-    {% unless product.options.size == 1 and product.variants[0].title == 'Default Title' %}
-      {% for option in product.options_with_values %}
-        <label {% if option.name == 'default' %}class="hidden" {% endif %}for="SingleOptionSelector-{{ forloop.index }}">
-          {{ option.name }}
-        </label>
+      {% comment %}
+        Original variant selector, the customer will not see this element
+      {% endcomment %}
+      <div class="hidden">
         <div class="select-wrapper">
-          <select class="single-option-selector" id="SingleOptionSelector-{{ forloop.index }}" data-index="option{{ forloop.index }}">
-            {% for value in option.values %}
-              <option value="{{ value | escape }}"{% if option.selected_value == value %} selected="selected"{% endif %}>{{ value }}</option>
-            {% endfor %}
-          </select>
-          {% for value in option.values %}
-          <button type="button">{{value}}</button>
-          {% endfor %}
-        </div>
-        {% if option.name == 'color' or option.name == 'Color' %}
-        <ul class="swatches">
-          {% paginate collections.all.products by 1000 %}
-            {% for prod in collections.all.products %}
-              {% if product.title == prod.title and product.type == prod.type and product.metafields.c_f.product_material == prod.metafields.c_f.product_material %}
-                <li>
-                  <label>
-                    <a href="{{prod.url}}" class="swatch">
-                      <div {% if product.url == prod.url %} class="color_swatch_active" {% else %} class="color_swatch" {% endif %} style="background-color: {{prod.metafields.c_f.color_swatch}}" title="{{prod.metafields.c_f.colorway}}">&nbsp;</div>
-                    </a>
-                  </label>
-                </li>
+          <select name="id" id="productSelect" data-index="option{{ forloop.index }}">
+            {% for variant in product.variants %}
+              {% if variant.available %}
+                <option
+                  value="{{ variant.id }}">{{ variant.title }} - {{ variant.price | money_with_currency }}
+                </option>
+              {% else %}
+                <option disabled="disabled">
+                  {{ variant.title }} - {{ 'product.sold_out' | t }}
+                </option>
               {% endif %}
             {% endfor %}
-          {% endpaginate %}
-        </ul>
-        {% endif %}
-      {% endfor %}
-    {% endunless %}
-
-    {% comment %}
-      Original variant selector, the customer will not see this element
-    {% endcomment %}
-    <div class="hidden">
-      <div class="select-wrapper">
-        <select name="id" id="productSelect" data-index="option{{ forloop.index }}">
-          {% for variant in product.variants %}
-            {% if variant.available %}
-              <option
-                value="{{ variant.id }}">{{ variant.title }} - {{ variant.price | money_with_currency }}
-              </option>
-            {% else %}
-              <option disabled="disabled">
-                {{ variant.title }} - {{ 'product.sold_out' | t }}
-              </option>
-            {% endif %}
-          {% endfor %}
-        </select>
+          </select>
+        </div>
       </div>
-    </div>
 
-    <span class="hidden">{{ 'product.regular_price' | t }}</span>
-    <span id="ProductPrice" class="h2" itemprop="price" content="{{ current_variant.price | divided_by: 100.00 }}">
-      {{ current_variant.price | money }}
-    </span>
-
-    {% if on_sale %}
-      <p id="OnSale">
-        <span class="hidden">{{ 'product.original_price' | t }}</span>
-        <span>{{ 'product.original_price' | t }}</span>
-        <s id="ComparePrice">{{ product.compare_at_price | money }}</s>
-      </p>
-    {% endif %}
-
-    <label for="Quantity">{{ 'product.quantity' | t }}</label>
-    <div class="quantity-adjust">
-      <a class="adjust" data-change="-1">&#8211;</a>
-        <input type="number" id="Quantity" class="quantity" name="quantity" value="1" min="1" data-cart-quantity="1">
-      <a class="adjust" data-change="1">&#43;</a>
-    </div>
-    {% if sold_out %}
-      <button type="submit" name="add" data-add-to-cart disabled>
-        <span id="AddToCartText">{{ 'product.sold_out' | t }}</span>
-      </button>
-    {% else %}
-      <button class="Btn Btn--primary" type="submit" name="add" data-add-to-cart>
-        <span id="AddToCartText">{{ 'product.add_to_cart' | t }}</span>
-      </button>
-    {% endif %}
-  </form>
+      {% if sold_out %}
+        <button type="submit" name="add" data-add-to-cart disabled>
+          <span id="AddToCartText">{{ 'product.sold_out' | t }}</span>
+        </button>
+      {% else %}
+        <button class="ProductForm__submit Btn Btn--primary Btn--big" type="submit" name="add" data-add-to-cart>
+          <span id="AddToCartText">{{ 'product.add_to_cart' | t }}</span>
+        </button>
+      {% endif %}
+    </form>
+  </div>

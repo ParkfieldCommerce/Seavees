@@ -7,6 +7,7 @@ class Theme{
   globalInit(){
     this.handleInputValidation();
     this.initHeader();
+    this.lazyLoadImages();
   }
   handleInputValidation(){
     let inputs = $('.js-inputCheck input, .js-inputCheck select');
@@ -15,6 +16,16 @@ class Theme{
         $(this).parent().addClass('active');
       }else{
         $(this).parent().removeClass('active');
+      }
+    });
+  }
+  lazyLoadImages(){
+    var bLazy = new Blazy({
+      success: function(element){
+        setTimeout(function(){
+        var parent = element.parentNode;
+        parent.className = parent.className.replace(/\bloading\b/,'');
+          }, 200);
       }
     });
   }
@@ -32,8 +43,41 @@ class Theme{
   }
 
   initProductPage(){
-    $('#ProductThumbs').slick({
-      slidesToShow: 1
+    //Product Thumbs Slider
+    $('.js-thumbsSlider').slick({
+      slidesToShow: 7,
+      arrows: false,
+      infinite: false,
+      responsive:[
+        {
+          breakpoint: 600,
+          settings:{
+            slidesToShow: 1,
+            dots: true,
+            appendDots:'.js-thumbsDots'
+          }
+        }
+      ]
     });
+    
+    //Thumbnail Image Switching
+    $(document).on('click', '#ProductThumbs img', function(event) {
+      $('.js-thumbsImage').removeClass('active');
+      $(this).addClass('active');
+      concrete.Images.switchImage($('#ProductPhoto img')[0], $(this, event.target)[0]);
+    });
+
+    //Handle Size Variant Change
+    let sizeVariantButtons = $('.js-sizeVariantButton');
+    let sizeOptionSelector = $('.js-selector--Size');
+
+    sizeVariantButtons.click(function(){
+      let value = $(this).val();
+      sizeVariantButtons.removeClass('active');
+      $(this).addClass('active');
+      sizeOptionSelector.val(value);
+      sizeOptionSelector.trigger('change');
+    });
+
   }
 }

@@ -1,0 +1,22 @@
+.ProductDesc__columns{
+  @include flex();
+  @include justify-content(space-between);
+}
+.ProductDesc__column--1{
+  width: 240px;
+  max-width: 100%;
+}
+.ProductDesc__column--2{
+  width: 300px;
+  max-width: 100%;
+}
+.ProductDesc__title{
+  display: inline-block;
+  @include lineHeading-left(60%);
+  &:after{
+    margin-bottom: 15px;
+  }
+}
+.ProductDesc__body{
+  font-size: 11px;
+}
