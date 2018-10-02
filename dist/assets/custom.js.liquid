@@ -1,6 +1,7 @@
 class Theme{
   constructor(){
     this.globalInit = this.globalInit.bind(this);
+    this.initProductPage = this.initProductPage.bind(this);
   }
 
   globalInit(){
@@ -27,6 +28,12 @@ class Theme{
 
     header.mouseleave(function(){
       header.removeClass('active');
+    });
+  }
+
+  initProductPage(){
+    $('#ProductThumbs').slick({
+      slidesToShow: 1
     });
   }
 }

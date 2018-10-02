@@ -3,11 +3,11 @@
 </div>
 
 {% if product.images.size > 1 %}
-  <div id="ProductThumbs" class="row collapse">
+  <div id="ProductThumbs">
     {% for image in product.images %}
-      <div class="column l3 m4 s6">
-        <img srcset="{{ product.featured_image | img_url: '512x512', scale: 2 }} 2x" src="{{ image | img_url: '512x512' }}"{% if image.alt %} alt="{{ image.alt | escape }}"{% endif %}>
-      </div>
+    <div>
+      <img srcset="{{ product.featured_image | img_url: '512x512', scale: 2 }} 2x" src="{{ image | img_url: '512x512' }}"{% if image.alt %} alt="{{ image.alt | escape }}"{% endif %}>
+    </div>
     {% endfor %}
   </div>
 {% endif %}

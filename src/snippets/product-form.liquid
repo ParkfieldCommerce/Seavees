@@ -74,12 +74,6 @@
       </p>
     {% endif %}
 
-    <label for="Quantity">{{ 'product.quantity' | t }}</label>
-    <div class="quantity-adjust">
-      <a class="adjust" data-change="-1">&#8211;</a>
-        <input type="number" id="Quantity" class="quantity" name="quantity" value="1" min="1" data-cart-quantity="1">
-      <a class="adjust" data-change="1">&#43;</a>
-    </div>
     {% if sold_out %}
       <button type="submit" name="add" data-add-to-cart disabled>
         <span id="AddToCartText">{{ 'product.sold_out' | t }}</span>

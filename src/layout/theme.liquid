@@ -30,6 +30,7 @@
 
     <!-- CSS ================================================================= -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.css" />
     {{ 'app.scss.css' | asset_url | stylesheet_tag }}
     {{ 'custom.scss.css' | asset_url | stylesheet_tag }}
 
@@ -37,8 +38,8 @@
     {% if shop.customer_accounts_enabled and template contains 'customers' %}
       {{ 'shopify_common.js' | shopify_asset_url | script_tag }}
     {% endif %}
-
     {{ 'vendor.js' | asset_url | script_tag }}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"></script>
     {{ 'custom.js' | asset_url | script_tag }}
     <!--[if (gt IE 9)|!(IE)]><!--><script src="{{ 'app.js' | asset_url }}" defer="defer"></script><!--<![endif]-->
     <!--[if lte IE 9]><script src="{{ 'app.js' | asset_url }}"></script><![endif]-->
@@ -57,6 +58,9 @@
     <script>
       const theme = new Theme();
       theme.globalInit();
+      {% if template == 'product' %}
+      theme.initProductPage();
+      {% endif %}
     </script>
   </body>
 
