@@ -1,0 +1,57 @@
+.ProductRelated__container{
+  width: 290px;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 100%;
+  position: relative;
+  @include maxQuery($s){
+    text-align: center;
+  }
+}
+.ProductRelated__heading{
+  text-transform: uppercase;
+  @include lineHeading-left(40%);
+  display: inline-block;
+}
+.ProductRelated__slide__info{
+  @include flex();
+  @include justify-content(space-between);
+  @include align-items(center);
+  max-width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+  @include newsR(1.1rem);
+}
+.ProductRelated__slide__title{
+  width: 100px;
+  text-align: left;
+  max-width: 100%;
+  line-height: 1.5;
+}
+.ProductRelated__arrow{
+  display: none;
+  position: absolute;
+  top: 50%;
+  @include prefix(transform, translateY(-50%));
+  color: $gray-light;
+  transition: color .3s;
+  .material-icons{
+    font-size: 4.8rem;
+  }
+  &:hover{
+    cursor: pointer;
+    color: $gray;
+  }
+  @include minQuery($s){
+    display: block;
+  }
+}
+.ProductRelated__arrow--prev{
+  left: 0;
+}
+.ProductRelated__arrow--next{
+  right: 0;
+}
+.ProductRelated__dots .slick-dots{
+  @include justify-content(center);
+}

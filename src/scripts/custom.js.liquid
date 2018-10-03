@@ -41,11 +41,10 @@ class Theme{
       header.removeClass('active');
     });
   }
-
   initProductPage(){
     //Product Thumbs Slider
     $('.js-thumbsSlider').slick({
-      slidesToShow: 7,
+      slidesToShow: 6,
       arrows: false,
       infinite: false,
       responsive:[
@@ -59,7 +58,22 @@ class Theme{
         }
       ]
     });
-    
+    //Mobile Thumbs Slider
+    $('.js-thumbsMobileSlider').slick({
+      slidesToShow: 6,
+      arrows: false,
+      infinite: false,
+      responsive:[
+        {
+          breakpoint: 600,
+          settings:{
+            slidesToShow: 1,
+            dots: true,
+            appendDots:'.js-thumbsMobileDots'
+          }
+        }
+      ]
+    });
     //Thumbnail Image Switching
     $(document).on('click', '#ProductThumbs img', function(event) {
       $('.js-thumbsImage').removeClass('active');
@@ -78,6 +92,24 @@ class Theme{
       sizeOptionSelector.val(value);
       sizeOptionSelector.trigger('change');
     });
-
+    
+    //Related Products Slider
+    $('.js-relatedProducts').slick({
+      nextArrow:'.js-relatedNext',
+      prevArrow:'.js-relatedPrev',
+      arrows: true,
+      fade: true,
+      responsive:[
+        {
+          breakpoint: 600,
+          settings:{
+            slidesToShow: 1,
+            dots: true,
+            arrows: false,
+            appendDots:'.js-relatedDots'
+          }
+        }
+      ]
+    });
   }
 }

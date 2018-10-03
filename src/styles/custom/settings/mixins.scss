@@ -124,4 +124,11 @@
   &:after{
     width: $width;
   }
+  @include maxQuery($s){
+    text-align: center;
+    &:after{
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
 }

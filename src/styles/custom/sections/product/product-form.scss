@@ -6,10 +6,16 @@
 }
 .ProductForm__title{
   width: 250px;
+  margin-left: auto;
+  margin-right: auto;
   @include newsR(2.4rem);
   text-align: center;
   max-width: 100%;
   text-transform: uppercase;
+  @include maxQuery($s){
+    width: 100%;
+    font-size: 1.6rem;
+  }
 }
 .ProductForm__title-gender{
   font-size: 1.4rem;
@@ -18,6 +24,9 @@
   margin-bottom: 5px;
   text-align: center;
   text-transform: uppercase;
+  @include maxQuery($s){
+    font-size: 1.1rem;
+  }
 }
 .ProductForm__price{
   display: block;
@@ -26,6 +35,9 @@
   @include lineHeading-center(40%);
   &:after{
     margin-top: 15px;
+  }
+  @include maxQuery($s){
+    font-size: 1.6rem;
   }
 }
 .ProductForm__option{

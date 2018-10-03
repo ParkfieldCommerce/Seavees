@@ -1,0 +1,38 @@
+{% assign relatedTags = '' %}
+{% for tag in product.tags %}
+  {% if tag contains 'related_' %}
+    {% if relatedTags == '' %}
+      {% assign relatedTags = relatedTags | append: tag %}
+    {% else %}
+      {% assign relatedTags = relatedTags | append: '+' | append: tag %}
+    {% endif %}
+  {% endif %}
+{% endfor %}
+
+
+{% if relatedTags != '' %}
+<div class="ProductRelated__container s-margin-top-2x">
+  <h3 class="ProductRelated__heading h2">{{'product.related' | t }}</h3>
+  <div class="ProductRelated__slider js-relatedProducts">
+    {% assign relatedTags = relatedTags | split:'+' %}
+    {% for relatedTag in relatedTags %}
+    {% assign relatedHandle = relatedTag | split:'_' | last %}
+    {% assign relatedProduct = all_products[relatedHandle] %}
+    <div class="ProductRelated__slide">
+      <img src="{{relatedProduct.featured_image | img_url:'large'}}" alt="{{relatedProduct.featured_image.alt}}">
+      <div class="ProductRelated__slide__info">
+      <span class="ProductRelated__slide__title">
+        {% include 'product-title' with product:relatedProduct %}
+      </span>
+      <span class="ProductRelated__slide__price">
+        {{relatedProduct.price | money_without_trailing_zeros}}
+      </span>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+  <div class="ProductRelated__arrow ProductRelated__arrow--prev js-relatedPrev"><i class="material-icons">keyboard_arrow_left</i></div>
+  <div class="ProductRelated__arrow ProductRelated__arrow--next js-relatedNext"><i class="material-icons">keyboard_arrow_right</i></div>
+  <div class="ProductRelated__dots js-relatedDots"></div>
+</div>
+{% endif %}

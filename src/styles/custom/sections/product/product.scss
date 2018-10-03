@@ -1,0 +1,7 @@
+.Product__row{
+  @include flex();
+  flex-wrap: wrap;
+  @include maxQuery($s){
+    flex-direction: column-reverse;
+  }
+}

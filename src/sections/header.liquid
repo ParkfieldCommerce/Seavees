@@ -2,7 +2,7 @@
 
 {% assign enable_search = section.settings.enable_search %}
 
-{% assign darkHeaderTemplates = 'product' %}
+{% assign darkHeaderTemplates = 'product,cart,' %}
 {% assign headerColorModifier = 'is-light' %}
 {% if darkHeaderTemplates contains template %}
   {% assign headerColorModifier = 'is-dark' %}

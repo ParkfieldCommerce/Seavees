@@ -1,5 +1,4 @@
 .ProductImages{
-  width: 560px;
   max-width: 100%;
   margin-left: auto;
   margin-right: auto;
@@ -12,13 +11,31 @@
 }
 .ProductThumbs__container{
   position: relative;
+  width: 560px;
+  max-width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+.ProductThumbs__container--desktop{
+  display: none;
+  @include minQuery($s){
+    display: block;
+  }
+}
+.ProductThumbs__container--mobile{
+  display: block;
+  @include minQuery($s){
+    display: none;
+  }
 }
 .ProductThumbs__image{
   border-bottom: 2px solid transparent;
   transition: border-color .3s;
 }
 .ProductThumbs__image.active{
-  border-color: $primary-accent1;
+  @include minQuery($s){
+    border-color: $primary-accent1;
+  }
 }
 .ProductThumbs__dots{
   position: absolute;

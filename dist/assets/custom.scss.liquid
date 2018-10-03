@@ -220,6 +220,13 @@ $error: #AC3A38;
   &:after{
     width: $width;
   }
+  @include maxQuery($s){
+    text-align: center;
+    &:after{
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
 }
 
 /* Global */
@@ -1165,8 +1172,14 @@ input:focus + label{
 }
 
 /* Product Page */
+.Product__row{
+  @include flex();
+  flex-wrap: wrap;
+  @include maxQuery($s){
+    flex-direction: column-reverse;
+  }
+}
 .ProductImages{
-  width: 560px;
   max-width: 100%;
   margin-left: auto;
   margin-right: auto;
@@ -1179,13 +1192,31 @@ input:focus + label{
 }
 .ProductThumbs__container{
   position: relative;
+  width: 560px;
+  max-width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+.ProductThumbs__container--desktop{
+  display: none;
+  @include minQuery($s){
+    display: block;
+  }
+}
+.ProductThumbs__container--mobile{
+  display: block;
+  @include minQuery($s){
+    display: none;
+  }
 }
 .ProductThumbs__image{
   border-bottom: 2px solid transparent;
   transition: border-color .3s;
 }
 .ProductThumbs__image.active{
-  border-color: $primary-accent1;
+  @include minQuery($s){
+    border-color: $primary-accent1;
+  }
 }
 .ProductThumbs__dots{
   position: absolute;
@@ -1201,10 +1232,16 @@ input:focus + label{
 }
 .ProductForm__title{
   width: 250px;
+  margin-left: auto;
+  margin-right: auto;
   @include newsR(2.4rem);
   text-align: center;
   max-width: 100%;
   text-transform: uppercase;
+  @include maxQuery($s){
+    width: 100%;
+    font-size: 1.6rem;
+  }
 }
 .ProductForm__title-gender{
   font-size: 1.4rem;
@@ -1213,6 +1250,9 @@ input:focus + label{
   margin-bottom: 5px;
   text-align: center;
   text-transform: uppercase;
+  @include maxQuery($s){
+    font-size: 1.1rem;
+  }
 }
 .ProductForm__price{
   display: block;
@@ -1221,6 +1261,9 @@ input:focus + label{
   @include lineHeading-center(40%);
   &:after{
     margin-top: 15px;
+  }
+  @include maxQuery($s){
+    font-size: 1.6rem;
   }
 }
 .ProductForm__option{
@@ -1311,15 +1354,30 @@ input:focus + label{
 
 .ProductDesc__columns{
   @include flex();
-  @include justify-content(space-between);
+  flex-wrap: wrap;
 }
 .ProductDesc__column--1{
   width: 240px;
   max-width: 100%;
+  margin-right: 150px;
+  @include maxQuery($s){
+    width: 100%;
+    margin-right: 0;
+    margin-bottom: 20px;
+  }
 }
 .ProductDesc__column--2{
   width: 300px;
   max-width: 100%;
+  @include maxQuery($s){
+    width: 100%;
+  }
+}
+.ProductDesc__column{
+  @include maxQuery($s){
+    width: 100%;
+    text-align: center;
+  }
 }
 .ProductDesc__title{
   display: inline-block;
@@ -1329,7 +1387,154 @@ input:focus + label{
   }
 }
 .ProductDesc__body{
-  font-size: 11px;
+  @include newsI(1.1rem);
+}
+.ProductRelated__container{
+  width: 290px;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 100%;
+  position: relative;
+  @include maxQuery($s){
+    text-align: center;
+  }
+}
+.ProductRelated__heading{
+  text-transform: uppercase;
+  @include lineHeading-left(40%);
+  display: inline-block;
+}
+.ProductRelated__slide__info{
+  @include flex();
+  @include justify-content(space-between);
+  @include align-items(center);
+  max-width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+  @include newsR(1.1rem);
+}
+.ProductRelated__slide__title{
+  width: 100px;
+  text-align: left;
+  max-width: 100%;
+  line-height: 1.5;
+}
+.ProductRelated__arrow{
+  display: none;
+  position: absolute;
+  top: 50%;
+  @include prefix(transform, translateY(-50%));
+  color: $gray-light;
+  transition: color .3s;
+  .material-icons{
+    font-size: 4.8rem;
+  }
+  &:hover{
+    cursor: pointer;
+    color: $gray;
+  }
+  @include minQuery($s){
+    display: block;
+  }
+}
+.ProductRelated__arrow--prev{
+  left: 0;
+}
+.ProductRelated__arrow--next{
+  right: 0;
+}
+.ProductRelated__dots .slick-dots{
+  @include justify-content(center);
+}
+.ProductBanners__banner{
+  width: 100%;
+  vertical-align: middle;
+}
+.ProductReviews{
+  width: 1050px;
+  max-width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  @include maxQuery($s){
+    text-align: center;
+  }
+}
+.ProductReviews__heading{
+  @include lineHeading-left(40%);
+  display: inline-block;
+  @include maxQuery($s){
+    font-size: 2rem;
+  }
+}
+.ProductReviews{
+  .yotpo .yotpo-bottomline .yotpo-icon-star,
+  .yotpo.yotpo-main-widget .yotpo-bottomline.yotpo-bottomline-2-boxes .yotpo-bottomline-box-2 .yotpo-star-distribution .yotpo-star-distribution-content .yotpo-distibutions-stars .review-stars .yotpo-icon-star,
+  .yotpo .yotpo-review .yotpo-header .yotpo-review-stars .yotpo-icon,
+  .yotpo.yotpo-main-widget .yotpo-bottomline.yotpo-bottomline-2-boxes .yotpo-bottomline-box-2 .yotpo-star-distribution .yotpo-star-distribution-content .yotpo-distibutions-stars .review-stars .yotpo-icon-empty-star,
+  .yotpo.yotpo-main-widget .yotpo-icon-btn .yotpo-icon-button-text,
+  .yotpo .transparent-color-btn span.yotpo-icon,
+  .yotpo .yotpo-review .yotpo-footer .yotpo-helpful .yotpo-sum,
+  .yotpo .yotpo-pager .yotpo-page-element.yotpo-icon-left-arrow,
+  .yotpo .write-review .yotpo-header .yotpo-icon,
+  .yotpo .write-review .yotpo-header .yotpo-icon,
+  .yotpo .yotpo-pager .yotpo-page-element.yotpo-active{
+    color: $primary-accent1;
+  }
+  .yotpo .yotpo-default-button,
+  .yotpo input[type="button"].primary-color-btn{
+    background: $primary-accent1;
+  }
+  .yotpo input[type="button"].primary-color-btn.yotpo-disabled:hover{
+    background: $primary-accent1 !important;
+  }
+  .yotpo input[type="button"].primary-color-btn.yotpo-disabled{
+    background: $gray-light;
+  }
+  .yotpo a{
+    color: $primary-accent1 !important;
+  }
+  .yotpo.yotpo-main-widget .yotpo-bottomline.yotpo-bottomline-2-boxes .yotpo-default-button.write-review-button{
+    border: 1px solid $primary-accent1;
+    background: transparent;
+  }
+
+  .yotpo .yotpo-review .yotpo-main .content-title,
+  .yotpo .yotpo-review .yotpo-main .content-review,
+  .yotpo.yotpo-main-widget .yotpo-bottomline.yotpo-bottomline-2-boxes .yotpo-bottomline-box-2 .yotpo-star-distribution .yotpo-star-distribution-content .yotpo-distibutions-sum-reviews .yotpo-sum-reviews,
+  .yotpo.yotpo-main-widget .yotpo-bottomline .based-on
+  {
+    font-family: 'NewsGothicMT';
+    font-weight: 400;
+    color: $primary-accent2;
+  }
+  .yotpo .yotpo-review .yotpo-header .yotpo-header-element .y-label.yotpo-user-name,
+  .yotpo .yotpo-review .yotpo-header .yotpo-header-element .y-label.yotpo-review-date{
+    color: $gray-dark;
+    font-weight: 400;
+    font-size: 1.2rem;
+  }
+  @include maxQuery($s){
+    .yotpo.yotpo-main-widget.yotpo-small .yotpo-bottomline.yotpo-bottomline-2-boxes{
+      padding-top: 0;
+    }
+  }
+  @include minQuery($s){
+    span.yotpo-display-wrapper{
+      margin-left: 0 !important;
+    }
+    .yotpo-reviews .yotpo-review{
+      padding-left: 0;
+    }
+    .yotpo.yotpo-main-widget .yotpo-bottomline.yotpo-bottomline-2-boxes{
+      padding-left: 0;
+    }
+    .yotpo.yotpo-main-widget .yotpo-bottomline .yotpo-stars{
+      margin-left: 0 !important;
+    }
+    .yotpo.yotpo-main-widget .yotpo-bottomline .yotpo-sum-reviews{
+      text-align: left;
+    }
+  }
 }
 .size-finder {
   position: fixed;

@@ -118,7 +118,7 @@ concrete.Variants = (function() {
 
     _updateMasterSelect: function(variant) {
       $(this.originalSelectorId, this.$container).val(variant.id);
-      console.log(variant);
+      $('.js-productAdd').attr('data-cart-add', variant.id);
     }
   });
 

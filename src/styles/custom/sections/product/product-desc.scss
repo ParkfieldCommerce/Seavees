@@ -1,14 +1,29 @@
 .ProductDesc__columns{
   @include flex();
-  @include justify-content(space-between);
+  flex-wrap: wrap;
 }
 .ProductDesc__column--1{
   width: 240px;
   max-width: 100%;
+  margin-right: 150px;
+  @include maxQuery($s){
+    width: 100%;
+    margin-right: 0;
+    margin-bottom: 20px;
+  }
 }
 .ProductDesc__column--2{
   width: 300px;
   max-width: 100%;
+  @include maxQuery($s){
+    width: 100%;
+  }
+}
+.ProductDesc__column{
+  @include maxQuery($s){
+    width: 100%;
+    text-align: center;
+  }
 }
 .ProductDesc__title{
   display: inline-block;
@@ -18,5 +33,5 @@
   }
 }
 .ProductDesc__body{
-  font-size: 11px;
+  @include newsI(1.1rem);
 }

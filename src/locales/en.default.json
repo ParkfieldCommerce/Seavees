@@ -178,7 +178,8 @@
     "on_sale_from_html": "On sale from {{ price }}",
     "on_sale": "On sale",
     "original_price": "Originaly",
-    "sold_out": "Sold out"
+    "sold_out": "Sold out",
+    "related":"The Goods"
   },
   "home_page": {
     "title": "Home"

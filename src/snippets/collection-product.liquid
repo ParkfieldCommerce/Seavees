@@ -19,7 +19,9 @@
   {% endif %}
 
   <p class="CollectionProduct__info">
-    <a href="{{ product.url | within: collection }}" class="CollectionProduct__title">{{ product.title }}</a>
+    <a href="{{ product.url | within: collection }}" class="CollectionProduct__title">
+      {% include 'product-title' with product:product %}
+    </a>
     <span class="CollectionProduct__color">
     in {{product.metafields.c_f.colorway}} | 
     </span>
