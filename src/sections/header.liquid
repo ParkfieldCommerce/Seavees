@@ -12,16 +12,21 @@
   <div class="Header__content">
     <div class="container xl">
       <div class="row flex v-center">
-        <div class="column l3 left">
+        <div class="Header__column--logo column l3 s6 left">
           <div class="Header__logo">
             {% include 'theme-logo' %}
           </div>
         </div>
-        <div class="column l5">
+        <div class="Header__column--nav column l5 s3">
+          <div class="Nav__hamburger js-hamburger">
+            <span class="NavHam__line NavHam__line--1"></span>
+            <span class="NavHam__line NavHam__line--2"></span>
+            <span class="NavHam__line NavHam__line--3"></span>
+          </div>
           {% assign nav = linklists[section.settings.navigation] %}
           {% include 'navigation' %}
         </div>
-        <div class="column l4 right">
+        <div class="Header__column--user column l4 s3 right">
           <div class="Header__user">
             {% if customer %}
               <a href="/account">{{ 'account.general.title' | t }}</a>

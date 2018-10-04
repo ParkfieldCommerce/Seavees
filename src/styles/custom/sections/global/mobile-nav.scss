@@ -1,39 +1,133 @@
 @include maxQuery($s){
   .Header{
+    display: none !important;
+  }
+  .Header{
     padding-top: 0;
   }
-  .Nav{
-    background-color: white;
-  }
-  .Nav__link{
-    color: $primary-accent2;
-  }
-  .Nav__menu--one{
-    flex-wrap: wrap;
-    >li{
-      width: 100%;
+  .Nav__hamburger{
+    height: 16px;
+    width: 30px;
+    @include flex-center();
+    position: relative;
+    &:hover{
+      cursor: pointer;
     }
   }
-  .Nav__menu-container{
-    flex-wrap: wrap;
+  .NavHam__line{
+    height: 2px;
+    width: 30px;
+    background-color: $white;
+    display: block;
   }
-  .Nav__menu--two{
+  .NavHam__line--1{
+    transition: opacity .3s;
     position: relative;
   }
-  .Nav__menu--two__link{
-    flex: auto;
-    width: 50%;
+  .NavHam__line--2{
+    transition: transform 0.3s ease, top 0.3s 0.3s ease;
+    position: absolute;
+    top: 0;
   }
-  .Nav__menu--three{
-    opacity: 1;
-    line-height: 35px;
-    height: auto;
+  .NavHam__line--3{
+    transition: transform 0.3s ease, bottom 0.3s 0.3s ease;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+  }
+  .Nav{
+    position: fixed;
+    top: 80px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: white;
+    padding: 10px;
+    text-align: center;
+    overflow-y: scroll;
+    padding-bottom: 110px;
+  }
+  .Nav__link{
+    text-transform: uppercase;
+    color: $primary-accent2;
+    text-decoration: none;
+  }
+  .Nav__dropdown-container{
+    .Nav__link--one{
+      &:after{
+        font-family: 'Material Icons';
+        font-style: normal;
+        content:'\e5cf';
+        position: absolute;
+        right: -15px;
+      }
+    }
+  }
+  .Nav__dropdown-container.active .Nav__link--one{
+    color: $primary-accent1;
+    &:after{
+      content:'\e5cd';
+    }
+    &:before{
+      opacity: 1;
+    }
+  }
+  .Nav__link--one{
+    text-decoration: none;
+    position: relative;
+    &:before{
+      content:'';
+      height: 2px;
+      width: 80%;
+      position: absolute;
+      bottom: 0;
+      background-color: $primary-accent1;
+      left: 50%;
+      @include prefix(transform, translateX(-50%));
+      opacity: 0;
+    }
+  }
+  .Nav__menu-container--two{
+    @include flex();
+    @include align-items(center);
+    flex-wrap: wrap;
+  }
+  .Nav__menu--two__link{
+    width: 50%;
+    padding-left: 10px;
+    padding-right: 10px;
   }
   .Nav__menu-container--three{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: $gray-lighter;
+    @include flex();
+    @include align-items(center);
     flex-wrap: wrap;
-    @include justify-content(flex-start);
+    height: 110px;
     >li{
       width: 50%;
     }
+  }
+}
+
+.Header.active{
+  .NavHam__line{
+    background-color: $primary-accent2;
+  }
+  .NavHam__line--1{
+    opacity: 0;
+  }
+  .NavHam__line--2{
+    top: 50%;
+    transition: transform 0.3s 0.3s ease, top 0.3s ease;
+    @include prefix(transform, translateY(-50%) rotate(-45deg));
+  }
+  .NavHam__line--3{
+    bottom: 38%;
+    transition: transform 0.3s 0.3s ease, bottom 0.3s ease;
+    @include prefix(transform, translateY(-50%) rotate(45deg));
   }
 }

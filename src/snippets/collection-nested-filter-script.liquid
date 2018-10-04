@@ -103,6 +103,17 @@ class NestedFilter{
       let materialValue = '<li><button class="NestedFilter__value NestedFilter__value--material js-filterValue" type="button" value="material_'+material+'">'+material+'</button></li>';
       materialValues.append(materialValue);
     });
+
+    //Set Filter Values Container Layout for Mobile
+    let windowWidth = $(window).width();
+    let filterValuesContainer = '.NestedFilter__values-container';
+    if(windowWidth <= 600){
+      console.log(windowWidth);
+      $(filterValuesContainer).width(windowWidth);
+      $(filterValuesContainer+':odd').each(function(){
+        $(this).css('left','-' + windowWidth/2 + 'px');
+      });
+    }
   }
 
   applyEventHandlers(){
@@ -192,15 +203,27 @@ class NestedFilter{
 
     //Sets Filter Value state and updates the active filter removal buttons
     $('.js-filterValue').removeClass('active');
-    activeFiltersDOM.empty();
-    _.each(activeFilters, function(filter){
-      $('.js-filterValue[value="'+filter+'"]').addClass('active');
-      activeFiltersDOM.append('<li><button class="ActiveFilters__value js-activeFilter" type="button" value="'+filter+'">'+filter.split('_')[1]+'</button></li>');
-    });
+    if($(window).width() < 600){
+      $('.js-activeFilter').remove();
+      _.each(activeFilters, function(filter){
+        let option = $('.js-filterOption[value="'+filter.split('_')[0]+'"]');
+        $('.js-filterValue[value="'+filter+'"]').addClass('active');
+        option.hide();
+        option.after('<button class="ActiveFilters__value js-activeFilter" type="button" value="'+filter+'">'+filter.split('_')[1]+'</button>');
+      });
+      $('.js-optionContainer').removeClass('active');
+    }else{
+      activeFiltersDOM.empty();
+      _.each(activeFilters, function(filter){
+        $('.js-filterValue[value="'+filter+'"]').addClass('active');
+        activeFiltersDOM.append('<li><button class="ActiveFilters__value js-activeFilter" type="button" value="'+filter+'">'+filter.split('_')[1]+'</button></li>');
+      });
+    }
 
 
     //Handles Removal of Filter Value
     $('.js-activeFilter').click(function(){
+      $(this).prev().show();
       $(this).remove();
       let filterToRemove = $(this).val();
       _.remove(activeFilters, function(filter){

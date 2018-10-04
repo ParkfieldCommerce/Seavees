@@ -7,6 +7,14 @@ body{
   color: $primary-accent2;
   @include newsR(1.2rem);
 }
+body.fixed{
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  overflow: hidden;
+}
 
 h1,.h1{
   font-size: 2.4rem;

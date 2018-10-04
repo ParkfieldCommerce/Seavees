@@ -32,14 +32,28 @@ class Theme{
   initHeader(){
     let menu = $('.js-nav-menu');
     let header = $('.js-header');
-    
-    menu.mouseenter(function(){
-      header.addClass('active');
-    });
+    let hamburger = $('.js-hamburger');
+    let body = $('body');
 
-    header.mouseleave(function(){
-      header.removeClass('active');
-    });
+    if($(window).width() > 550){
+      menu.mouseenter(function(){
+        header.addClass('active');
+      });
+  
+      header.mouseleave(function(){
+        header.removeClass('active');
+      });
+    }else{
+      hamburger.click(function(){
+        header.toggleClass('active');
+        body.toggleClass('fixed');
+      });
+
+      $('.js-navLinkOne').click(function(e){
+        e.preventDefault();
+        $(this).parent().toggleClass('active');
+      });
+    }
   }
   initProductPage(){
     //Product Thumbs Slider

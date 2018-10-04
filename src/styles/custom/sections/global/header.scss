@@ -37,6 +37,18 @@
   }
 }
 
+@include maxQuery($s){
+  .Header__column--logo{
+    order: 2;
+  }
+  .Header__column--nav{
+    order: 1;
+  }
+  .Header__column--user{
+    order: 3;
+  }
+}
+
 .Header--is-dark{
   position: static;
 }

@@ -3,8 +3,8 @@
   <ul class="Nav__menu Nav__menu--one js-nav-menu">
   {% for link in nav.links %}
     {% if link.levels > 0 %}
-      <li class="Nav__dropdown-container" aria-haspopup="true">
-        <a href="{{ link.url }}" class="Nav__link Nav__link--one{% if link.active %} active{% endif %}">
+      <li class="Nav__dropdown-container js-navDropdown" aria-haspopup="true">
+        <a href="{{ link.url }}" class="Nav__link Nav__link--one js-navLinkOne{% if link.active %} active{% endif %}">
           {{ link.title }}
         </a>
         <ul class="Nav__dropdown-menu Nav__menu--two">

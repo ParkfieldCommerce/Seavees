@@ -114,7 +114,6 @@
 .NestedFilter__value--color.active{
   border: 2px solid $primary-accent1;
 }
-
 .NestedFilter__option-container.active{
   .NestedFilter__option{
     color: $primary-accent1;
@@ -126,7 +125,6 @@
     @include flex-center();
   }
 }
-
 .ActiveFilters{
   @include inline-flex();
   @include justify-content(flex-end);
@@ -146,5 +144,50 @@
   &:hover{
     color: $primary-accent1;
     background: transparent;
+  }
+  @include maxQuery($s){
+    margin-left: 0;
+  }
+}
+
+@include maxQuery($s){
+  .NestedCollection__filter-container{
+    height: auto;
+    .container.l{
+      padding: 0;
+    }
+  }
+  .NestedFilter{
+    display: inline-flex;
+    flex-wrap: wrap;
+    width: 100%;
+    margin-top: 11px;
+    border-bottom: 1px solid $gray-light;
+    margin-bottom: 11px;
+  }
+  .NestedFilter__option-container{
+    width: 50%;
+  }
+  .NestedFilter__option{
+    margin-left: auto;
+    margin-right: auto;
+    @include justify-content(center);
+    margin-top: 11px;
+    margin-bottom: 11px;
+  }
+  .NestedFilter__values-container{
+    position: relative;
+    top: initial;
+    left: initial;
+    right: initial;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+  .ActiveFilters__value{
+    margin-left: auto;
+    margin-right: auto;
+    @include justify-content(center);
+    margin-top: 11px;
+    margin-bottom: 11px;
   }
 }

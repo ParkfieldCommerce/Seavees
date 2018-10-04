@@ -1,5 +1,9 @@
 .Info{
   width: 1040px;
+  max-width: 100%;
+  .column{
+    max-width: 100%;
+  }
   @include minQuery($s){
     .row--reversed{
       flex-flow: row-reverse;
