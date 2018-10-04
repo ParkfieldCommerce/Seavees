@@ -1,0 +1,39 @@
+@include maxQuery($s){
+  .Header{
+    padding-top: 0;
+  }
+  .Nav{
+    background-color: white;
+  }
+  .Nav__link{
+    color: $primary-accent2;
+  }
+  .Nav__menu--one{
+    flex-wrap: wrap;
+    >li{
+      width: 100%;
+    }
+  }
+  .Nav__menu-container{
+    flex-wrap: wrap;
+  }
+  .Nav__menu--two{
+    position: relative;
+  }
+  .Nav__menu--two__link{
+    flex: auto;
+    width: 50%;
+  }
+  .Nav__menu--three{
+    opacity: 1;
+    line-height: 35px;
+    height: auto;
+  }
+  .Nav__menu-container--three{
+    flex-wrap: wrap;
+    @include justify-content(flex-start);
+    >li{
+      width: 50%;
+    }
+  }
+}
