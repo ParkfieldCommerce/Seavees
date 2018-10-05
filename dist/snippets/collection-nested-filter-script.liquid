@@ -2,6 +2,7 @@
 class NestedFilter{
   constructor(){
     this.products = [];
+    this.filteredProducts = [];
     //Used for Option
     this.activeOption = '';
 
@@ -10,7 +11,7 @@ class NestedFilter{
     this.heights = [];
     this.colors = {};
     this.materials = [];
-
+    this.styles = [];
     this.activeFilters = [];
 
 
@@ -27,6 +28,7 @@ class NestedFilter{
     let product = {};
     {% for block in section.blocks %}
       {% assign collection = collections[block.settings.collection] %}
+      this.styles.push('style_{{collection.title}}');
       {% for product in collection.products %}
         this.colors["{{product.metafields.c_f.colorway}}"]="{{product.metafields.c_f.color_swatch}}";
 
@@ -279,6 +281,8 @@ class NestedFilter{
     _.each(validProducts,function(product){
       $('#Product-'+product.id).show();
     });
+
+    this.filteredProducts = validProducts;
   }
 
   updateStyleSections(){
@@ -287,6 +291,8 @@ class NestedFilter{
     //Style DOM Classes
     let styleInfo = '.js-collectionInfo';
     let styleImage = '.js-collectionImage';
+    let styles = this.styles;
+    let filteredProducts = this.filteredProducts;
 
     let activeFilters = this.activeFilters;
     let activeFilterOptions = _.map(activeFilters, function(filter){
@@ -304,6 +310,15 @@ class NestedFilter{
       $(styleInfo).show();
       $(styleImage).show();
     }
+
+    let activeStyles = [];
+    _.each(filteredProducts,function(product){
+      let productStyle = 'style_' + product.style;
+      if(!_.includes(activeStyles, productStyle)){
+        activeStyles.push(productStyle);
+      }
+    });
+    console.log(activeStyles);
   }
 }
 
