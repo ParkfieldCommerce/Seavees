@@ -28,7 +28,7 @@ class NestedFilter{
     let product = {};
     {% for block in section.blocks %}
       {% assign collection = collections[block.settings.collection] %}
-      this.styles.push('style_{{collection.title}}');
+      this.styles.push('{{collection.title}}');
       {% for product in collection.products %}
         this.colors["{{product.metafields.c_f.colorway}}"]="{{product.metafields.c_f.color_swatch}}";
 
@@ -83,26 +83,26 @@ class NestedFilter{
       return size;
     })
     _.each(sortedSizes,function(size){
-      let sizeValue = '<li><button class="NestedFilter__value NestedFilter__value--size js-filterValue" type="button" value="size_'+size+'">'+size+'</button></li>';
+      let sizeValue = '<li class="NestedFilter__value-container--size"><button class="NestedFilter__value NestedFilter__value--size js-filterValue" type="button" value="size_'+size+'">'+size+'</button></li>';
       sizeValues.append(sizeValue);
     });
 
     //Add Height
     _.each(this.heights,function(height){
-      let heightValue = '<li><button class="NestedFilter__value NestedFilter__value--height js-filterValue" type="button" value="height_'+height+'">'+height+'</button></li>';
+      let heightValue = '<li class="NestedFilter__value-container--height"><button class="NestedFilter__value NestedFilter__value--height js-filterValue" type="button" value="height_'+height+'">'+height+'</button></li>';
       heightValues.append(heightValue);
     });
 
 
     //Add Colors
     _.forIn(this.colors,function(hex, colorName){
-      let colorValue = '<li><button class="NestedFilter__value NestedFilter__value--color js-filterValue" type="button" value="color_'+colorName+'" style="background-color:'+hex+'"></button></li>';
+      let colorValue = '<li class="NestedFilter__value-container--color"><button class="NestedFilter__value NestedFilter__value--color js-filterValue" type="button" value="color_'+colorName+'" style="background-color:'+hex+'"></button></li>';
       colorValues.append(colorValue);
     });
 
     //Add Material
     _.each(this.materials,function(material){
-      let materialValue = '<li><button class="NestedFilter__value NestedFilter__value--material js-filterValue" type="button" value="material_'+material+'">'+material+'</button></li>';
+      let materialValue = '<li class="NestedFilter__value-container--material"><button class="NestedFilter__value NestedFilter__value--material js-filterValue" type="button" value="material_'+material+'">'+material+'</button></li>';
       materialValues.append(materialValue);
     });
 
@@ -110,7 +110,6 @@ class NestedFilter{
     let windowWidth = $(window).width();
     let filterValuesContainer = '.NestedFilter__values-container';
     if(windowWidth <= 600){
-      console.log(windowWidth);
       $(filterValuesContainer).width(windowWidth);
       $(filterValuesContainer+':odd').each(function(){
         $(this).css('left','-' + windowWidth/2 + 'px');
@@ -142,6 +141,16 @@ class NestedFilter{
     }else{
       activeOption = option;
       $('.js-optionContainer-'+activeOption).addClass('active');
+    }
+
+    //Handle Margin on Desktop
+    if($(window).width() > 600){
+      let margin = $('.js-valuesContainer--'+activeOption).height();
+      if(activeOption === ''){
+        $('.js-filterContainer').css('margin-bottom', '50px');
+      }else{
+        $('.js-filterContainer').css('margin-bottom', (margin + 50)+'px');
+      }
     }
 
     this.activeOption = activeOption;
@@ -205,7 +214,7 @@ class NestedFilter{
 
     //Sets Filter Value state and updates the active filter removal buttons
     $('.js-filterValue').removeClass('active');
-    if($(window).width() < 600){
+    if($(window).width() <= 600){
       $('.js-activeFilter').remove();
       _.each(activeFilters, function(filter){
         let option = $('.js-filterOption[value="'+filter.split('_')[0]+'"]');
@@ -213,6 +222,8 @@ class NestedFilter{
         option.hide();
         option.after('<button class="ActiveFilters__value js-activeFilter" type="button" value="'+filter+'">'+filter.split('_')[1]+'</button>');
       });
+
+      this.activeOption = '';
       $('.js-optionContainer').removeClass('active');
     }else{
       activeFiltersDOM.empty();
@@ -225,7 +236,7 @@ class NestedFilter{
 
     //Handles Removal of Filter Value
     $('.js-activeFilter').click(function(){
-      $(this).prev().show();
+      $(this).prev().show(); //Used for Mobile to Show Filter Option
       $(this).remove();
       let filterToRemove = $(this).val();
       _.remove(activeFilters, function(filter){
@@ -235,6 +246,7 @@ class NestedFilter{
 
       filter.activeFilters = activeFilters;
       filter.updateProducts();
+      filter.updateStyleSections();
     });
   }
 
@@ -286,39 +298,30 @@ class NestedFilter{
   }
 
   updateStyleSections(){
-    //Handles showing the style info, when the style values are selected
-
     //Style DOM Classes
     let styleInfo = '.js-collectionInfo';
     let styleImage = '.js-collectionImage';
     let styles = this.styles;
     let filteredProducts = this.filteredProducts;
 
-    let activeFilters = this.activeFilters;
-    let activeFilterOptions = _.map(activeFilters, function(filter){
-      return filter.split('_')[0];
-    });
-
-    if(_.includes(activeFilterOptions,'style')){
-      $(styleInfo).hide();
-      $(styleImage).hide();
-      _.each(activeFilters, function(filter){
-        $(styleInfo + '[data-style="'+filter+'"]').show();
-        $(styleImage + '[data-style="'+filter+'"]').show();
-      });
-    }else{
-      $(styleInfo).show();
-      $(styleImage).show();
-    }
-
     let activeStyles = [];
     _.each(filteredProducts,function(product){
-      let productStyle = 'style_' + product.style;
+      let productStyle = product.style;
       if(!_.includes(activeStyles, productStyle)){
         activeStyles.push(productStyle);
       }
     });
-    console.log(activeStyles);
+
+    let stylesToHide = _.filter(styles,function(style){
+      return !_.includes(activeStyles,style);
+    })
+    
+    $(styleInfo).show();
+    $(styleImage).show();
+    _.each(stylesToHide, function(style){
+      $(styleInfo+'[data-style="'+style+'"]').hide();
+      $(styleImage+'[data-style="'+style+'"]').hide();
+    });
   }
 }
 

@@ -1131,12 +1131,16 @@ input:focus + label{
 }
 .NestedCollection__grid-cell-image{
   grid-row: 2 / 4;
+  img{
+    width: 100%;
+    margin-top: 50px;
+  }
   @include maxQuery($s){
     grid-column: 1 / 3;
     grid-row: 4/ 4;
-  }
-  img{
-    margin-top: 50px;
+    img{
+      margin-top: 15px;
+    }
   }
 }
 
@@ -1185,6 +1189,7 @@ input:focus + label{
   position: relative;
   height: 65px;
   @include flex-center();
+  margin-bottom: 50px;
 }
 .NestedFilter{
   @include inline-flex();
@@ -1214,7 +1219,7 @@ input:focus + label{
   padding-bottom: 10px;
   position: absolute;
   width: 100%;
-  top: 65px;
+  top: 45px;
   left: 0;
   right: 0;
   background-color: $gray-light;
@@ -1332,10 +1337,17 @@ input:focus + label{
     margin-left: 0;
   }
 }
-
+.BorderBottom{
+  padding-bottom: 10px;
+  border-bottom: 1px solid $gray-light;
+  @include maxQuery($s){
+    padding-bottom: 0;
+  }
+}
 @include maxQuery($s){
   .NestedCollection__filter-container{
     height: auto;
+    margin-bottom: 20px;
     .container.l{
       padding: 0;
     }
@@ -1345,8 +1357,7 @@ input:focus + label{
     flex-wrap: wrap;
     width: 100%;
     margin-top: 11px;
-    border-bottom: 1px solid $gray-light;
-    margin-bottom: 11px;
+    margin-bottom: 0;
   }
   .NestedFilter__option-container{
     width: 50%;
@@ -1357,14 +1368,32 @@ input:focus + label{
     @include justify-content(center);
     margin-top: 11px;
     margin-bottom: 11px;
+    text-transform: none;
+    font-size: 1.4rem;
+    color: $gray-dark;
   }
   .NestedFilter__values-container{
     position: relative;
     top: initial;
     left: initial;
     right: initial;
-    padding-left: 10px;
-    padding-right: 10px;
+  }
+  .NestedFilter__value-container--style{
+    width: 33.33%;
+  }
+  .NestedFilter__value-container--size{
+    width: 20%;
+  }
+  .NestedFilter__value-container--height,
+  .NestedFilter__value-container--material{
+    width: 100%;
+  }
+  .NestedFilter__value-container--color{
+    width: 20%;
+  }
+  .NestedFilter__value{
+    margin-left: auto;
+    margin-right: auto;
   }
   .ActiveFilters__value{
     margin-left: auto;
@@ -1372,6 +1401,7 @@ input:focus + label{
     @include justify-content(center);
     margin-top: 11px;
     margin-bottom: 11px;
+    text-transform: capitalize;
   }
 }
 

@@ -1,4 +1,4 @@
-<div class="NestedCollection">
+<div class="NestedCollection margin-bottom-10x s-margin-bottom-4x">
   <div class="NestedCollection__banner">
     <img
       src="{{section.settings.hero_image | img_url:'master'}}"
@@ -9,17 +9,19 @@
     >
     <h1 class="NestedCollection__heading">{{collection.title}}</h1>
   </div>
-  <div class="NestedCollection__filter-container">
-    <div class="container l flex h-space-between">
-    {% include 'collection-nested-filter' %}
+  <div class="NestedCollection__filter-container js-filterContainer">
+    <div class="container l">
+    <div class="BorderBottom flex h-space-between">
+      {% include 'collection-nested-filter' %}
+    </div>
     </div>
   </div>
   {% for block in section.blocks %}
     {% assign collection = collections[block.settings.collection] %}
     {% if block.settings.image %}{% assign hasImage = true %}{% else %}{% assign hasImage = false %}{% endif %}
-    <div class="container l">
+    <div class="container l margin-bottom-10x s-margin-bottom-3x">
       <div class="NestedCollection__collection NestedCollection__grid">
-        <div class="NestedCollection__grid-cell NestedCollection__grid-cell-info js-collectionInfo" data-style="style_{{collection.title}}">
+        <div class="NestedCollection__grid-cell NestedCollection__grid-cell-info js-collectionInfo" data-style="{{collection.title}}">
           <div class="NestedCollection__collection__info">
             <div class="NestedCollection__collection__heading-container">
               <img class="NestedCollection__collection__image" src="{{collection.image | img_url:'master'}}" alt="{{collection.featured_image.alt}}">
@@ -33,7 +35,7 @@
             {% include 'collection-product' %}
           </div>
           {% if forloop.index == 2 and hasImage %}
-            <div class="NestedCollection__grid-cell-image js-collectionImage" data-style="style_{{collection.title}}">
+            <div class="NestedCollection__grid-cell-image js-collectionImage" data-style="{{collection.title}}">
               <img class="NestedCollection__collection__deco-image" src="{{block.settings.image | img_url:'master'}}" alt="{{block.settings.image.alt}}">
             </div>
           {% endif %}
