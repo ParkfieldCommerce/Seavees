@@ -126,4 +126,76 @@ class Theme{
       ]
     });
   }
+  initCollectionPage(){
+    this.initQuickView();
+  }
+  initQuickView(){
+    function fetchQViewData(url){
+      $.get({
+        url:url,
+        success:function(data){
+          let QVProduct = $('.QView__product');
+          let QVDetails = $('.QView__details.hidden');
+  
+          //Reset Containers
+          QVProduct.empty();
+          QVDetails.find('.right').empty();
+  
+          //Append Product Form and Images Data
+          let productRow = $(data).find('.Product__row');
+          QVProduct.append(productRow[0].outerHTML);
+          QVProduct.find('.js-thumbsSlider').slick({
+            slidesToShow: 6,
+            arrows: false,
+            infinite: false
+          });
+  
+          //Append Product Details
+          let productDetails = $(data).find('.ProductDesc__body.rte');
+          QVDetails.find('.right').append(productDetails[0].outerHTML);
+          QVDetails.find('.left a').attr('href',url);
+          QVProduct.find('.column.l8.m8.s12').append(QVDetails.clone().removeClass('hidden'));
+
+          //Handle Image Switching
+          $(document).on('click', '#ProductThumbs img', function(event) {
+            $('.js-thumbsImage').removeClass('active');
+            $(this).addClass('active');
+            concrete.Images.switchImage($('#ProductPhoto img')[0], $(this, event.target)[0]);
+          });
+  
+          //Handle Swatch Change
+          $('.QView .ProductForm__value--color').click(function(e){
+            e.preventDefault();
+            let url = e.target.href;
+            fetchQViewData(url);
+          });
+          
+          //Handle Variant Change
+          let json = $(data).find('#ProductJson').html();
+          json = JSON.parse(json);
+          let addToCart = $('.js-productAdd');
+          $('.js-sizeVariantButton').click(function(e){
+            let selectedVariantSize = e.target.value;
+            let selectedVariant = _.find(json.variants, function(variant){
+              return variant.option1 === selectedVariantSize;
+            });
+
+            $('.js-sizeVariantButton').removeClass('active');
+            $('.js-sizeVariantButton[value="'+selectedVariantSize+'"]').addClass('active');
+
+            if(selectedVariant.available){
+              addToCart.attr('data-cart-add', selectedVariant.id);
+              addToCart.attr('disabled', false);
+              addToCart.text('Add To Cart');
+            }else{
+              addToCart.attr('disabled', true);
+              addToCart.text('Unavailable');
+            }
+          });
+        }
+      });
+    }
+  
+    fetchQViewData('/products/mens-baja-slip-on-standard-tin-grey');
+  }
 }

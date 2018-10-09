@@ -62,6 +62,9 @@
       {% if template == 'product' %}
       theme.initProductPage();
       {% endif %}
+      {% if template contains 'collection' %}
+      theme.initCollectionPage();
+      {% endif %}
 
 
       $(document).ready(function(){

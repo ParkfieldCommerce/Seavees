@@ -67,7 +67,7 @@ $(document).on('variantImageChange', function(event) {
   // Find out the size of the old image
   var oldSize = concrete.Images.imageSize(oldSrc);
   // Lets get the new image at the correct size
-  var newImage = concrete.Images.getImageUrl(event.variant.featured_image.src, oldSize)
+  var newImage = concrete.Images.getImageUrl(event.variant.src, oldSize)
   // Change to the new variants image
   $('#ProductPhoto img').attr('src', newImage);
 });

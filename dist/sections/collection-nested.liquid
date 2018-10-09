@@ -16,6 +16,8 @@
     </div>
     </div>
   </div>
+{% include 'quickview' %}
+
   {% for block in section.blocks %}
     {% assign collection = collections[block.settings.collection] %}
     {% if block.settings.image %}{% assign hasImage = true %}{% else %}{% assign hasImage = false %}{% endif %}
