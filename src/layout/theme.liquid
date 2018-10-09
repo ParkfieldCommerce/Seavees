@@ -40,6 +40,7 @@
     {% endif %}
     {{ 'vendor.js' | asset_url | script_tag }}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"></script>
+    <script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
     {{ 'custom.js' | asset_url | script_tag }}
     <!--[if (gt IE 9)|!(IE)]><!--><script src="{{ 'app.js' | asset_url }}" defer="defer"></script><!--<![endif]-->
     <!--[if lte IE 9]><script src="{{ 'app.js' | asset_url }}"></script><![endif]-->
@@ -59,9 +60,11 @@
     <script>
       const theme = new Theme();
       theme.globalInit();
+
       {% if template == 'product' %}
       theme.initProductPage();
       {% endif %}
+
       {% if template contains 'collection' %}
       theme.initCollectionPage();
       {% endif %}

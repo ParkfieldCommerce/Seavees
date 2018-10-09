@@ -2,13 +2,16 @@
   {% for block in section.blocks %}
     <div class="CollectionGrid__collection CollectionGrid__collection--{{forloop.index}}">
       <a href="{{block.settings.link_url}}">
-        <img
-          class="CollectionGrid__image"
-          src="{{block.settings.image | img_url:'master'}}"
-          srcset="{{block.settings.image_mobile | img_url:'master'}} 550w,
-                {{block.settings.image | img_url:'master'}} 1000w"
-          alt="{{block.settings.image.alt}}"
-        >
+        <picture>
+          <source media="(max-width: 499px)" srcset="{{block.settings.image_mobile | img_url:'master'}}">
+          <source media="(min-width: 500px)" srcset="{{block.settings.image | img_url:'master'}}">
+          <img
+            class="CollectionGrid__image"
+            src="{{block.settings.hero_image | img_url:'master'}}"
+            alt="{{block.settings.hero_image.alt}}"
+            alt="{{block.settings.hero_image.alt}}"
+          >
+        </picture>
         <span class="Link--partial-accent">{{block.settings.link_text}}</span>
       </a>
     </div>

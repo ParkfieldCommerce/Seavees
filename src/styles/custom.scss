@@ -26,6 +26,7 @@
 @import url('custom/sections/collection-nested/nestedcollection.scss');
 @import url('custom/sections/collection-nested/collection-product.scss');
 @import url('custom/sections/collection-nested/nested-filter.scss');
+@import url('custom/sections/collection-nested/quickview.scss');
 
 /* Product Page */
 @import url('custom/sections/product/product.scss');
@@ -36,3 +37,6 @@
 @import url('custom/sections/product/product-banners.scss');
 @import url('custom/sections/product/product-reviews.scss');
 @import url('custom/sections/product/size-finder.scss');
+
+/* Pages */
+@import url('custom/sections/pages/dream.scss');

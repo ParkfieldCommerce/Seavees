@@ -7,9 +7,13 @@
     <div class="ProductThumbs__container ProductThumbs__container--desktop">
       <div id="ProductThumbs" class="ProductThumbs__slider js-thumbsSlider">
         {% for image in product.images %}
+        {% unless image.alt contains 'lifestyle' %}
+        {% unless image.alt contains 'about' %}
         <div class="ProductThumbs__slide">
           <img class="ProductThumbs__image js-thumbsImage {% if forloop.index == 1 %}active{% endif %}" srcset="{{ product.featured_image | img_url: '512x512', scale: 2 }} 2x" src="{{ image | img_url: '512x512' }}"{% if image.alt %} alt="{{ image.alt | escape }}"{% endif %}>
         </div>
+        {% endunless %}
+        {% endunless %}
         {% endfor %}
       </div>
       <div class="ProductThumbs__dots js-thumbsDots"></div>

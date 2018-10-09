@@ -1,0 +1,70 @@
+.DreamPage__banner{
+  position: relative;
+  img{vertical-align: middle;}
+}
+.DreamPage__heading{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  @include prefix(transform, translate(-50%,-50%));
+  color: white;
+  @include miller(2.4rem);
+  @include minQuery($s){
+    font-size: 4.8rem;
+  }
+}
+.DreamPage__nav{
+  @include flex-center();
+  height: 70px;
+  background-color: $gray-lighter;
+}
+.DreamPage__nav-link{
+  margin-left: 20px;
+  margin-right: 20px;
+}
+.Dream__content{
+  width: 460px;
+  max-width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+.Dream__text-container{
+  width: 340px;
+  max-width: 100%;
+}
+.Dream__row--reversed .Dream__text-container{
+  margin-left: auto;
+}
+.Dream__heading{
+  color: $primary-accent2;
+  @include lineHeading-left(25%);
+  @include miller(2.4rem);
+  margin-bottom: 20px;
+  &:after{
+    margin-top: 10px;
+  }
+  @include minQuery($s){
+    @include miller(3.6rem);
+  }
+}
+.Dream__image--right{
+  width: 560px;
+  max-width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+.Dream__container{
+  .row--reversed,
+  .row--normal{
+    flex-wrap: wrap;
+    flex-direction: column-reverse;
+  }
+  @include minQuery($s){
+    .row--normal{
+      flex-direction: row;
+    }
+    .row--reversed{
+      flex-direction: row-reverse;
+    }
+  }
+}

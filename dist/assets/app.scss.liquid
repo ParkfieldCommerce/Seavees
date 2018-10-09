@@ -214,6 +214,7 @@ $prefixes: webkit moz ms spec;
   width: $width;
   .flex > & {
     width: auto;
+    max-width: 100%;
     @include flex-distribution(0 0 $width !important);
   }
 }

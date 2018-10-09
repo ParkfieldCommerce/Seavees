@@ -1,13 +1,16 @@
 <!-- Homepage Hero -->
 <section class="Hero margin-bottom-7x s-margin-bottom-2x">
   <div class="Hero__image">
-    <img
-      src="{{section.settings.hero_image | img_url:'master'}}"
-      srcset="{{section.settings.hero_image_mobile | img_url:'master'}} 550w,
-             {{section.settings.hero_image | img_url:'master'}} 1000w,
-             {{section.settings.hero_image_wide | img_url:'master'}} 1800w"
-      alt="{{section.settings.hero_image.alt}}"
-    >
+    <picture>
+      <source media="(max-width: 799px)" srcset="{{section.settings.hero_image_mobile | img_url:'master'}}">
+      <source media="(min-width: 1800px)" srcset="{{section.settings.hero_image_wide | img_url:'master'}}">
+      <source media="(min-width: 1000px)" srcset="{{section.settings.hero_image | img_url:'master'}}">
+      <img
+        src="{{section.settings.hero_image | img_url:'master'}}"
+        alt="{{section.settings.hero_image.alt}}"
+        alt="{{section.settings.hero_image.alt}}"
+      >
+    </picture>
   </div>
   <div class="Hero__text-container">
     <div class="container">

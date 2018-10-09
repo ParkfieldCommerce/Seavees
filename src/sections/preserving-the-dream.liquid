@@ -1,0 +1,178 @@
+<div class="DreamPage__banner">
+  <picture>
+    <source media="(max-width: 799px)" srcset="{{section.settings.hero_image_mobile | img_url:'master'}}">
+    <source media="(min-width: 1800px)" srcset="{{section.settings.hero_image_wide | img_url:'master'}}">
+    <source media="(min-width: 1000px)" srcset="{{section.settings.hero_image | img_url:'master'}}">
+    <img
+      src="{{section.settings.hero_image | img_url:'master'}}"
+      alt="{{section.settings.hero_image.alt}}"
+      alt="{{section.settings.hero_image.alt}}"
+    >
+  </picture>
+  <h1 class="DreamPage__heading">{{page.title}}</h1>
+</div>
+<ul class="DreamPage__nav  margin-bottom-10x s-margin-bottom-3x">
+{% for block in section.blocks %}
+  <li class="DreamPage__nav-link">
+    <button>{{block.settings.title}}</button>
+  </li>
+{% endfor %}
+</ul>
+{% for block in section.blocks %}
+{% assign content = block.settings %}
+  <section class="Dream__container l container margin-bottom-10x s-margin-bottom-3x">
+    <div class="row flex v-center Dream__row--{{content.layout}} row--{{content.layout}}">
+      <div class="column l6 m6 s12">
+        <div class="Dream__image Dream__image--right">
+          <img src="{{content.image_right | img_url:'master'}}" alt="{{content.image_right.alt}}">
+        </div>
+      </div>
+      <div class="column l6 m6 s12">
+        <div class="Dream__content">
+          <div class="Dream__text-container">
+            <h2 class="Dream__heading h1">{{content.title }}</h2>
+            <p class="Dream__body">{{content.body}}</p>
+            {% unless content.link_text == blank %}
+            <a href="{{content.link_url}}" class="Dream__link Link--accent">{{content.link_text}}</a>
+            {% endunless %}
+          </div>
+          <div class="Dream__image--left margin-top-8x s-margin-top-3x">
+            <img src="{{content.image_left | img_url:'master'}}" alt="{{content.image_left.alt}}">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  {% unless content.image_bottom == blank %}
+  <div class="Dream__image Dream__image--bottom margin-bottom-10x s-margin-bottom-3x">
+    <img src="{{content.image_bottom | img_url:'master'}}" alt="{{content.image_bottom.alt}}">
+  </div>
+  {% endunless %}
+{% endfor %}
+
+{% assign quote = section.settings %}
+<section class="Quote margin-bottom-9x">
+  <div class="container s">
+    <div class="row">
+      <div class="column l12 m12 s12 center">
+        <blockquote>
+          <p class="Quote__quote">{{quote.quote}}</p>
+          <cite class="Quote__source"><span>{{quote.quote_person}},</span> {{quote.quote_title}}</cite>
+        </blockquote>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Preserving the Dream",
+  "settings":[
+    {
+      "id": "hero_image",
+      "type": "image_picker",
+      "label": "Desktop Image"
+    },
+    {
+      "id": "hero_image_wide",
+      "type": "image_picker",
+      "label": "Wide Desktop Image(>1800px)"
+    },
+    {
+      "id": "hero_image_mobile",
+      "type": "image_picker",
+      "label": "Mobile Image"
+    },
+    {
+      "type":"header",
+      "content":"Quote Section"
+    },
+    {
+      "type":"textarea",
+      "id":"quote",
+      "label":"Quote"
+    },
+    {
+      "type":"text",
+      "id":"quote_person",
+      "label":"Person Name"
+    },
+    {
+      "type":"text",
+      "id":"quote_title",
+      "label":"Person Title"
+    }
+  ],
+  "blocks":[
+  {
+    "type":"content",
+    "name":"Content",
+    "limit": 3,
+    "settings": [
+      {
+        "type":      "select",
+        "id":        "layout",
+        "label":     "Layout",
+        "options": [
+          {
+            "value": "normal",
+            "label": "Image - Text"
+          },
+          {
+            "value": "reversed",
+            "label": "Text - Image"
+          }
+        ],
+        "default":   "normal"
+      },
+      {
+        "type":"header",
+        "content":"Text Settings"
+      },
+      {
+        "type":"text",
+        "id":"title",
+        "label":"Title"
+      },
+      {
+        "type":"textarea",
+        "id":"body",
+        "label":"Body"
+      },
+      {
+        "type":"header",
+        "content":"Link Settings"
+      },
+      {
+        "id": "link_text",
+        "type": "text",
+        "label": "Text"
+      },
+      {
+        "id": "link_url",
+        "type":"url",
+        "label":"Url"
+      },
+      {
+        "type":"header",
+        "content":"Image Settings"
+      },
+      {
+        "id": "image_left",
+        "type": "image_picker",
+        "label": "Left Image"
+      },
+      {
+        "id": "image_right",
+        "type": "image_picker",
+        "label": "Right Image"
+      },
+      {
+        "id":"image_bottom",
+        "type": "image_picker",
+        "label": "Bottom Image"
+      }
+    ]
+  }]
+}
+{% endschema %}

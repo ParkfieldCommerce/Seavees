@@ -1,12 +1,15 @@
 <div class="NestedCollection margin-bottom-10x s-margin-bottom-4x">
   <div class="NestedCollection__banner">
-    <img
-      src="{{section.settings.hero_image | img_url:'master'}}"
-      srcset="{{section.settings.hero_image_mobile | img_url:'master'}} 550w,
-              {{section.settings.hero_image | img_url:'master'}} 1000w,
-              {{section.settings.hero_image_wide | img_url:'master'}} 1800w"
-      alt="{{section.settings.hero_image.alt}}"
-    >
+    <picture>
+      <source media="(max-width: 799px)" srcset="{{section.settings.hero_image_mobile | img_url:'master'}}">
+      <source media="(min-width: 1800px)" srcset="{{section.settings.hero_image_wide | img_url:'master'}}">
+      <source media="(min-width: 1000px)" srcset="{{section.settings.hero_image | img_url:'master'}}">
+      <img
+        src="{{section.settings.hero_image | img_url:'master'}}"
+        alt="{{section.settings.hero_image.alt}}"
+        alt="{{section.settings.hero_image.alt}}"
+      >
+    </picture>
     <h1 class="NestedCollection__heading">{{collection.title}}</h1>
   </div>
   <div class="NestedCollection__filter-container js-filterContainer">

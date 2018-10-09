@@ -36,26 +36,7 @@
       </div>
     </div>
   </div>
-  <div class="ProductBanners margin-top-10x s-margin-top-5x">
-    {% if section.settings.image %}
-      <img
-        class="ProductBanners__banner"
-        src="{{section.settings.image | img_url:'master'}}"
-        srcset="{{section.settings.image_mobile | img_url:'master'}} 550w,
-              {{section.settings.image | img_url:'master'}} 1000w"
-        alt="{{section.settings.image.alt}}"
-      >
-    {% endif %}
-    {% if section.settings.about_image %}
-      <img
-        class="ProductBanners__banner"
-        src="{{section.settings.about_image | img_url:'master'}}"
-        srcset="{{section.settings.about_image_mobile | img_url:'master'}} 550w,
-              {{section.settings.about_image | img_url:'master'}} 1000w"
-        alt="{{section.settings.about_image.alt}}"
-      >
-    {% endif %}
-  </div>
+  {% include 'product-banners' %}
   {% include 'product-reviews' %}
 {% include 'size-finder' %}
 <script>
@@ -82,24 +63,24 @@ $(document).on('variantImageChange', function(event) {
   "name": "Product",
   "settings":[
     {
-      "id": "image",
-      "type": "image_picker",
-      "label": "Lifestyle Desktop"
+      "type":"header",
+      "content":"LifeStyle Images"
     },
     {
-      "id": "image_mobile",
-      "type": "image_picker",
-      "label": "Lifestyle Mobile"
+      "type":"paragraph",
+      "content":"Add 6 images to product images and have the word 'lifestyle' in the alt tag. The last 4 will be used on mobile"
     },
     {
-      "id": "about_image",
-      "type": "image_picker",
-      "label": "About Desktop Image"
+      "type":"header",
+      "content":"About Images"
     },
     {
-      "id": "about_image_mobile",
-      "type": "image_picker",
-      "label": "About Mobile Image"
+      "type":"paragraph",
+      "content":"Add images to product images and have the words 'about desktop' in the alt tag for desktop"
+    },
+    {
+      "type":"paragraph",
+      "content":"Add images to product images and have the words 'about mobile' in the alt tag for the mobile image"
     }
   ]
 }

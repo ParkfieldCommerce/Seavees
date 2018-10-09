@@ -5,13 +5,15 @@
     <div class="row">
       <div class="column l12 m12 s12 center">
         <blockquote>
-          <img
-            class="Quote__image"
-            src="{{'Quotation Desktop.png' | asset_url}}"
-            srcset="{{'Quotation Mobile.png' | asset_url}} 550w,
-             {{'Quotation Desktop.png' | asset_url}} 1000w"
-            alt="Quotation Mark"
-          >
+          <picture>
+            <source media="(max-width: 499px)" srcset="{{'Quotation Mobile.png' | asset_url}}">
+            <source media="(min-width: 500px)" srcset="{{'Quotation Desktop.png' | asset_url}}">
+            <img
+              class="Quote__image"
+              src="{{'Quotation Desktop.png' | asset_url}}"
+              alt="Quotation Mark"
+            >
+          </picture>
           <p class="Quote__quote">{{quote.quote}}</p>
           <cite class="Quote__source"><span>{{quote.quote_person}},</span> {{quote.quote_title}}</cite>
         </blockquote>

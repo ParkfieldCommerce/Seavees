@@ -1,0 +1,71 @@
+
+.QView__details.hidden{
+  display: none;
+}
+.QView__details{
+  @include flex();
+}
+.QView__details__left{
+  width: 35%;
+  @include maxQuery(850px){
+    width: 100%;
+    margin-bottom: 10px;
+  }
+}
+.QView__details__right{
+  width: 65%;
+  @include maxQuery(850px){
+    width: 100%;
+  }
+}
+.QView__details__heading{
+  color: $primary-accent2;
+  @include lineHeading-left(30%);
+}
+.QView__details__link{
+  text-transform: uppercase;
+  text-decoration: none;
+  position: relative;
+  display: inline-block;
+  margin-top: 10px;
+  &:after{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    content:'';
+    display: inline-block;
+    width: 70%;
+    height: 1px;
+    background-color: $primary-accent2;
+  }
+  &:hover{
+    &:after{
+      opacity: 0;
+    }
+  }
+}
+.QView .ProductThumbs__container{
+  margin-left: 0;
+}
+.QVPopup .popup-content{
+  background: white;
+  padding: 60px;
+  max-width: 90%;
+  max-height: 90%;
+  position: relative;
+  @include maxQuery(1090px){
+    padding: 20px;
+  }
+}
+
+.QVPopup__close{
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  border: none;
+  color: $primary-accent2;
+  &:hover{
+    background: transparent;
+    color: $primary-accent2;
+  }
+}

@@ -1,0 +1,42 @@
+{% for image in product.images %}
+  {% if image.alt contains 'lifestyle' %}
+  {% assign hasLifeStyleImages = true %}
+  {% endif %}
+
+  {% if image.alt contains 'about desktop' %}
+    {% assign aboutImage = image %}
+  {% endif %}
+
+  {% if image.alt contains 'about mobile' %}
+    {% assign aboutImageMobile = image %}
+  {% endif %}
+  
+{% endfor %}
+
+{% if hasLifeStyleImages %}
+<div class="ProductBanners margin-top-10x s-margin-top-5x">
+  {% assign lifestyleCount = 0 %}
+  {% for image in product.images %}
+  {% if image.alt contains 'lifestyle' %}
+  {% assign lifestyleCount = lifestyleCount | plus: 1 %}
+    <img
+      class="ProductBanners__banner ProductBanners__banner--{{lifestyleCount}}"
+      src="{{image | img_url:'master'}}"
+      alt="{{image.alt}}"
+    >
+  {% endif %}
+  {% endfor %}
+</div>
+{% endif %}
+
+{% if aboutImage %}
+<picture class="ProductBanners__about">
+  <source media="(max-width: 799px)" srcset="{{aboutImageMobile | img_url:'master'}}">
+  <source media="(min-width: 800px)" srcset="{{aboutImage | img_url:'master'}}">
+  <img
+    class="ProductBanners__about"
+    src="{{aboutImage | img_url:'master'}}"
+    alt="{{aboutImage.alt}}"
+  >
+</picture>
+{% endif %}
