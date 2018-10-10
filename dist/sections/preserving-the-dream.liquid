@@ -14,13 +14,14 @@
 <ul class="DreamPage__nav  margin-bottom-10x s-margin-bottom-3x">
 {% for block in section.blocks %}
   <li class="DreamPage__nav-link">
-    <button>{{block.settings.title}}</button>
+    <button type="button" class="js-dreamLink" value="{{block.settings.title | handleize }}">{{block.settings.title}}</button>
   </li>
 {% endfor %}
 </ul>
 {% for block in section.blocks %}
 {% assign content = block.settings %}
   <section class="Dream__container l container margin-bottom-10x s-margin-bottom-3x">
+    <a name="{{block.settings.title | handleize }}"></a>
     <div class="row flex v-center Dream__row--{{content.layout}} row--{{content.layout}}">
       <div class="column l6 m6 s12">
         <div class="Dream__image Dream__image--right">

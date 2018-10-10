@@ -68,6 +68,10 @@
       {% if template contains 'collection' %}
       theme.initCollectionPage();
       {% endif %}
+      
+      {% if template contains 'page.preservedream' %}
+      theme.initDreamPage();
+      {% endif %}
 
 
       $(document).ready(function(){

@@ -32,8 +32,18 @@
   width: 340px;
   max-width: 100%;
 }
-.Dream__row--reversed .Dream__text-container{
-  margin-left: auto;
+.Dream__row--reversed{
+  .Dream__content{
+    margin-left: 0;
+  }
+  .Dream__text-container{
+    margin-left: auto;
+  }
+}
+.Dream__row--normal{
+  .Dream__content{
+    margin-right: 0;
+  }
 }
 .Dream__heading{
   color: $primary-accent2;
@@ -46,12 +56,6 @@
   @include minQuery($s){
     @include miller(3.6rem);
   }
-}
-.Dream__image--right{
-  width: 560px;
-  max-width: 100%;
-  margin-left: auto;
-  margin-right: auto;
 }
 .Dream__container{
   .row--reversed,

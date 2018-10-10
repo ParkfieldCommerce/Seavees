@@ -1,5 +1,6 @@
 class Theme{
   constructor(){
+    this.lazyLoad;
     this.globalInit = this.globalInit.bind(this);
     this.initProductPage = this.initProductPage.bind(this);
     this.initCollectionPage = this.initCollectionPage.bind(this);
@@ -21,7 +22,7 @@ class Theme{
     });
   }
   lazyLoadImages(){
-    var bLazy = new Blazy({
+    this.lazyLoad = new Blazy({
       success: function(element){
         setTimeout(function(){
         var parent = element.parentNode;
@@ -207,5 +208,12 @@ class Theme{
         }
       });
     }
+  }
+  initDreamPage(){
+    $('.js-dreamLink').click(function(){
+      let sectionId = $(this).val();
+      var aTag = $("a[name='"+ sectionId +"']");
+      $('html,body').animate({scrollTop: aTag.offset().top},'slow');
+    });
   }
 }
