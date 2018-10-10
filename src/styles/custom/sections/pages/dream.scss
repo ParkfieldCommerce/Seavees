@@ -1,6 +1,9 @@
 .DreamPage__banner{
   position: relative;
-  img{vertical-align: middle;}
+  img{
+    vertical-align: middle;
+    width: 100%;
+  }
 }
 .DreamPage__heading{
   position: absolute;
@@ -21,6 +24,29 @@
 .DreamPage__nav-link{
   margin-left: 20px;
   margin-right: 20px;
+  button{
+    border: none;
+    color: $primary-accent2;
+    position: relative;
+    &:after{
+      transition: width .5s;
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      content:'';
+      display: inline-block;
+      width: 0%;
+      height: 1px;
+      background-color: $primary-accent1;
+    }
+    &:hover{
+      background: transparent;
+      color: $primary-accent1;
+      &:after{
+        width: 80%;
+      }
+    }
+  }
 }
 .Dream__content{
   width: 460px;
@@ -56,7 +82,38 @@
   @include minQuery($s){
     @include miller(3.6rem);
   }
+  @include minQuery(600px){
+    @include miller(3rem);
+  }
 }
+.DreamPage{
+  .Quote__quote{
+    font-size: 3.6rem;
+    &:after{
+      margin-top: 20px;
+      margin-bottom: 20px;
+    }
+  }
+  .container.s{
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+  @include maxQuery($s){
+    .Quote__quote{
+      font-size: 2.3rem;
+    }
+  }
+}
+  
+@include maxQuery(980px){
+  .Dream__content{
+    width: auto;
+  }
+  .Dream__text-container{
+    width: auto;
+  }
+}
+
 .Dream__container{
   .row--reversed,
   .row--normal{
