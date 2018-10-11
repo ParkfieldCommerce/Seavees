@@ -1,11 +1,11 @@
-.Guidebar__banner{
+.GuideBar__banner{
   position: relative;
   img{
     vertical-align: middle;
     width: 100%;
   }
 }
-.Guidebar__heading{
+.GuideBar__heading{
   position: absolute;
   top: 50%;
   left: 50%;
@@ -16,5 +16,94 @@
   text-align: center;
   @include minQuery($s){
     font-size: 4.8rem;
+  }
+}
+.GuideBar__chat{
+  @include maxQuery($s){
+    flex-direction: column-reverse;
+  }
+}
+.GuideBar__fit{
+  flex-direction: row-reverse;
+  @include maxQuery($s){
+    flex-direction: column-reverse;
+  }
+}
+.GuideBar__content__text{
+  width: 360px;
+  max-width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  @include maxQuery($s){
+    text-align: center;
+    margin-bottom: 40px;
+  }
+}
+.GuideBar__content__heading{
+  @include lineHeading-left(20%);
+  @include miller(2.4rem);
+  @include minQuery($s){
+    font-size: 3.6rem;
+  }
+  line-height: 4rem;
+  &:after{
+    margin-top: 15px;
+    margin-bottom: 15px;
+  }
+}
+.GuideBar__content__body{
+  margin-bottom: 20px;
+}
+
+.GuideBar__book__heading{
+  @include lineHeading-center(20%);
+  @include miller(2.4rem);
+  @include minQuery($s){
+    font-size: 3.6rem;
+  }
+  &:after{
+    margin-top: 15px;
+    margin-bottom: 15px;
+  }
+}
+.GuideBar__book__body{
+  color: $primary-accent1;
+  font-style: italic;
+  margin-bottom: 35px;
+}
+.GuideBar__book-link{
+  margin: 0px 5px;
+  @include maxQuery($s){
+    min-width: 250px;
+    &:first-child{
+      margin-bottom: 25px;
+    }
+  }
+}
+.GuideBar__map{
+  .mapouter,
+  .gmap_canvas{
+    width: 100% !important;
+  }
+}
+.GuideBar__map-contents{
+  @include flex();
+  flex-wrap: wrap;
+}
+.GuideBar__map-content{
+  width: 170px;
+  max-width: 100%;
+  @include maxQuery($s){
+    width: 100%;
+    margin-bottom: 25px;
+  }
+}
+.GuideBar__map-content__heading{
+  @include lineHeading-center(30%);
+  @include miller(2.4rem);
+  display: inline-block;
+  &:after{
+    margin-top: 20px;
+    margin-bottom: 15px;
   }
 }

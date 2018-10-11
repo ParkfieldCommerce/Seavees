@@ -1,5 +1,6 @@
 
-<div class="Guidebar__banner">
+{% assign guidebar = section.settings %}
+<div class="GuideBar__banner margin-bottom-5x s-margin-bottom-3x">
   <picture>
     <source media="(max-width: 799px)" srcset="{{section.settings.hero_image_mobile | img_url:'master'}}">
     <source media="(min-width: 1800px)" srcset="{{section.settings.hero_image_wide | img_url:'master'}}">
@@ -10,9 +11,88 @@
       alt="{{section.settings.hero_image.alt}}"
     >
   </picture>
-  <h1 class="Guidebar__heading">{{page.title}}</h1>
+  <h1 class="GuideBar__heading">{{page.title}}</h1>
 </div>
-<div class="GuideBar__body">{{page.content}}</div>
+<div class="container s margin-bottom-4x">
+  <div class="row">
+    <div class="column l12 m12 s12">
+      <div class="GuideBar__body center">
+        {{page.content}}
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container l margin-bottom-3x s-margin-bottom-4x">
+  <div class="row flex v-center GuideBar__chat GuideBar__content">
+    <div class="column l6 m6 s12">
+      <div class="GuideBar__content__image">
+        <img src="{{guidebar.chat_image | img_url:'master'}}" alt="{{guidebar.chat_image.alt}}">
+      </div>
+    </div>
+    <div class="column l6 m6 s12">
+      <div class="GuideBar__content__text">
+        <h2 class="GuideBar__content__heading">{{guidebar.chat_heading}}</h2>
+        <p class="GuideBar__content__body">
+          {{guidebar.chat_body}}
+        </p>
+        <a class="Btn Btn--small GuideBar__content__link" href="">{{guidebar.chat_linktext}}</a>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container l margin-bottom-7x s-margin-bottom-4x">
+  <div class="row flex v-center GuideBar__fit GuideBar__content">
+    <div class="column l6 m6 s12">
+      <div class="GuideBar__content__image">
+        <img src="{{guidebar.fitguide_image | img_url:'master'}}" alt="{{guidebar.fitguide_image.alt}}">
+      </div>
+    </div>
+    <div class="column l6 m6 s12">
+      <div class="GuideBar__content__text">
+        <h2 class="GuideBar__content__heading">{{guidebar.fitguide_heading}}</h2>
+        <p class="GuideBar__content__body">
+          {{guidebar.fitguide_body}}
+        </p>
+        <a class="Btn Btn--small GuideBar__content__link" href="">{{guidebar.fitguide_linktext}}</a>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container s margin-bottom-7x s-margin-bottom-5x">
+  <div class="row">
+    <div class="column l12 m12 s12 center">
+      <div class="GuideBar__book">
+        <h2 class="GuideBar__book__heading">{{guidebar.book_heading}}</h2>
+        <p class="GuideBar__book__body">{{guidebar.book_body}}</p>
+        <div class="GuideBar__book-links">
+          <a href="" class="GuideBar__book-link Btn Btn--small">Book Men's Appointment</a>
+          <a href="" class="GuideBar__book-link Btn Btn--small">Book Women's Appointment</a>
+        </div>
+      </div>  
+    </div>
+  </div>
+</div>
+<div class="container m margin-bottom-7x">
+  <div class="row">
+    <div class="column l12 m12 s12">
+      <div class="GuideBar__map  margin-bottom-5x s-margin-bottom-3x">
+        <div class="mapouter"><div class="gmap_canvas"><iframe width="100%" height="500" id="gmap_canvas" src="https://maps.google.com/maps?q=118%20%20east%20ortega&t=&z=17&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe><a href="https://www.pureblack.de">webdesign agentur</a></div><style>.mapouter{text-align:right;height:500px;width:600px;}.gmap_canvas {overflow:hidden;background:none!important;height:500px;width:600px;}</style></div>
+      </div>
+      <div class="GuideBar__map-contents">
+        {% for block in section.blocks %}
+          <div class="GuideBar__map-content center">
+            <h3 class="GuideBar__map-content__heading">{{block.settings.title}}</h3>
+            <div>{{block.settings.text}}</div>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="GuideBar__bottom-banner margin-bottom-8x">
+  <img src="{{guidebar.bottom_image | img_url:'master'}}" alt="{{guidebar.bottom_image.alt}}">
+</div>
 {% schema %}
 {
   "name": "Guide Bar",
@@ -116,8 +196,8 @@
         "label":"Title"
       },
       {
-        "type":"textarea",
-        "id":"richtext",
+        "type":"richtext",
+        "id":"text",
         "label":"Body"
       }
     ]
