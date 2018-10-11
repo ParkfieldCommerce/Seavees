@@ -1,0 +1,126 @@
+
+<div class="Guidebar__banner">
+  <picture>
+    <source media="(max-width: 799px)" srcset="{{section.settings.hero_image_mobile | img_url:'master'}}">
+    <source media="(min-width: 1800px)" srcset="{{section.settings.hero_image_wide | img_url:'master'}}">
+    <source media="(min-width: 1000px)" srcset="{{section.settings.hero_image | img_url:'master'}}">
+    <img
+      src="{{section.settings.hero_image | img_url:'master'}}"
+      alt="{{section.settings.hero_image.alt}}"
+      alt="{{section.settings.hero_image.alt}}"
+    >
+  </picture>
+  <h1 class="Guidebar__heading">{{page.title}}</h1>
+</div>
+<div class="GuideBar__body">{{page.content}}</div>
+{% schema %}
+{
+  "name": "Guide Bar",
+  "settings":[
+    {
+      "id": "hero_image",
+      "type": "image_picker",
+      "label": "Desktop Image"
+    },
+    {
+      "id": "hero_image_wide",
+      "type": "image_picker",
+      "label": "Wide Desktop Image(>1800px)"
+    },
+    {
+      "id": "hero_image_mobile",
+      "type": "image_picker",
+      "label": "Mobile Image"
+    },
+    {
+      "type":"header",
+      "content":"Chat Section"
+    },
+    {
+      "type":"text",
+      "id":"chat_heading",
+      "label":"Heading"
+    },
+    {
+      "type":"textarea",
+      "id":"chat_body",
+      "label":"Body"
+    },
+    {
+      "type":"text",
+      "id":"chat_linktext",
+      "label":"Link Text"
+    },
+    {
+      "type":"image_picker",
+      "id":"chat_image",
+      "label":"Image"
+    },
+    {
+      "type":"header",
+      "content":"Fit Guide Section"
+    },
+    {
+      "type":"text",
+      "id":"fitguide_heading",
+      "label":"Heading"
+    },
+    {
+      "type":"textarea",
+      "id":"fitguide_body",
+      "label":"Body"
+    },
+    {
+      "type":"text",
+      "id":"fitguide_linktext",
+      "label":"Link Text"
+    },
+    {
+      "type":"image_picker",
+      "id":"fitguide_image",
+      "label":"Image"
+    },
+    {
+      "type":"header",
+      "content":"Book an Appointment Section"
+    },
+    {
+      "type":"text",
+      "id":"book_heading",
+      "label":"Heading"
+    },
+    {
+      "type":"textarea",
+      "id":"book_body",
+      "label":"Body"
+    },
+    {
+      "type":"header",
+      "content":"Bottom Banner"
+    },
+    {
+      "type":"image_picker",
+      "id":"bottom_image",
+      "label":"Bottom Image"
+    }
+  ],
+  "blocks":[
+  {
+    "type":"content",
+    "name":"Content",
+    "limit": 3,
+    "settings": [
+      {
+        "type":"text",
+        "id":"title",
+        "label":"Title"
+      },
+      {
+        "type":"textarea",
+        "id":"richtext",
+        "label":"Body"
+      }
+    ]
+  }]
+}
+{% endschema %}

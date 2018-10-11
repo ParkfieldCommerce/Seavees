@@ -21,7 +21,7 @@
   </ul>
   {% for block in section.blocks %}
   {% assign content = block.settings %}
-    <section class="Dream__container l container margin-bottom-10x s-margin-bottom-3x">
+    <section class="Dream__container l container margin-bottom-10x s-margin-bottom-4x">
       <a name="{{block.settings.title | handleize }}"></a>
       <div class="row flex v-center Dream__row--{{content.layout}} row--{{content.layout}}">
         <div class="column l6 m6 s12">
@@ -38,7 +38,7 @@
               <a href="{{content.link_url}}" class="Dream__link Link--accent">{{content.link_text}}</a>
               {% endunless %}
             </div>
-            <div class="Dream__image--left margin-top-8x s-margin-top-3x">
+            <div class="Dream__image--left margin-top-8x s-margin-top-3x s-margin-bottom-4x">
               <img src="{{content.image_left | img_url:'master'}}" alt="{{content.image_left.alt}}">
             </div>
           </div>
@@ -46,7 +46,7 @@
       </div>
     </section>
     {% unless content.image_bottom == blank %}
-    <div class="Dream__image Dream__image--bottom margin-bottom-10x s-margin-bottom-3x">
+    <div class="Dream__image Dream__image--bottom margin-bottom-10x s-margin-bottom-4x">
       <img src="{{content.image_bottom | img_url:'master'}}" alt="{{content.image_bottom.alt}}">
     </div>
     {% endunless %}

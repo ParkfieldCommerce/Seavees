@@ -12,6 +12,8 @@
   @include prefix(transform, translate(-50%,-50%));
   color: white;
   @include miller(2.4rem);
+  width: 100%;
+  text-align: center;
   @include minQuery($s){
     font-size: 4.8rem;
   }
@@ -20,6 +22,11 @@
   @include flex-center();
   height: 70px;
   background-color: $gray-lighter;
+  @include maxQuery($s){
+    height: auto;
+    padding: 20px 0px;
+    flex-wrap: wrap;
+  }
 }
 .DreamPage__nav-link{
   margin-left: 20px;
@@ -47,16 +54,43 @@
       }
     }
   }
+  @include maxQuery($s){
+    text-align: center;
+    width: 100%;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    button{
+      margin-right: auto;
+      margin-left: auto;
+    }
+  }
 }
+
 .Dream__content{
   width: 460px;
   max-width: 100%;
   margin-left: auto;
   margin-right: auto;
+  @include maxQuery($s){
+    text-align: center;
+  }
 }
 .Dream__text-container{
   width: 340px;
   max-width: 100%;
+}
+.Dream__link{
+  @include maxQuery($s){
+    margin-top: 20px;
+  }
+}
+@include maxQuery(980px){
+  .Dream__content{
+    width: auto;
+  }
+  .Dream__text-container{
+    width: auto;
+  }
 }
 .Dream__row--reversed{
   .Dream__content{
@@ -86,6 +120,7 @@
     @include miller(3rem);
   }
 }
+
 .DreamPage{
   .Quote__quote{
     font-size: 3.6rem;
@@ -104,16 +139,13 @@
     }
   }
 }
-  
-@include maxQuery(980px){
-  .Dream__content{
-    width: auto;
-  }
-  .Dream__text-container{
-    width: auto;
+@include maxQuery($s){
+  .Dream__image--left{
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
   }
 }
-
 .Dream__container{
   .row--reversed,
   .row--normal{
