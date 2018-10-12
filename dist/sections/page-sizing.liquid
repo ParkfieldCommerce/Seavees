@@ -1,4 +1,62 @@
-sizing chart
+<div class="Sizing">
+  <div class="Page__banner margin-bottom-5x s-margin-bottom-3x">
+    <picture>
+      <source media="(max-width: 799px)" srcset="{{section.settings.hero_image_mobile | img_url:'master'}}">
+      <source media="(min-width: 1800px)" srcset="{{section.settings.hero_image_wide | img_url:'master'}}">
+      <source media="(min-width: 1000px)" srcset="{{section.settings.hero_image | img_url:'master'}}">
+      <img
+        src="{{section.settings.hero_image | img_url:'master'}}"
+        alt="{{section.settings.hero_image.alt}}"
+        alt="{{section.settings.hero_image.alt}}"
+      >
+    </picture>
+    <h1 class="Page__heading">{{page.title}}</h1>
+  </div>
+  <div class="Sizing__content center">
+    <div class="container l">
+      <div class="row">
+        <div class="column l12 m12 s12">
+          {{page.content}}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container l">
+    <div class="row">
+      <div class="column l6 m6 s12 Sizing__table Sizing__table--1">
+        {% unless section.settings.page1 == blank %}
+          {% assign page = pages[section.settings.page1] %}
+          <h2>{{page.title}}</h2>
+          <div>
+            {{page.content}}
+          </div>
+        {% endunless %}
+      </div>
+      <div class="column l6 m6 s12 Sizing__table Sizing__table--2">
+        {% unless section.settings.page2 == blank %}
+          {% assign page = pages[section.settings.page2] %}
+          <h2>{{page.title}}</h2>
+          <div>
+            {{page.content}}
+          </div>
+        {% endunless %}
+      </div>
+    </div>
+    <div class="row">
+      <div class="column l12 m12 s12 Sizing__table Sizing__table--3">
+      {% unless section.settings.page3 == blank %}
+        {% assign page = pages[section.settings.page3] %}
+        <h2>{{page.title}}</h2>
+        <div>
+          {{page.content}}
+        </div>
+      {% endunless %}
+      </div>
+    </div>
+  </div>
+</div>
+
 {% schema %}
 {
   "name": "Sizing Chart Page",

@@ -1,0 +1,45 @@
+
+.Sizing__content{
+  a{
+    color: $primary-accent1;
+  }
+}
+.Sizing__table table{
+  table-layout: fixed;
+  width: 100%;
+  td{
+    font-weight: bold;
+    width: 20%;
+    text-transform: uppercase;
+    text-align: center;
+    vertical-align: middle;
+    padding-top: 5px;
+    padding-bottom: 5px;
+  }
+  tr:first-child td{
+    font-weight: normal;
+  }
+  tr:nth-child(odd){
+    background: $gray-lighter;
+  }
+}
+
+.Sizing__table--3 table{
+  tr:first-child .lighter{
+    font-weight: bold;
+  }
+  .lighter{
+    background-color: $gray-lighter;
+  }
+  .light{
+    background-color: $gray-light;
+  }
+  .gray{
+    background-color: $gray;
+  }
+  @include maxQuery($s){
+    td[rowspan]{
+      display: none;
+    }
+  }
+}

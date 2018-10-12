@@ -1,5 +1,5 @@
 <div class="DreamPage">
-  <div class="DreamPage__banner">
+  <div class="Page__banner">
     <picture>
       <source media="(max-width: 799px)" srcset="{{section.settings.hero_image_mobile | img_url:'master'}}">
       <source media="(min-width: 1800px)" srcset="{{section.settings.hero_image_wide | img_url:'master'}}">
@@ -10,7 +10,7 @@
         alt="{{section.settings.hero_image.alt}}"
       >
     </picture>
-    <h1 class="DreamPage__heading">{{page.title}}</h1>
+    <h1 class="Page__heading">{{page.title}}</h1>
   </div>
   <ul class="DreamPage__nav  margin-bottom-10x s-margin-bottom-3x">
   {% for block in section.blocks %}

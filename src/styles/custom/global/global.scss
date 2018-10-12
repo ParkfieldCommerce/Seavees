@@ -201,3 +201,8 @@ input:focus + label{
     margin-right: 2.5px;
   }
 }
+
+hr{
+  border-top-color: $gray-light;
+  border-top-width: 1px;
+}

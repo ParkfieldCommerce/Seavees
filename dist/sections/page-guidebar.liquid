@@ -1,6 +1,6 @@
 
 {% assign guidebar = section.settings %}
-<div class="GuideBar__banner margin-bottom-5x s-margin-bottom-3x">
+<div class="Page__banner margin-bottom-5x s-margin-bottom-3x">
   <picture>
     <source media="(max-width: 799px)" srcset="{{section.settings.hero_image_mobile | img_url:'master'}}">
     <source media="(min-width: 1800px)" srcset="{{section.settings.hero_image_wide | img_url:'master'}}">
@@ -11,7 +11,7 @@
       alt="{{section.settings.hero_image.alt}}"
     >
   </picture>
-  <h1 class="GuideBar__heading">{{page.title}}</h1>
+  <h1 class="Page__heading">{{page.title}}</h1>
 </div>
 <div class="container s margin-bottom-4x">
   <div class="row">

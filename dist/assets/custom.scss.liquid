@@ -434,6 +434,11 @@ input:focus + label{
   }
 }
 
+hr{
+  border-top-color: $gray-light;
+  border-top-width: 1px;
+}
+
 /* Sections */
 .Promobar{
   height: 40px;
@@ -2417,14 +2422,14 @@ h2.or {
 
 
 /* Pages */
-.DreamPage__banner{
+.Page__banner{
   position: relative;
   img{
     vertical-align: middle;
     width: 100%;
   }
 }
-.DreamPage__heading{
+.Page__heading{
   position: absolute;
   top: 50%;
   left: 50%;
@@ -2581,26 +2586,6 @@ h2.or {
   }
 }
 
-.GuideBar__banner{
-  position: relative;
-  img{
-    vertical-align: middle;
-    width: 100%;
-  }
-}
-.GuideBar__heading{
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  @include prefix(transform, translate(-50%,-50%));
-  color: white;
-  @include miller(2.4rem);
-  width: 100%;
-  text-align: center;
-  @include minQuery($s){
-    font-size: 4.8rem;
-  }
-}
 .GuideBar__chat{
   @include maxQuery($s){
     flex-direction: column-reverse;
@@ -2689,4 +2674,66 @@ h2.or {
     margin-top: 20px;
     margin-bottom: 15px;
   }
+}
+
+
+.Sizing__content{
+  a{
+    color: $primary-accent1;
+  }
+}
+.Sizing__table table{
+  table-layout: fixed;
+  width: 100%;
+  td{
+    font-weight: bold;
+    width: 20%;
+    text-transform: uppercase;
+    text-align: center;
+    vertical-align: middle;
+    padding-top: 5px;
+    padding-bottom: 5px;
+  }
+  tr:first-child td{
+    font-weight: normal;
+  }
+  tr:nth-child(odd){
+    background: $gray-lighter;
+  }
+}
+
+.Sizing__table--3 table{
+  tr:first-child .lighter{
+    font-weight: bold;
+  }
+  .lighter{
+    background-color: $gray-lighter;
+  }
+  .light{
+    background-color: $gray-light;
+  }
+  .gray{
+    background-color: $gray;
+  }
+  @include maxQuery($s){
+    td[rowspan]{
+      display: none;
+    }
+  }
+}
+.Privacy{
+  text-align: center;
+ .rte{
+   h1,h2,h3,h4{
+     font-family: 'NewsGothicMT';
+     font-weight: bold;
+   }
+   hr{
+     margin-top: 30px;
+     margin-bottom: 30px;
+   }
+   p{
+     margin-bottom: 15px;
+   }
+ } 
 }
