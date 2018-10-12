@@ -71,7 +71,7 @@
               <button class="ProductForm__value ProductForm__value--size js-sizeVariantButton {% if forloop.first %}active{% endif %}" type="button" value="{{value}}">{{ value | remove:'Mens' | remove:'Womens' | remove:'Kids' }}</button>
               {% endfor %}
               </div>
-              <button class="ProductForm__fit-guide-trigger js-fitGuideTrigger" type="button">Fit Guide</button>
+              <button class="ProductForm__fit-guide-trigger js-sizeChartPopupShow" type="button">Fit Guide</button>
             {% endif %}
           </div>
         {% endfor %}

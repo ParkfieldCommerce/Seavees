@@ -1,0 +1,11 @@
+.SizeChartPopup{
+  .popup-content{
+    max-width: 85%;
+    @include maxQuery($s){
+      max-width: 90%;
+    }
+  }
+}
+.SizeChartPopup__title{
+  margin-bottom: 10px;
+}

@@ -118,6 +118,26 @@
     ]
   },
   {
+    "name":"Size Guide",
+    "settings":[
+      {
+        "id": "size_page1",
+        "type": "page",
+        "label": "Size Chart 1"
+      },
+      {
+        "id": "size_page2",
+        "type": "page",
+        "label": "Size Chart 2"
+      },
+      {
+        "id": "size_page3",
+        "type": "page",
+        "label": "Size Chart 3"
+      }
+    ]
+  },
+  {
     "name": "Social",
     "settings": [
       {

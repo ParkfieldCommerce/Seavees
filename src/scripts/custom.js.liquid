@@ -31,6 +31,7 @@ class Theme{
       }
     });
   }
+
   initHeader(){
     let menu = $('.js-nav-menu');
     let header = $('.js-header');
@@ -57,6 +58,7 @@ class Theme{
       });
     }
   }
+
   initProductPage(){
     //Product Thumbs Slider
     $('.js-thumbsSlider').slick({
@@ -127,11 +129,29 @@ class Theme{
         }
       ]
     });
+
+    this.initSizeChartPopup();
   }
+
   initCollectionPage(){
-    this.initQuickView();
+    this.initQuickViewPopup();
   }
-  initQuickView(){
+
+  initSizeChartPopup(){
+    let sizeChartPopup = new Focus('.js-sizeChartPopup');
+    let body = $('body');
+
+    $('.js-sizeChartPopupShow').click(function(){
+      sizeChartPopup.show();
+      body.addClass('fixed');
+    });
+    $('.js-sizeChartPopupHide').click(function(){
+      sizeChartPopup.hide();
+      body.removeClass('fixed');
+    });
+  }
+  initQuickViewPopup(){
+    let theme = this;
     let quickViewPopup = new Focus('.js-qvPopup');
     $('.js-qvPopupShow').click(function(){
       let url = $(this).val();
@@ -202,6 +222,9 @@ class Theme{
               addToCart.text('Unavailable');
             }
           });
+          
+          //Apply Size Chart Popup Handler
+          theme.initSizeChartPopup();
 
           //Show Popup
           quickViewPopup.show();
@@ -209,6 +232,7 @@ class Theme{
       });
     }
   }
+  
   initDreamPage(){
     $('.js-dreamLink').click(function(){
       let sectionId = $(this).val();

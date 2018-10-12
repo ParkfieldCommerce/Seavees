@@ -1,0 +1,11 @@
+<!-- /snippets/blog-article.liquid -->
+
+<article class="blog-article">
+  <h2 class="h3"><a href="{{ article.url }}">{{ article.title }}</a></h2>
+  {% if article.image %}
+    <a href="{{ article.url }}">
+      <img srcset="{{ article.image | img_url: '512x512', scale: 2 }} 2x" src="{{ article.image | img_url: '512x512' }}" alt="{{ article.title | escape }}">
+    </a>
+  {% endif %}
+</article>
+

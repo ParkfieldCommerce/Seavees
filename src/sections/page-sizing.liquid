@@ -25,8 +25,8 @@
   <div class="container l">
     <div class="row">
       <div class="column l6 m6 s12 Sizing__table Sizing__table--1">
-        {% unless section.settings.page1 == blank %}
-          {% assign page = pages[section.settings.page1] %}
+        {% unless settings.size_page1 == blank %}
+          {% assign page = pages[settings.size_page1] %}
           <h2>{{page.title}}</h2>
           <div>
             {{page.content}}
@@ -34,8 +34,8 @@
         {% endunless %}
       </div>
       <div class="column l6 m6 s12 Sizing__table Sizing__table--2">
-        {% unless section.settings.page2 == blank %}
-          {% assign page = pages[section.settings.page2] %}
+        {% unless settings.size_page2 == blank %}
+          {% assign page = pages[settings.size_page2] %}
           <h2>{{page.title}}</h2>
           <div>
             {{page.content}}
@@ -45,8 +45,8 @@
     </div>
     <div class="row">
       <div class="column l12 m12 s12 Sizing__table Sizing__table--3">
-      {% unless section.settings.page3 == blank %}
-        {% assign page = pages[section.settings.page3] %}
+      {% unless settings.size_page3 == blank %}
+        {% assign page = pages[settings.size_page3] %}
         <h2>{{page.title}}</h2>
         <div>
           {{page.content}}
@@ -75,25 +75,6 @@
       "id": "hero_image_mobile",
       "type": "image_picker",
       "label": "Mobile Image"
-    },
-    {
-      "type":"header",
-      "content":"Size Chart Pages"
-    },
-    {
-      "id": "page1",
-      "type": "page",
-      "label": "Size Chart 1"
-    },
-    {
-      "id": "page2",
-      "type": "page",
-      "label": "Size Chart 2"
-    },
-    {
-      "id": "page3",
-      "type": "page",
-      "label": "Size Chart 3"
     }
   ]
 }
