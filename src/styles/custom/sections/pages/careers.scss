@@ -1,0 +1,103 @@
+.Careers{
+
+}
+.Careers__nav{
+  @include flex-center();
+  height: 70px;
+  background-color: $gray-lighter;
+  @include maxQuery($s){
+    height: auto;
+    padding: 20px 0px;
+    flex-wrap: wrap;
+  }
+}
+.Careers__nav-link{
+  margin-left: 20px;
+  margin-right: 20px;
+  button{
+    border: none;
+    color: $primary-accent2;
+    position: relative;
+    &:after{
+      transition: width .5s;
+      position: absolute;
+      left: 50%;
+      @include prefix(transform, translateX(-50%));
+      bottom: 0;
+      content:'';
+      display: inline-block;
+      width: 0%;
+      height: 1px;
+      background-color: $primary-accent1;
+    }
+    &:hover{
+      background: transparent;
+      color: $primary-accent1;
+      &:after{
+        width: 80%;
+      }
+    }
+  }
+  @include maxQuery($s){
+    text-align: center;
+    width: 100%;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    button{
+      margin-right: auto;
+      margin-left: auto;
+    }
+  }
+}
+.Careers__nav-link{
+  button.active{
+    background: transparent;
+    color: $primary-accent1;
+    &:after{
+      width: 80%;
+    }
+  }
+}
+.Careers__tab{
+  display: none;
+}
+.Careers__tab.active{
+  display: block;
+}
+.Careers__tab__text-content{
+  width: 361px;
+  max-width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+.Careers__tab__heading{
+  @include lineHeading-left(30%);
+  @include miller(3.6rem);
+  &:after{
+    margin-top: 15px;
+    margin-bottom: 15px;
+  }
+  @include maxQuery($s){
+    font-size: 2.4rem;
+  }
+}
+.Careers__tab__body{
+  p{
+    margin-bottom: 10px;
+  }
+}
+.Careers__tab__image--main{
+  @include maxQuery($s){
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+}
+.Careers__tab__image--small{
+  width: 85%;
+}
+
+.mobile-reverse{
+  @include maxQuery($s){
+    flex-direction: column-reverse;
+  }
+}

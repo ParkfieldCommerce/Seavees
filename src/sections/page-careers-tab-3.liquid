@@ -1,0 +1,55 @@
+<section class="Careers__tab Careers__tab-3 js-careersTab" data-tab="3">
+<div class="container l">
+  <div class="row margin-bottom-6x s-margin-bottom-4x flex mobile-reverse">
+    <div class="column l6 m6 s12">
+      <img class="Careers__tab__image--main js-mainCareerImage" src="{{section.settings.image_1 | img_url:'master'}}" alt="{{section.settings.image_1.alt}}">
+    </div>
+    <div class="column l6 m6 s12">
+      <div class="Careers__tab__text-content">
+        <h2 class="Careers__tab__heading">{{section.settings.heading}}</h2>
+        <div class="Careers__tab__body js-mainCareerBody">{{section.settings.body}}</div>
+      </div>
+    </div>
+  </div>
+  <div class="row flex v-center">
+    <div class="column l6 m6 s12 left s-center">
+      <img class="Careers__tab__image--small" src="{{section.settings.image_2 | img_url:'master'}}" alt="{{section.settings.image_2.alt}}">
+    </div>
+    <div class="column l6 m6 s12 s-margin-top-4x">
+      <img src="{{section.settings.image_3 | img_url:'master'}}" alt="{{section.settings.image_3.alt}}">
+    </div>
+  </div>
+</div>
+</section>
+{% schema %}
+{
+  "name": "Careers - Section 3",
+  "settings":[
+    {
+      "type":"text",
+      "id":"heading",
+      "label":"Heading"
+    },
+    {
+      "type":"richtext",
+      "id":"body",
+      "label":"Body"
+    },
+    {
+      "id": "image_1",
+      "type": "image_picker",
+      "label": "Image 1"
+    },
+    {
+      "id": "image_2",
+      "type": "image_picker",
+      "label": "Image 2"
+    },
+    {
+      "id": "image_3",
+      "type": "image_picker",
+      "label": "Image 3"
+    }
+  ]
+}
+{% endschema %}

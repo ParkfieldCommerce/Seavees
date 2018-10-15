@@ -58,6 +58,7 @@
     {% section 'footer' %}
     {% include 'popup-error' %}
     <script>
+      console.log('Page Template: {{template}}');
       const theme = new Theme();
       theme.globalInit();
 
@@ -73,6 +74,13 @@
       theme.initDreamPage();
       {% endif %}
 
+      {% if template contains 'article.the-casual-types' %}
+      theme.initCasualArticlePage();
+      {% endif %}
+
+      {% if template contains 'page.careers' %}
+      theme.initCareerPage();
+      {% endif %}
 
       $(document).ready(function(){
         CartJS.init({{ cart | json }});

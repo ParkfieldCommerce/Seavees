@@ -7,7 +7,13 @@
   {% endif %}
   <div class="CasualArticleListing__text">
     <a class="CasualArticleListing__name" href="{{ article.url }}"><h2 class="p">{{ article.title }}</h2></a>
-    <span class="CasualArticleListing__title"><a href="{{ article.url }}">{{ article.title }}</a></span>
+    {% for tag in article.tags %}
+    {% if tag contains 'occupation' %}
+      {% assign occupation = tag | split:'_' | last %}
+      <span class="CasualArticleListing__title"><a href="{{ article.url }}">{{ occupation }}</a></span>
+    {% break %}
+    {% endif %}
+    {% endfor %}
   </div>
 </article>
 

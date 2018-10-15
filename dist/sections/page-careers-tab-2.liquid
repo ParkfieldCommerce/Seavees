@@ -1,0 +1,86 @@
+<section class="Careers__tab Careers__tab-2 js-careersTab" data-tab="2">
+  <div class="container l">
+    <div class="row">
+      <div class="column l6 m6 s12">
+        <img src="{{section.settings.image_1 | img_url:'master'}}" alt="{{section.settings.image_1.alt}}">
+      </div>
+      <div class="column l6 m6 s12">
+        <h2>{{section.settings.heading}}</h2>
+        <div>{{section.settings.body}}</div>
+        <img src="{{section.settings.image_2 | img_url:'master'}}" alt="{{section.settings.image_2.alt}}">
+      </div>
+    </div>
+    <div class="row">
+      <div class="column l12 m12 s12">
+        <h2>{{section.settings.position_heading}}</h2>
+      </div>
+      {% for block in section.blocks %}
+      <div class="column l4 m4 s12">
+        <a href="{{block.settings.job_url}}">
+          <span>{{block.settings.title}}</span>
+          <span>{{block.settings.job_location}}</span>
+        </a>
+      </div>
+      {% endfor %}
+
+    </div>
+  </div>
+</section>
+{% schema %}
+{
+  "name": "Careers - Section 2",
+  "settings":[
+    {
+      "type":"text",
+      "id":"heading",
+      "label":"Section Heading"
+    },
+    {
+      "type":"richtext",
+      "id":"body",
+      "label":"Section Body"
+    },
+    {
+      "id": "image_1",
+      "type": "image_picker",
+      "label": "Image 1"
+    },
+    {
+      "id": "image_2",
+      "type": "image_picker",
+      "label": "Image 2"
+    },
+    {
+      "type":"text",
+      "id":"position_heading",
+      "label":"Position Heading"
+    },
+    {
+      "type":"paragraph",
+      "content":"Add Blocks to add open positions"
+    }
+  ],
+  "blocks":[
+  {
+    "type":"position",
+    "name":"Open Position",
+    "settings": [
+      {
+        "id": "title",
+        "type": "text",
+        "label": "Job Title"
+      },
+      {
+        "id": "job_location",
+        "type": "text",
+        "label": "Job Location"
+      },
+      {
+        "id": "job_url",
+        "type":"url",
+        "label":"Url"
+      }
+    ]
+  }]
+}
+{% endschema %}
