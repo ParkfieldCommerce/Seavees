@@ -137,6 +137,26 @@ button,
   padding-right: 35px;
 }
 
+.JumpTop{
+  position: fixed;
+  right: 30px;
+  bottom: 80px;
+  width: 80px;
+  height: 80px;
+  z-index: 20;
+  opacity: 0;
+  transition: opacity .3s;
+  i{font-size: 44px;}
+  background: white;
+  @include maxQuery($s){
+    width: 30px;
+    height: 30px;
+    i{font-size: 24px;}
+  }
+}
+.JumpTop.active{
+  opacity: 1;
+}
 //Form
 form {
   max-width: 100%;
@@ -206,3 +226,4 @@ hr{
   border-top-color: $gray-light;
   border-top-width: 1px;
 }
+

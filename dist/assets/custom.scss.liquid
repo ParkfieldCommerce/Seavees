@@ -369,6 +369,26 @@ button,
   padding-right: 35px;
 }
 
+.JumpTop{
+  position: fixed;
+  right: 30px;
+  bottom: 80px;
+  width: 80px;
+  height: 80px;
+  z-index: 20;
+  opacity: 0;
+  transition: opacity .3s;
+  i{font-size: 44px;}
+  background: white;
+  @include maxQuery($s){
+    width: 30px;
+    height: 30px;
+    i{font-size: 24px;}
+  }
+}
+.JumpTop.active{
+  opacity: 1;
+}
 //Form
 form {
   max-width: 100%;
@@ -438,6 +458,8 @@ hr{
   border-top-color: $gray-light;
   border-top-width: 1px;
 }
+
+
 
 /* Sections */
 .Promobar{
@@ -2235,4 +2257,62 @@ hr{
      margin-bottom: 15px;
    }
  } 
+}
+
+/* Blog */
+.CasualTypes__articles{
+  margin: 0 auto;
+  margin-bottom: 90px;
+}
+.CasualArticleListing{
+  width: 340px;
+  padding: 10px;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 100%;
+  margin-bottom: 5px;
+}
+.CasualArticleListing__text{
+  @include flex();
+  @include align-items(flex-start);
+  @include justify-content(space-between);
+}
+.CasualArticleListing__name{
+  text-decoration: none;
+  h2{
+    line-height: 1.5;
+    @include newsR(1.2rem);
+  }
+}
+.CasualArticleListing__title{
+  text-align: right;
+  line-height: 1;
+  a{
+    line-height: 1.5;
+    text-decoration: none;
+    font-size: 1rem;
+  }
+}
+.CasualArticle__column{
+  strong{
+    text-transform: uppercase;
+  }
+}
+.CasualArticle__column--1{
+  img{
+    margin-top: 80px;
+  }
+}
+.CasualArticle__column--2{
+  p{
+    width: 100%;
+  }
+  img{
+    margin-bottom: 50px;
+  }
+  @include maxQuery($s){
+    @include flex();
+    flex-wrap: wrap;
+    img{order:10;}
+  }
 }

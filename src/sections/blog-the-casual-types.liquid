@@ -1,0 +1,78 @@
+<!-- /templates/{{ template }}.liquid -->
+<div class="Page__banner margin-bottom-5x s-margin-bottom-3x">
+  <picture>
+    <source media="(max-width: 799px)" srcset="{{section.settings.hero_image_mobile | img_url:'master'}}">
+    <source media="(min-width: 1800px)" srcset="{{section.settings.hero_image_wide | img_url:'master'}}">
+    <source media="(min-width: 1000px)" srcset="{{section.settings.hero_image | img_url:'master'}}">
+    <img
+      src="{{section.settings.hero_image | img_url:'master'}}"
+      alt="{{section.settings.hero_image.alt}}"
+      alt="{{section.settings.hero_image.alt}}"
+    >
+  </picture>
+  <h1 class="Page__heading">{{blog.title}}</h1>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="column l12 m12 s12">
+      <p class="center">
+        {{section.settings.body}}
+      </p>
+    </div>
+  </div>
+</div>
+{% paginate blog.articles by 18 %}
+  <div class="container l">
+    <div class="CasualTypes__articles js-articles">
+    {% for article in blog.articles %}
+      {% include 'blog-article-casual' %}
+    {% endfor %}
+    </div>
+  </div>
+
+{% endpaginate %}
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/3.1.8/imagesloaded.pkgd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/masonry/4.2.2/masonry.pkgd.min.js"></script>
+<script>
+  var $container = $('.js-articles');
+
+  $container.imagesLoaded(function(){
+    $container.masonry({
+      // options
+      itemSelector: '.CasualArticleListing',
+      columnWidth: 340,
+      fitWidth: true
+    });
+  });
+
+
+</script>
+
+{% schema %}
+{
+  "name": "Casual Types Blog",
+  "settings":[
+    {
+      "id": "hero_image",
+      "type": "image_picker",
+      "label": "Desktop Image"
+    },
+    {
+      "id": "hero_image_wide",
+      "type": "image_picker",
+      "label": "Wide Desktop Image(>1800px)"
+    },
+    {
+      "id": "hero_image_mobile",
+      "type": "image_picker",
+      "label": "Mobile Image"
+    },
+    {
+      "type":"textarea",
+      "id":"body",
+      "label":"Body"
+    }
+  ]
+}
+{% endschema %}

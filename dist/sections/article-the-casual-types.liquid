@@ -1,0 +1,86 @@
+<!-- /templates/{{ template }}.liquid -->
+<div class="CasualArticle">
+  <div class="Page__banner margin-bottom-5x s-margin-bottom-3x">
+    <picture>
+      <source media="(max-width: 799px)" srcset="{{section.settings.hero_image_mobile | img_url:'master'}}">
+      <source media="(min-width: 1800px)" srcset="{{section.settings.hero_image_wide | img_url:'master'}}">
+      <source media="(min-width: 1000px)" srcset="{{section.settings.hero_image | img_url:'master'}}">
+      <img
+        src="{{section.settings.hero_image | img_url:'master'}}"
+        alt="{{section.settings.hero_image.alt}}"
+        alt="{{section.settings.hero_image.alt}}"
+      >
+    </picture>
+    <h1 class="Page__heading">{{blog.title}} | {{article.title}}</h1>
+  </div>
+  <div class="container l">
+    <div class="row">
+      <article itemscope itemtype="http://schema.org/Article">
+        <div class="column l6 m6 s12 center CasualArticle__column CasualArticle__column--1" class="rte" itemprop="articleBody">
+          {{ article.content }}
+        </div>
+        <div class="column l6 m6 s12 center CasualArticle__column CasualArticle__column--2" class="rte" itemprop="articleBody">
+          <img src="{{article.image | img_url:'master'}}" alt="{{article.image.alt}}">
+          {{ article.excerpt | split:'<img' | first }}
+        </div>
+        <div class="column l12 m12 s12 center CasualArticle__column CasualArticle__column--3">
+          <img {{article.excerpt | split:'<img' | last }}
+        </div>
+      </article>
+    </div>
+    <div class="row">
+      <div class="column l12 m12 s12 center">
+        <h4>Stay Up to Date with {{article.title}}</h4>
+        {% for tag in article.tags %}
+          {% assign personLink = tag | split:'_' | last %}
+          {% if tag contains 'instagram' %}
+            {% assign social = 'instagram-dark' %}
+            <a href="{{ personLink }}" target="_blank" itemprop="sameAs">
+              {% include 'custom-icon' with icon: social %}
+            </a>
+          {% endif %}
+          {% if tag contains 'facebook' %}
+            {% assign social = 'facebook-dark' %}
+            <a href="{{ personLink }}" target="_blank" itemprop="sameAs">
+              {% include 'custom-icon' with icon: social %}
+            </a>
+          {% endif %}
+          {% if tag contains 'twitter' %}
+            {% assign social = 'twitter-dark' %}
+            <a href="{{ personLink }}" target="_blank" itemprop="sameAs">
+              {% include 'custom-icon' with icon: social %}
+            </a>
+          {% endif %}
+          {% if tag contains 'website' %}
+            {% assign social = 'website-dark' %}
+            <a href="{{ personLink }}" target="_blank" itemprop="sameAs">
+              {% include 'custom-icon' with icon: social %}
+            </a>
+          {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+{% schema %}
+{
+  "name": "Casual Types Article",
+  "settings":[
+    {
+      "id": "hero_image",
+      "type": "image_picker",
+      "label": "Desktop Image"
+    },
+    {
+      "id": "hero_image_wide",
+      "type": "image_picker",
+      "label": "Wide Desktop Image(>1800px)"
+    },
+    {
+      "id": "hero_image_mobile",
+      "type": "image_picker",
+      "label": "Mobile Image"
+    }
+  ]
+}
+{% endschema %}

@@ -10,6 +10,7 @@ class Theme{
     this.handleInputValidation();
     this.initHeader();
     this.lazyLoadImages();
+    this.initJumpUpButton();
   }
   handleInputValidation(){
     let inputs = $('.js-inputCheck input, .js-inputCheck select');
@@ -31,7 +32,6 @@ class Theme{
       }
     });
   }
-
   initHeader(){
     let menu = $('.js-nav-menu');
     let header = $('.js-header');
@@ -57,6 +57,38 @@ class Theme{
         $(this).parent().toggleClass('active');
       });
     }
+  }
+  initJumpUpButton(){
+    function debounce(func, wait, immediate) {
+      var timeout;
+      return function() {
+        var context = this, args = arguments;
+        var later = function() {
+          timeout = null;
+          if (!immediate) func.apply(context, args);
+        };
+        var callNow = immediate && !timeout;
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+        if (callNow) func.apply(context, args);
+      };
+    };
+
+    let jumpButton = $('.js-jumpTop');
+
+    jumpButton.click(function(){
+      $('html,body').animate({scrollTop: 0},'slow');
+      $(this).removeClass('active');
+    });
+  
+    $(window).scroll(debounce(function(){
+      let scrollAmount = $(window).scrollTop();
+      if(scrollAmount > 500){
+        jumpButton.addClass('active');
+      }else{
+        jumpButton.removeClass('active');
+      }
+    }));
   }
 
   initProductPage(){
@@ -240,4 +272,6 @@ class Theme{
       $('html,body').animate({scrollTop: aTag.offset().top},'slow');
     });
   }
+
+  
 }

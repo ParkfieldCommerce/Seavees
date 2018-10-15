@@ -1,0 +1,23 @@
+.CasualArticle__column{
+  strong{
+    text-transform: uppercase;
+  }
+}
+.CasualArticle__column--1{
+  img{
+    margin-top: 80px;
+  }
+}
+.CasualArticle__column--2{
+  p{
+    width: 100%;
+  }
+  img{
+    margin-bottom: 50px;
+  }
+  @include maxQuery($s){
+    @include flex();
+    flex-wrap: wrap;
+    img{order:10;}
+  }
+}
