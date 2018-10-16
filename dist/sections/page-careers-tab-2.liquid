@@ -1,24 +1,26 @@
 <section class="Careers__tab Careers__tab-2 js-careersTab" data-tab="2">
   <div class="container l">
-    <div class="row">
+    <div class="row flex margin-bottom-7x mobile-reverse">
       <div class="column l6 m6 s12">
         <img src="{{section.settings.image_1 | img_url:'master'}}" alt="{{section.settings.image_1.alt}}">
       </div>
-      <div class="column l6 m6 s12">
-        <h2>{{section.settings.heading}}</h2>
-        <div>{{section.settings.body}}</div>
-        <img src="{{section.settings.image_2 | img_url:'master'}}" alt="{{section.settings.image_2.alt}}">
+      <div class="column l6 m6 s12 flex">
+        <div class="Careers__tab__text-content">
+          <h2 class="Careers__tab__heading">{{section.settings.heading}}</h2>
+          <div class="Careers__tab__body">{{section.settings.body}}</div>
+        </div>
+        <img class="Careers__tab__image--small" src="{{section.settings.image_2 | img_url:'master'}}" alt="{{section.settings.image_2.alt}}">
       </div>
     </div>
-    <div class="row">
-      <div class="column l12 m12 s12">
-        <h2>{{section.settings.position_heading}}</h2>
+    <div class="row flex">
+      <div class="column l12 m12 s12 center">
+        <h2 class="Careers__tab__sub-heading">{{section.settings.position_heading}}</h2>
       </div>
       {% for block in section.blocks %}
-      <div class="column l4 m4 s12">
-        <a href="{{block.settings.job_url}}">
-          <span>{{block.settings.title}}</span>
-          <span>{{block.settings.job_location}}</span>
+      <div class="column l4 m4 s12 margin-bottom-4x s-margin-bottom-2x center">
+        <a class="Careers__tab__job-link" href="{{block.settings.job_url}}">
+          <span class="Careers__tab__job-title">{{block.settings.title}}</span>
+          <span class="Careers__tab__job-location">{{block.settings.job_location}}</span>
         </a>
       </div>
       {% endfor %}

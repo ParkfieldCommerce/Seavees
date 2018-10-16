@@ -1,5 +1,7 @@
 .Careers{
-
+  img{
+    vertical-align: middle;
+  }
 }
 .Careers__nav{
   @include flex-center();
@@ -81,9 +83,28 @@
     font-size: 2.4rem;
   }
 }
+.Careers__tab__sub-heading{
+  @include lineHeading-center(30%);
+  @include miller(3.6rem);
+  display: inline-block;
+  &:after{
+    margin-top: 15px;
+    margin-bottom: 30px;
+  }
+  @include maxQuery($s){
+    font-size: 2.4rem;
+  }
+}
 .Careers__tab__body{
   p{
     margin-bottom: 10px;
+  }
+  a{
+    color: $primary-accent1;
+    font-weight: bold;
+  }
+  @include maxQuery($s){
+    text-align: center;
   }
 }
 .Careers__tab__image--main{
@@ -100,4 +121,49 @@
   @include maxQuery($s){
     flex-direction: column-reverse;
   }
+}
+
+.Careers__tab-2{
+  .Careers__tab__text-content{
+    width: 378px;
+  }
+  .Careers__tab__image--small{
+    margin-left: auto;
+    @include maxQuery($s){
+      display: none;
+    }
+  }
+}
+.Careers__tab__job-link{
+  text-decoration: none;
+  text-align: center;
+  display: inline-block;
+  &:hover{
+    .Careers__tab__job-title:after{
+      width: 100%;
+    }
+  }
+}
+.Careers__tab__job-title{
+  color: $primary-accent1;
+  font-weight: bold;
+  text-transform: uppercase;
+  position: relative;
+  &:after{
+    content:'';
+    display: block;
+    position: absolute;
+    width: 0%;
+    height: 2px;
+    left: 50%;
+    bottom: -2px;
+    @include prefix(transform, translateX(-50%));
+    background-color: $primary-accent1;
+    transition: width .3s;
+  }
+}
+.Careers__tab__job-location{
+  font-style: italic;
+  display: block;
+  color: $primary-accent2;
 }
