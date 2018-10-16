@@ -2,7 +2,7 @@
 
 {% assign enable_search = section.settings.enable_search %}
 
-{% assign darkHeaderTemplates = 'product,cart,' %}
+{% assign darkHeaderTemplates = 'product,cart,customers/login,customers/register,customers/account' %}
 {% assign headerColorModifier = 'is-light' %}
 {% if darkHeaderTemplates contains template %}
   {% assign headerColorModifier = 'is-dark' %}
@@ -27,12 +27,19 @@
           {% include 'navigation' %}
         </div>
         <div class="Header__column--user column l4 s3 right">
-          <div class="Header__user">
-            {% if customer %}
-              <a href="/account">{{ 'account.general.title' | t }}</a>
-            {% else %}
-              <a href="/account">{{ 'account.login.title' | t }}</a>
-            {% endif %}
+          <div class="Header__column--user-link Header__search">
+            <div class="Header__search__form js-headerSearchForm">
+              {% include 'form-search' %}
+            </div>
+            <button class="Header__search__trigger js-headerSearchTrigger">{% include 'custom-icon' with icon: 'search' %}</button>
+          </div>
+          <div class="Header__column--user-link Header__user">
+            <a href="/account">
+              {% include 'custom-icon' with icon: 'user' %}
+            </a>
+          </div>
+          <div class="Header__column--user-link Header__cart">
+            {% include 'custom-icon' with icon: 'cart' %}
           </div>
         </div>
       </div>

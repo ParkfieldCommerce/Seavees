@@ -60,6 +60,11 @@ class Theme{
         $(this).parent().toggleClass('active');
       });
     }
+
+    //Search Toggle
+    $('.js-headerSearchTrigger').click(function(){
+      $('.js-headerSearchForm').toggleClass('active');
+    });
   }
   initJumpUpButton(){
     function debounce(func, wait, immediate) {

@@ -1,0 +1,20 @@
+.Contact__body{
+  p{
+    font-size: 1rem;
+  }
+}
+.Contact__sub-heading{
+  @include lineHeading-center(30%);
+  @include miller(2.4rem);
+  text-transform: none;
+  &:after{
+    margin-top: 30px;
+    margin-bottom: 15px;
+  }
+}
+.Contact__block-body{
+  a{
+    text-decoration: none;
+    color: $primary-accent1;
+  }
+}

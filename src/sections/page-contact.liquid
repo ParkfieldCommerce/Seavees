@@ -1,4 +1,4 @@
-<div class="Privacy">
+<div class="Contact">
   <div class="Page__banner margin-bottom-5x s-margin-bottom-3x">
     <picture>
       <source media="(max-width: 799px)" srcset="{{section.settings.hero_image_mobile | img_url:'master'}}">
@@ -15,16 +15,27 @@
   <div class="container m">
     <div class="row">
       <div class="column l12 m12 s12">
-        <div class="rte">
+        <div class="Contact__body rte">
           {{page.content}}
         </div>
       </div>
     </div>
   </div>
+  <div class="container l">
+    <div class="row flex h-center">
+      {% for block in section.blocks %}  
+      <div class="column l4 m4 s12 center margin-bottom-6x s-margin-bottom-4x">
+        <h3 class="Contact__sub-heading">{{block.settings.title}}</h3>
+        <div class="Contact__block-body">{{block.settings.body}}</div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
 </div>
+
 {% schema %}
 {
-  "name": "Privacy Page",
+  "name": "Contact Page",
   "settings":[
     {
       "id": "hero_image",
@@ -40,6 +51,24 @@
       "id": "hero_image_mobile",
       "type": "image_picker",
       "label": "Mobile Image"
+    }
+  ],
+  "blocks":[
+    {
+      "type":"contact",
+      "name":"Contact",
+      "settings": [
+        {
+          "id": "title",
+          "type": "text",
+          "label": "Heading"
+        },
+        {
+          "id": "body",
+          "type": "richtext",
+          "label": "Body"
+        }
+      ]
     }
   ]
 }

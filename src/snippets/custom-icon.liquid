@@ -32,7 +32,26 @@
   {% when 'vimeo' %}
     <img class="Social__icon" src="{{'Vimeo Icon Desktop.png' | asset_url}}" alt="Vimeo">    
   {% when 'spotify' %}
-    <img class="Social__icon" src="{{'Spotify Icon Desktop.png' | asset_url}}" alt="Spotify">    
+    <img class="Social__icon" src="{{'Spotify Icon Desktop.png' | asset_url}}" alt="Spotify">  
+  {% when 'user' %}  
+  <svg width="17" height="15" viewBox="0 0 17 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path fill-rule="evenodd" clip-rule="evenodd" d="M8 10C10.2091 10 12 7.76142 12 5C12 2.23858 10.2091 0 8 0C5.79086 0 4 2.23858 4 5C4 7.76142 5.79086 10 8 10Z" fill="#193859"/>
+    <path fill-rule="evenodd" clip-rule="evenodd" d="M0.628545 14.642C1.62854 14.642 8.50021 14.642 8.50021 14.642V7C8.50021 7 4.8722 10.821 2.23255 10.821C-0.4071 10.821 -0.371455 14.642 0.628545 14.642Z" fill="#193859"/>
+    <path fill-rule="evenodd" clip-rule="evenodd" d="M15.8717 14.642C14.8717 14.642 8.00004 14.642 8.00004 14.642V7C8.00004 7 11.628 10.821 14.2677 10.821C16.9073 10.821 16.8717 14.642 15.8717 14.642Z" fill="#193859"/>
+  </svg>
+  {% when 'search' %}
+    <svg width="16" height="17" viewBox="0 0 16 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path fill-rule="evenodd" clip-rule="evenodd" d="M7 13C10.3137 13 13 10.3137 13 7C13 3.68629 10.3137 1 7 1C3.68629 1 1 3.68629 1 7C1 10.3137 3.68629 13 7 13Z" stroke="#193859" stroke-width="1.5"/>
+      <path d="M11.2383 11.5L14.0355 15.0355" stroke="#193859" stroke-width="1.5" stroke-linecap="square"/>
+    </svg>
+  {% when 'cart' %}
+  <svg width="13" height="14" viewBox="0 0 13 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path fill-rule="evenodd" clip-rule="evenodd" d="M2.75725 2.76923L2.48637 0.692308C2.48637 0.276923 2.23773 0 1.86477 0H0V1.38462H1.24318L2.08716 9H11.991L13 3.2413L2.75725 2.76923Z" fill="#193859"/>
+    <path fill-rule="evenodd" clip-rule="evenodd" d="M3 14C3.55228 14 4 13.5523 4 13C4 12.4477 3.55228 12 3 12C2.44772 12 2 12.4477 2 13C2 13.5523 2.44772 14 3 14Z" fill="#193859"/>
+    <path fill-rule="evenodd" clip-rule="evenodd" d="M10 14C10.5523 14 11 13.5523 11 13C11 12.4477 10.5523 12 10 12C9.44772 12 9 12.4477 9 13C9 13.5523 9.44772 14 10 14Z" fill="#193859"/>
+    <path fill-rule="evenodd" clip-rule="evenodd" d="M2.19336 10H12L11.7098 11H2.34438L2.19336 10Z" fill="#193859"/>
+    <path fill-rule="evenodd" clip-rule="evenodd" d="M2.18185 10L2 8.06164L2.77592 8L3 10H2.18185Z" fill="#193859"/>
+  </svg>
   {% when 'amazon_payments' %}
     <i class="fab fa-cc-amazon-pay"></i>
   {% when 'american_express' %}

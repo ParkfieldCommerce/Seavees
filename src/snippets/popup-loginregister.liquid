@@ -1,5 +1,4 @@
-<!-- /templates/customers/login.liquid -->
-<div class="LoginRegister">
+<div class="LoginRegister LoginRegister--login">
   <div class="container s center">
     <h1 class="LoginRegister__heading">{{ 'account.login.title' | t }}</h1>
     {% comment %}
@@ -13,5 +12,12 @@
     {% endform %}
 
     {% include 'form-login' %}
+  </div>
+</div>
+
+<div class="LoginRegister LoginRegister--register">
+  <div class="container s center">
+    <h1 class="LoginRegister__heading">{{ 'account.register.title' | t }}</h1>
+    {% include 'form-register' %}
   </div>
 </div>

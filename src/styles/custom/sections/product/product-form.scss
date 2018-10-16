@@ -91,7 +91,7 @@
 
 .ProductForm__values--color{
   @include flex();
-  @include justify-content(space-between);
+  @include justify-content(center);
   flex-wrap: wrap;
   width: 140px;
   margin-left: auto;

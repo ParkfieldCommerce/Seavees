@@ -400,6 +400,7 @@ input[type="email"],
 input[type="tel"],
 input[type="search"],
 input[type="url"],
+input[type="password"],
 select{
   height: 45px;
   border: 1px solid $gray;
@@ -500,6 +501,63 @@ hr{
   opacity: 0;
   @include prefix(transform, translateY(-50%));
 }
+.Header__column--user{
+  @include flex();
+  @include justify-content(flex-end);
+}
+.Header__column--user-link{
+  margin-left: 10px;
+  margin-right: 10px;
+}
+.Header__search{
+  svg path{
+    stroke: white;
+  }
+}
+.Header__search{
+  position: relative;
+  form{
+    max-width: initial;
+    position: absolute;
+    width: 220px;
+    right: 20px;
+    top: 50%;
+    @include prefix(transform, translateY(-50%));
+  }
+  input{
+    height: 30px;;
+  }
+}
+.Header__search__form{
+  opacity: 0;
+  z-index: -1;
+  visibility: hidden;
+  transition: opacity .3s;
+  input{
+    background: white;
+    width: 100%;
+  }
+}
+.Header__search__form.active{
+  opacity: 1;
+  z-index: 1;
+  visibility: visible;
+}
+.Header__search__trigger{
+  border: none;
+  &:hover{
+    color: $primary-accent1;
+    background-color: transparent;
+  }
+}
+
+.Header__cart,
+.Header__user{
+  svg path{
+    fill: white;
+  }
+}
+
 .Header.active,
 .Header--is-dark{
   background: $white;
@@ -511,6 +569,17 @@ hr{
   }
   .Nav__link{
     color: $primary-accent2;
+  }
+  .Header__search{
+    svg path{
+      stroke: $primary-accent2;
+    }
+  }
+  .Header__cart,
+  .Header__user{
+    svg path{
+      fill: $primary-accent2;
+    }
   }
 }
 
@@ -606,6 +675,7 @@ hr{
     flex: 1;
     text-align: center;
     padding-bottom: 60px;
+    color: $primary-accent2;
     img{
       @include prefix(filter, grayscale(1));
       opacity: .4;
@@ -637,6 +707,7 @@ hr{
     opacity: 0;
   }
   .Nav__link--three{
+    color: $primary-accent2;
     &:hover{
       color: $primary-accent1 !important;
     }
@@ -1679,7 +1750,7 @@ hr{
 
 .ProductForm__values--color{
   @include flex();
-  @include justify-content(space-between);
+  @include justify-content(center);
   flex-wrap: wrap;
   width: 140px;
   margin-left: auto;
@@ -2248,6 +2319,7 @@ hr{
    h1,h2,h3,h4{
      font-family: 'NewsGothicMT';
      font-weight: bold;
+     margin-top: 40px;
    }
    hr{
      margin-top: 30px;
@@ -2427,6 +2499,26 @@ hr{
   display: block;
   color: $primary-accent2;
 }
+.Contact__body{
+  p{
+    font-size: 1rem;
+  }
+}
+.Contact__sub-heading{
+  @include lineHeading-center(30%);
+  @include miller(2.4rem);
+  text-transform: none;
+  &:after{
+    margin-top: 30px;
+    margin-bottom: 15px;
+  }
+}
+.Contact__block-body{
+  a{
+    text-decoration: none;
+    color: $primary-accent1;
+  }
+}
 
 /* Blog */
 .CasualTypes__articles{
@@ -2521,5 +2613,60 @@ hr{
     display: block;
     text-align: center;
     margin-bottom: 20px;
+  }
+}
+
+/* Account */
+.LoginRegister{
+  min-height: 45vh;
+  .container.s{
+    width: 350px;
+  }
+  @include flex-center();  
+  input,
+  button{
+    width: 100%;
+    margin-bottom: 20px;
+  }
+}
+.LoginRegister__heading{
+  font-size: 3.6rem;
+  text-align: center;
+  &:after{
+    content:'';
+    display: block;
+    width: 80%;
+    height: 2px;
+    background-color: $gray;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+.LoginRegister__links{
+  @include flex-center();
+  margin-top: 20px;
+  margin-bottom: 40px;
+  color: $primary-accent1;
+  a{
+    display: inline-block;
+    margin-left: 5px;
+    margin-right: 5px;
+    color: $primary-accent1;
+    text-decoration: none;
+    &:hover{
+      text-decoration: underline;
+    }
+  }
+}
+.LoginRegister__submit{
+  background-color: $primary-accent1;
+  color: $white;
+  margin-left: auto;
+  margin-right: auto;
+  &:hover{
+    background-color: $white;
+    color: $primary-accent1;
   }
 }

@@ -74,6 +74,7 @@
     flex: 1;
     text-align: center;
     padding-bottom: 60px;
+    color: $primary-accent2;
     img{
       @include prefix(filter, grayscale(1));
       opacity: .4;
@@ -105,6 +106,7 @@
     opacity: 0;
   }
   .Nav__link--three{
+    color: $primary-accent2;
     &:hover{
       color: $primary-accent1 !important;
     }

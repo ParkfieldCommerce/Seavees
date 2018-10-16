@@ -1,0 +1,53 @@
+.LoginRegister{
+  min-height: 45vh;
+  .container.s{
+    width: 350px;
+  }
+  @include flex-center();  
+  input,
+  button{
+    width: 100%;
+    margin-bottom: 20px;
+  }
+}
+.LoginRegister__heading{
+  font-size: 3.6rem;
+  text-align: center;
+  &:after{
+    content:'';
+    display: block;
+    width: 80%;
+    height: 2px;
+    background-color: $gray;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+.LoginRegister__links{
+  @include flex-center();
+  margin-top: 20px;
+  margin-bottom: 40px;
+  color: $primary-accent1;
+  a{
+    display: inline-block;
+    margin-left: 5px;
+    margin-right: 5px;
+    color: $primary-accent1;
+    text-decoration: none;
+    &:hover{
+      text-decoration: underline;
+    }
+  }
+}
+.LoginRegister__submit{
+  background-color: $primary-accent1;
+  color: $white;
+  margin-left: auto;
+  margin-right: auto;
+  &:hover{
+    background-color: $white;
+    color: $primary-accent1;
+  }
+}

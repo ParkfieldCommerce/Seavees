@@ -4,20 +4,22 @@
 
   {{ form.errors | default_errors }}
 
-  <label for="CustomerEmail">{{ 'form.email' | t }}</label>
-  <input type="email" name="customer[email]" id="CustomerEmail"{% if form.errors contains 'email' %} class="error"{% endif %} autocorrect="off" autocapitalize="off" autofocus>
+  <label class="hidden" for="CustomerEmail">{{ 'form.email' | t }}</label>
+  <input placeholder="{{ 'form.email' | t }}*" type="email" name="customer[email]" id="CustomerEmail"{% if form.errors contains 'email' %} class="error"{% endif %} autocorrect="off" autocapitalize="off" autofocus>
 
   {% if form.password_needed %}
-    <label for="CustomerPassword">{{ 'form.password' | t }}</label>
-    <input type="password" value="" name="customer[password]" id="CustomerPassword"{% if form.errors contains 'password' %} class="error"{% endif %}>
+    <label class="hidden" for="CustomerPassword">{{ 'form.password' | t }}</label>
+    <input placeholder="{{ 'form.password' | t }}*" type="password" value="" name="customer[password]" id="CustomerPassword"{% if form.errors contains 'password' %} class="error"{% endif %}>
   {% endif %}
 
-  <button type="submit" class="wide">{{ 'account.login.submit' | t }}</button>
+  <button class="Btn Btn--big LoginRegister__submit" type="submit" class="wide">{{ 'account.login.submit' | t }}</button>
 
-  <p>{{ 'account.login.no_account' | t }} {{ 'account.login.register' | t | customer_register_link }}</p>
+  <div class="LoginRegister__links">
+  <p>{{ 'account.login.no_account'| t | customer_register_link }}</p> | 
   {% if form.password_needed %}
-    <p>{{ 'account.login.forgot' | t }} <a href="/account/login?view=recover">{{ 'account.login.recover' | t }}</a></p>
+    <p><a href="/account/login?view=recover">{{ 'account.login.forgot' | t }}</a></p>
   {% endif %}
+  </div>
 
 {% endform %}
 
@@ -25,6 +27,6 @@
   <hr>
   <h2>{{ 'account.login.guest' | t }}</h2>
   {% form 'guest_login' %}
-    <input type="submit" value="{{ 'form.continue' | t }}">
+    <input class="LoginRegister__submit" type="submit" value="{{ 'form.continue' | t }}">
   {% endform %}
 {% endif %}

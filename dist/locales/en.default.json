@@ -77,18 +77,18 @@
     "login": {
       "title": "Login",
       "message": "Sign in to your existing account",
-      "no_account": "No account?",
+      "no_account": "Don't Have an Account?",
       "register": "Register now",
-      "forgot": "Forgot password?",
+      "forgot": "Forgot Your Password?",
       "recover": "Recover your account",
-      "submit": "Sign in",
+      "submit": "Login",
       "guest": "Login as guest"
     },
     "register": {
-      "title": "Register account",
+      "title": "Sign Up With Seavees",
       "message": "Create a new account",
-      "already_registered": "Already have an account?",
-      "submit": "Create account"
+      "already_registered": "Already have an Account?",
+      "submit": "Sign Up"
     },
     "recover": {
       "title": "Recover account",
