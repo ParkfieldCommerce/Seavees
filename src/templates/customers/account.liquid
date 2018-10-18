@@ -2,12 +2,11 @@
 
 {% assign pagination = 20 %}
 {% section 'account' %}
-<div class="container l">
-  <header>
-    {% include 'theme-breadcrumbs' %}
-    <h1>{{ 'account.orders.title' | t }}</h1>
+<div class="container l  margin-bottom-10x s-margin-bottom-6x">
+  <header class="center">
+    <h1 class="AccountHeading">{{ 'account.orders.title' | t }}</h1>
   </header>
-
+  <hr>
   <section>
     {% paginate customer.orders by pagination %}
       {% if customer.orders.size > 0 %}

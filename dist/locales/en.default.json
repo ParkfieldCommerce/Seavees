@@ -62,10 +62,10 @@
     "address": {
       "title": "Addresses",
       "none": "No addresses found",
-      "add": "Add address",
+      "add": "Add a New Shipping Address",
       "update": "Update address",
-      "edit": "Edit address",
-      "delete": "Delete address",
+      "edit": "Edit",
+      "delete": "Delete",
       "delete_confirm": "Are you absolutely sure you wish to delete this address?",
       "default": "Default address",
       "set_default": "Set as default address",

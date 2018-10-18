@@ -24,7 +24,7 @@
   {% for block in section.blocks %}
     {% assign collection = collections[block.settings.collection] %}
     {% if block.settings.image %}{% assign hasImage = true %}{% else %}{% assign hasImage = false %}{% endif %}
-    <div class="container l margin-bottom-10x s-margin-bottom-3x">
+    <div class="NestedCollection__container js-nestedContainer container l" data-style="{{collection.title}}">
       <div class="NestedCollection__collection NestedCollection__grid">
         <div class="NestedCollection__grid-cell NestedCollection__grid-cell-info js-collectionInfo" data-style="{{collection.title}}">
           <div class="NestedCollection__collection__info">

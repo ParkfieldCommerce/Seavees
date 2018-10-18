@@ -1,5 +1,5 @@
 
-<div class="Page__banner margin-bottom-5x s-margin-bottom-3x">
+<div class="Page__banner">
   <picture>
     <source media="(max-width: 799px)" srcset="{{section.settings.hero_image_mobile | img_url:'master'}}">
     <source media="(min-width: 1800px)" srcset="{{section.settings.hero_image_wide | img_url:'master'}}">
@@ -12,11 +12,19 @@
   </picture>
   <h1 class="Page__heading">{{'account.general.title' | t }}</h1>
 </div>
-<div class="container l">
-  <div class="row">
-    <div class="column l4 m4 s12"><a href="/account/addresses">My Info</a></div>
-    <div class="column l4 m4 s12"><a href="/account">Orders</a></div>
-    <div class="column l4 m4 s12"><a href="/account/logout">Sign Out</a></div>
+<div class="AccountNav margin-bottom-5x s-margin-bottom-3x">
+  <div class="container l">
+    <div class="row">
+      <div class="column l4 m4 s12 center">
+        <a class="AccountNav__link {% if template =='customers/addresses' %}active{% endif %}" href="/account/addresses">My Info</a>
+      </div>
+      <div class="column l4 m4 s12 center">
+        <a class="AccountNav__link {% if template == 'customers/account' %}active{% endif %}" href="/account">Orders</a>
+      </div>
+      <div class="column l4 m4 s12 center">
+        <a class="AccountNav__link" href="/account/logout">Sign Out</a>
+      </div>
+    </div>
   </div>
 </div>
 {% schema %}

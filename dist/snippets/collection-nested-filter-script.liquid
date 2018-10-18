@@ -300,6 +300,7 @@ class NestedFilter{
 
   updateStyleSections(){
     //Style DOM Classes
+    let styleContainer = '.js-nestedContainer';
     let styleInfo = '.js-collectionInfo';
     let styleImage = '.js-collectionImage';
     let styles = this.styles;
@@ -317,11 +318,14 @@ class NestedFilter{
       return !_.includes(activeStyles,style);
     })
     
+
     $(styleInfo).show();
     $(styleImage).show();
+    $(styleContainer).removeClass('inactive');
     _.each(stylesToHide, function(style){
       $(styleInfo+'[data-style="'+style+'"]').hide();
       $(styleImage+'[data-style="'+style+'"]').hide();
+      $(styleContainer+'[data-style="'+style+'"]').addClass('inactive');
     });
   }
 }
