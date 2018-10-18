@@ -51,3 +51,12 @@
     color: $primary-accent1;
   }
 }
+
+.LoginRegisterPopup{
+  .container.s{
+    width: 290px;
+  }
+  input,button{
+    width: 100%;
+  }
+}

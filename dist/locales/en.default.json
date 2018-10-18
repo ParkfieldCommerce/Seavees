@@ -23,7 +23,7 @@
   },
   "account": {
     "general": {
-      "title": "Account",
+      "title": "My Account",
       "logout": "Logout"
     },
     "customer": {
@@ -91,10 +91,10 @@
       "submit": "Sign Up"
     },
     "recover": {
-      "title": "Recover account",
-      "message": "Enter your email to request a password reset",
+      "title": "Bummer.",
+      "message": "Lost your password? Enter your email address. You’ll receive a link to create a new password via email.",
       "success": "Check your inbox to reset your password and recover your account",
-      "submit": "Recover"
+      "submit": "Reset Password"
     },
     "reset": {
       "title": "Reset password",

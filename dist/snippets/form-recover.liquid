@@ -2,12 +2,14 @@
 
 <div id="PasswordRecoverForm">
   {% form 'recover_customer_password' %}
-    <h4>{{ 'account.recover.message' | t }}</h4>
+    <h4 class="margin-bottom-2x center">{{ 'account.recover.message' | t }}</h4>
 
-    <label for="RecoverEmail">{{ 'form.email' | t }}</label>
-    <input type="email" value="" name="email" id="RecoverEmail" autocorrect="off" autocapitalize="off" autofocus>
+    <label class="hidden" for="RecoverEmail">{{ 'form.email' | t }}</label>
+    <input placeholder="{{ 'form.email' | t }}" type="email" value="" name="email" id="RecoverEmail" autocorrect="off" autocapitalize="off" autofocus>
 
-    <button type="submit" class="wide">{{ 'account.recover.submit' | t }}</button>
-
+    <button class="Btn Btn--big LoginRegister__submit" type="submit">{{ 'account.recover.submit' | t }}</button>
+    <div class="LoginRegister__links">
+      <p>{{ 'form.cancel'| t | customer_login_link }}</p>
+    </div>
   {% endform %}
 </div>
