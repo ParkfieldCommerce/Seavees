@@ -86,7 +86,7 @@
     },
     "register": {
       "title": "Sign Up With Seavees",
-      "message": "Create a new account",
+      "message": "Urehentus acerit latquo quident aut ad quatureria natur ad qui dusdam, quo molorehenet as doluptatiust ium, et, nis sequam nosam, quias quaeces excearum voluptiam aut magnatat ut hil elestio.",
       "already_registered": "Already have an Account?",
       "submit": "Sign Up"
     },
@@ -214,6 +214,7 @@
     "twitter": "Twitter",
     "vimeo": "Vimeo",
     "youtube": "YouTube",
+    "spotify":"Spotify",
     "on": "{{ shop }} on {{ social }}",
     "share": {
       "title": "Share",

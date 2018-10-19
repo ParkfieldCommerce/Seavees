@@ -86,7 +86,7 @@ select {
   font-family: inherit;
   @include prefixer(appearance, none);
   &.error {
-    border-color: $colorHighlight;
+    border-color: #AC3A38;
   }
   // Webkit placeholders
   &::placeholder,

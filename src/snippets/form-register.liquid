@@ -6,11 +6,11 @@
 
     {{ form.errors | default_errors }}
 
-    <label for="Email">{{ 'form.email' | t }}</label>
-    <input type="email" name="customer[email]" id="Email"{% if form.errors contains 'email' %} class="error"{% endif %}{% if form.email %} value="{{ form.email }}"{% endif %} autocorrect="off" autocapitalize="off">
+    <label class="hidden" for="Email">{{ 'form.email' | t }}</label>
+    <input placeholder="{{ 'form.email' | t }}*" type="email" name="customer[email]" id="Email"{% if form.errors contains 'email' %} class="error"{% endif %}{% if form.email %} value="{{ form.email }}"{% endif %} autocorrect="off" autocapitalize="off">
 
-    <label for="CreatePassword">{{ 'form.password' | t }}</label>
-    <input type="password" name="customer[password]" id="CreatePassword"{% if form.errors contains 'password' %} class="error"{% endif %}>
+    <label class="hidden" for="CreatePassword">{{ 'form.password' | t }}</label>
+    <input placeholder="{{ 'form.password' | t }}*" type="password" name="customer[password]" id="CreatePassword"{% if form.errors contains 'password' %} class="error"{% endif %}>
 
     <button class="Btn Btn--big LoginRegister__submit" type="submit" class="wide">{{ 'account.register.submit' | t }}</button>
     <div class="LoginRegister__links">

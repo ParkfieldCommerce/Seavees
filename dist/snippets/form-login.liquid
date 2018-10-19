@@ -17,7 +17,7 @@
   <div class="LoginRegister__links">
   <p>{{ 'account.login.no_account'| t | customer_register_link }}</p> | 
   {% if form.password_needed %}
-    <p><a href="/account/login?view=recover">{{ 'account.login.forgot' | t }}</a></p>
+    <p><a id="RecoverLink" href="/account/login?view=recover">{{ 'account.login.forgot' | t }}</a></p>
   {% endif %}
   </div>
 

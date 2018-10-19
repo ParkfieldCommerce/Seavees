@@ -79,7 +79,12 @@
     fill: white;
   }
 }
-
+.Header__user__popup-trigger{
+  border: none;
+  &:hover{
+    background: transparent;
+  }
+}
 .Header.active,
 .Header--is-dark{
   background: $white;

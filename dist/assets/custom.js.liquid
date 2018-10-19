@@ -65,6 +65,37 @@ class Theme{
     $('.js-headerSearchTrigger').click(function(){
       $('.js-headerSearchForm').toggleClass('active');
     });
+
+    //LoginRegisterPopup
+    let loginRegister = '.js-loginRegisterPopup';
+    let loginRegisterPopup = new Focus(loginRegister);
+    $('.js-loginRegisterTrigger').click(function(){
+      loginRegisterPopup.show();
+    });
+    $('.js-loginRegisterHide').click(function(){
+      loginRegisterPopup.hide();
+    });
+    //Handles showing the different account forms
+    $(loginRegister).find('#customer_login_link').click(function(e){
+      e.preventDefault();
+      $('.LoginRegister').removeClass('active');
+      $('.LoginRegister--login').addClass('active');
+    });
+    $(loginRegister).find('#customer_register_link').click(function(e){
+      e.preventDefault();
+      $('.LoginRegister').removeClass('active');
+      $('.LoginRegister--register').addClass('active');
+    });
+    $(loginRegister).find('#RecoverLink').click(function(e){
+      e.preventDefault();
+      $('.LoginRegister').removeClass('active');
+      $('.LoginRegister--recover').addClass('active');
+    });
+    $(loginRegister).find('.cancel a').click(function(e){
+      e.preventDefault();
+      $('.LoginRegister').removeClass('active');
+      $('.LoginRegister--login').addClass('active');
+    });
   }
   initJumpUpButton(){
     function debounce(func, wait, immediate) {
@@ -185,7 +216,7 @@ class Theme{
       sizeChartPopup.show();
       body.addClass('fixed');
     });
-    $('.js-sizeChartPopupHide').click(function(){
+    $('.js-sizeChartPopupHide, .js-sizeChartPopup.overlay').click(function(){
       sizeChartPopup.hide();
       body.removeClass('fixed');
     });

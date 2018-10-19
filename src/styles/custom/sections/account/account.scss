@@ -35,3 +35,7 @@
 .AccountHeading{
   @include miller(3.6rem);
 }
+.AccountHeading--popup{
+  font-size: 2.4rem;
+  text-align: left;
+}

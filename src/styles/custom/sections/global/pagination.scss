@@ -1,0 +1,26 @@
+.pagination{
+  text-align: center;
+  margin-bottom: 50px;
+  .page a{
+    font-size: 1.2rem;
+    border: none;
+    color: $primary-accent2;
+    &:hover{
+      background: transparent;
+      color: $primary-accent1;
+    }
+  }
+  .page.current{
+    font-size: 1.2rem;
+    background-color: transparent;
+    color: $primary-accent2;
+    text-decoration: underline;
+    border: none;
+    &:hover{
+      background: transparent;
+    }
+  }
+  .next,.prev{
+    display: none;
+  }
+}

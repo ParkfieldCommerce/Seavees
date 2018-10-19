@@ -1,0 +1,41 @@
+<!-- /templates/{{ template }}.liquid -->
+
+{% assign view = '12' %}
+{% assign pagination = view | plus: 0 %}
+<div class="NestedCollection__banner margin-bottom-6x">
+  <picture>
+    <source media="(max-width: 799px)" srcset="{{section.settings.hero_image_mobile | img_url:'master'}}">
+    <source media="(min-width: 1800px)" srcset="{{section.settings.hero_image_wide | img_url:'master'}}">
+    <source media="(min-width: 1000px)" srcset="{{section.settings.hero_image | img_url:'master'}}">
+    <img
+      src="{{section.settings.hero_image | img_url:'master'}}"
+      alt="{{section.settings.hero_image.alt}}"
+      alt="{{section.settings.hero_image.alt}}"
+    >
+  </picture>
+  <h1 class="NestedCollection__heading">{{collection.title}}</h1>
+</div>
+{% include 'template-collection' %}
+
+{% schema %}
+{
+  "name": "Collection",
+  "settings":[
+    {
+      "id": "hero_image",
+      "type": "image_picker",
+      "label": "Desktop Image"
+    },
+    {
+      "id": "hero_image_wide",
+      "type": "image_picker",
+      "label": "Wide Desktop Image(>1800px)"
+    },
+    {
+      "id": "hero_image_mobile",
+      "type": "image_picker",
+      "label": "Mobile Image"
+    }
+  ]
+}
+{% endschema %}

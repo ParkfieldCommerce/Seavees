@@ -7,7 +7,8 @@
       <div class="popup-inner">
         <div class="popup-content">
           {% form 'customer_address', address %}
-            <h4>{{ 'account.address.edit' | t }}</h4>
+            <h4 class="AccountHeading AccountHeading--popup">{{ 'account.address.edit' | t }}</h4>
+            <hr>
 
             {{ form.errors | default_errors }}
             <div class="flex">
@@ -60,7 +61,7 @@
             {% endif %}
           {% endform %}
 
-          <a href="#close" class="popup-close" data-close data-target="#PopupAddress_{{ address.id }}" aria-label="{{ 'common.close' | t }}">{{ 'common.close' | t }}</a>
+          <a href="#close" class="popup-close" data-close data-target="#PopupAddress_{{ address.id }}" aria-label="{{ 'common.close' | t }}"><i class="material-icons">close</i></a>
         </div>
       </div>
     </div>
@@ -68,24 +69,25 @@
     <div id="PopupAddressDelete_{{ address.id }}" class="popup overlay">
       <div class="popup-inner">
         <div class="popup-content">
-          <h4>{{ 'account.address.delete' | t }}</h4>
+          <h4 class="AccountHeading AccountHeading--popup">{{ 'account.address.delete' | t }}</h4>
+          <hr>
           <p>{{ 'account.address.delete_confirm' | t }}</p>
-          <a href="#close" class="popup-close" data-close data-target="#PopupAddressDelete_{{ address.id }}" aria-label="{{ 'common.close' | t }}">{{ 'common.close' | t }}</a>
+          <a href="#close" class="popup-close" data-close data-target="#PopupAddressDelete_{{ address.id }}" aria-label="{{ 'common.close' | t }}"><i class="material-icons">close</i></a>
           <p><a href="#" class="button wide" onclick="Shopify.CustomerAddress.destroy({{ address.id }});return false">{{ 'account.address.delete' | t }}</a></p>
         </div>
       </div>
     </div>
 
   {% else %}
-
     <div id="PopupAddress" class="AddressPopup popup overlay">
       <div class="popup-inner">
         <div class="popup-content">
           {% form 'customer_address', customer.new_address %}
-            <h4>{{ 'account.address.add' | t }}</h4>
+            <h4 class="AccountHeading AccountHeading--popup">{{ 'account.address.add' | t }}</h4>
+            <hr>
 
             {{ form.errors | default_errors }}
-            <div class="flex">
+            <div style="display: flex;">
               <label class="hidden" for="AddressFirstNameNew">{{ 'account.customer.first_name' | t }}</label>
               <input placeholder="{{ 'account.customer.first_name' | t }}" type="text" id="AddressFirstNameNew" name="address[first_name]" value="{{ form.first_name }}" autocapitalize="words">
 
@@ -101,16 +103,15 @@
             <label class="hidden" for="AddressAddress2New">{{ 'account.customer.address2' | t }}</label>
             <input placeholder="{{ 'account.customer.address2' | t }}" type="text" id="AddressAddress2New" name="address[address2]" value="{{ address.address2 }}" autocapitalize="words">
 
-            <label class="hidden" for="AddressCityNew">{{ 'account.customer.city' | t }}</label>
-            <input placeholder="{{ 'account.customer.city' | t }}" type="text" id="AddressCityNew" name="address[city]" value="{{ address.city }}" autocapitalize="words">
+            <div id="AddressProvinceContainerNew" style="display: flex;" class="province-wrapper">
+              <label class="hidden" for="AddressCityNew">{{ 'account.customer.city' | t }}</label>
+              <input placeholder="{{ 'account.customer.city' | t }}" type="text" id="AddressCityNew" name="address[city]" value="{{ address.city }}" autocapitalize="words">
 
-            <label class="hidden" for="AddressCountryNew">{{ 'account.customer.country' | t }}</label>
-            <div class="select-wrapper"><select id="AddressCountryNew" name="address[country]" data-default="{{ address.country }}">{{ country_option_tags }}</select></div>
-
-            <div id="AddressProvinceContainerNew" style="display:none" class="province-wrapper">
               <label class="hidden" for="AddressProvinceNew">{{ 'account.customer.province' | t }}</label>
               <div class="select-wrapper"><select id="AddressProvinceNew" name="address[province]" data-default="{{ address.province }}"></select></div>
             </div>
+            <label class="hidden" for="AddressCountryNew">{{ 'account.customer.country' | t }}</label>
+            <div class="select-wrapper"><select id="AddressCountryNew" name="address[country]" data-default="{{ address.country }}">{{ country_option_tags }}</select></div>
 
             <label class="hidden" for="AddressZipNew">{{ 'account.customer.zip' | t }}</label>
             <input placeholder="{{ 'account.customer.zip' | t }}" type="text" id="AddressZipNew" name="address[zip]" value="{{ address.zip }}" autocapitalize="characters">
@@ -135,7 +136,7 @@
             {% endif %}
           {% endform %}
 
-          <a href="#close" class="popup-close" data-close data-target="#PopupAddress" aria-label="{{ 'common.close' | t }}">{{ 'common.close' | t }}</a>
+          <a href="#close" class="popup-close" data-close data-target="#PopupAddress" aria-label="{{ 'common.close' | t }}"><i class="material-icons">close</i></a>
         </div>
       </div>
     </div>

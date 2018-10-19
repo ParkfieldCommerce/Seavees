@@ -10,6 +10,9 @@
     margin-bottom: 20px;
   }
 }
+.LoginRegister--register{
+  min-height: initial;
+}
 .LoginRegister__heading{
   font-size: 3.6rem;
   text-align: center;
@@ -58,5 +61,44 @@
   }
   input,button{
     width: 100%;
+  }
+  .LoginRegisterPopup__close{
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    display: inline-block;
+    border: none;
+    width: initial;
+    i{
+      color: $primary-accent2;
+    }
+    &:hover{
+      background: transparent;
+      color: $primary-accent2;
+    }
+  }
+  .popup-content{
+    padding-top: 60px;
+    padding-bottom: 60px;
+  }
+  .LoginRegister__links{
+    margin-bottom: 0;
+  }
+}
+
+.LoginRegisterPopup{
+  .LoginRegister{
+    display: none;
+  }
+  .LoginRegister.active{
+    display: block;
+  }
+}
+
+.shopify-challenge__container{
+  padding-top: 50px;
+  padding-bottom: 50px;
+  .btn{
+    padding: 5px 15px;
   }
 }

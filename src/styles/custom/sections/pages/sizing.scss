@@ -4,6 +4,13 @@
     color: $primary-accent1;
   }
 }
+.Sizing__table{
+  margin-bottom: 30px;
+  h2{
+    @include miller(3.6rem);
+    margin-bottom: 20px;
+  }
+}
 .Sizing__table table{
   table-layout: fixed;
   width: 100%;
@@ -23,8 +30,14 @@
     background: $gray-lighter;
   }
 }
-
+.Sizing__table--1 table,
+.Sizing__table--2 table{
+  width: 480px;
+  max-width: 100%;
+}
 .Sizing__table--3 table{
+  width: 780px;
+  max-width: 100%;
   tr:first-child .lighter{
     font-weight: bold;
   }
