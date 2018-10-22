@@ -1,0 +1,78 @@
+
+/* =====================================================
+COUNTRY PICKER
+======================================================= */
+li.country-picker {
+  max-width: none;
+  height: 14px;
+  position: relative;
+  list-style: none;
+  padding-right: 10px;
+  .sub-nav-item{
+    text-align: center;
+    background: $white;
+    a{
+      padding-top: 5px;
+      padding-bottom: 5px;
+      display: block;
+      text-decoration: none;
+    }
+  }
+  &:hover{
+    .country-picker__dropdown{
+      display: inline-block;
+    }
+  }
+}
+
+li.country-picker > a {
+  display: inline-block;
+  vertical-align: text-top;
+}
+
+li.country-picker > a {
+  text-decoration: none !important;
+  @include flex-center();
+}
+
+.country-picker--choose-location .country-picker--choose-location-flag {
+  display: inline-block;
+  width: 25px;
+  height: 14px;
+  vertical-align: top;
+}
+
+.country-picker--choose-location .country-picker--choose-location-arrow {
+  display: inline-block;
+  width: 11px;
+  vertical-align: top;
+  position: absolute;
+  top: 50%;
+  right: 0;
+  @include prefix(transform, translateY(-50%));
+  color: $white;
+}
+
+.country-picker__dropdown {
+  left: auto;
+  right: 0;
+  background: transparent;
+  padding-top: 30px;
+  top: 0px;
+  position: absolute;
+  width: 150px;
+  display: none;
+  border: none;
+}
+
+.country-picker__dropdown li a:hover {
+  color: black;
+  text-decoration: none;
+}
+
+.country-picker__dropdown img {
+  width: 31px;
+  height: 18px;
+  margin-right: 10px;
+  vertical-align: top;
+}

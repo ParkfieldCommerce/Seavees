@@ -30,6 +30,10 @@
 .Header__column--user-link{
   margin-left: 10px;
   margin-right: 10px;
+  @include flex-center();
+  a{
+    @include flex-center();
+  }
 }
 .Header__search{
   svg path{
@@ -72,7 +76,9 @@
     background-color: transparent;
   }
 }
-
+.Header__cart{
+  margin-right: 20px;
+}
 .Header__cart,
 .Header__user{
   svg path{
@@ -85,6 +91,7 @@
     background: transparent;
   }
 }
+
 .Header.active,
 .Header--is-dark{
   background: $white;

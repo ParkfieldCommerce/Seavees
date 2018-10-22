@@ -552,6 +552,10 @@ input[type="number"].Quantity__state,
 .Header__column--user-link{
   margin-left: 10px;
   margin-right: 10px;
+  @include flex-center();
+  a{
+    @include flex-center();
+  }
 }
 .Header__search{
   svg path{
@@ -594,7 +598,9 @@ input[type="number"].Quantity__state,
     background-color: transparent;
   }
 }
-
+.Header__cart{
+  margin-right: 20px;
+}
 .Header__cart,
 .Header__user{
   svg path{
@@ -607,6 +613,7 @@ input[type="number"].Quantity__state,
     background: transparent;
   }
 }
+
 .Header.active,
 .Header--is-dark{
   background: $white;
@@ -1037,6 +1044,9 @@ input[type="number"].Quantity__state,
     display: none;
   }
 }
+#SideCart{
+  z-index: 999999;
+}
 #SideCart.visible .SideCart.popup-content{
   right: 0;
 }
@@ -1086,6 +1096,7 @@ input[type="number"].Quantity__state,
 }
 .SideCart__heading{
   margin-bottom: 0;
+  @include newsR(1.4rem);
 }
 .SideCart__heading-close{
   position: absolute;
@@ -1140,10 +1151,12 @@ input[type="number"].Quantity__state,
   text-decoration: none;
 }
 .SideCart__price{
-  @include newsR(1.4rem);
+  @include newsR(1.2rem);
+  color: $primary-accent2;
 }
 .SideCart__quantity{
   width: 120px;
+  margin-top: 10px;
   .Quantity__control{
     flex: 1;
     margin-bottom: 0 !important;
@@ -1183,6 +1196,7 @@ input[type="number"].Quantity__state,
 }
 .SideCart__subtotal{
   @include newsR(1.4rem);
+  color: $primary-accent2;
   max-width: 100%;
   @include flex();
   @include justify-content(space-between);
@@ -1190,8 +1204,11 @@ input[type="number"].Quantity__state,
   padding-right: 30px;
   margin-bottom: 10px;
 }
+.SideCart__subtotal-label{
+  text-transform: uppercase;
+}
 .SideCart__buttons{
-  background: $gray;
+  background: $gray-lighter;
   padding: 10px 30px;
   @include maxQuery($s){
     padding-top: 10px;
@@ -1212,6 +1229,85 @@ input[type="number"].Quantity__state,
   width: 280px;
 }
 
+
+
+/* =====================================================
+COUNTRY PICKER
+======================================================= */
+li.country-picker {
+  max-width: none;
+  height: 14px;
+  position: relative;
+  list-style: none;
+  padding-right: 10px;
+  .sub-nav-item{
+    text-align: center;
+    background: $white;
+    a{
+      padding-top: 5px;
+      padding-bottom: 5px;
+      display: block;
+      text-decoration: none;
+    }
+  }
+  &:hover{
+    .country-picker__dropdown{
+      display: inline-block;
+    }
+  }
+}
+
+li.country-picker > a {
+  display: inline-block;
+  vertical-align: text-top;
+}
+
+li.country-picker > a {
+  text-decoration: none !important;
+  @include flex-center();
+}
+
+.country-picker--choose-location .country-picker--choose-location-flag {
+  display: inline-block;
+  width: 25px;
+  height: 14px;
+  vertical-align: top;
+}
+
+.country-picker--choose-location .country-picker--choose-location-arrow {
+  display: inline-block;
+  width: 11px;
+  vertical-align: top;
+  position: absolute;
+  top: 50%;
+  right: 0;
+  @include prefix(transform, translateY(-50%));
+  color: $white;
+}
+
+.country-picker__dropdown {
+  left: auto;
+  right: 0;
+  background: transparent;
+  padding-top: 30px;
+  top: 0px;
+  position: absolute;
+  width: 150px;
+  display: none;
+  border: none;
+}
+
+.country-picker__dropdown li a:hover {
+  color: black;
+  text-decoration: none;
+}
+
+.country-picker__dropdown img {
+  width: 31px;
+  height: 18px;
+  margin-right: 10px;
+  vertical-align: top;
+}
 
 
 /* Homepage */
@@ -3372,5 +3468,139 @@ input[type="number"].Quantity__state,
   padding-bottom: 50px;
   .btn{
     padding: 5px 15px;
+  }
+}
+
+/* Cart */
+.CartPage{
+  .container.m{
+    width: 900px;
+  }
+}
+.CartPage__form{
+  width: 100%;
+}
+
+.CartPage__heading-row{
+  border-bottom: 1px solid $gray-lighter;
+}
+
+.CartPage__product{
+  @include flex();
+  flex-flow: row wrap;
+  @include align-items(center);
+}
+.CartPage__column1{
+  @include flex();
+  @include align-items(center);
+}
+.CartPage__remove{
+  display: inline-block;
+  margin-right: 15px;
+  svg path{
+    stroke: black;
+  }
+}
+.CartPage__image{
+  margin-right: 25px;
+  min-width: 160px;
+  text-align: center;
+  img{
+    margin-left: auto;
+    margin-right: auto;
+    max-height: 95px;
+  }
+}
+.CartPage__price{
+  @include newsI(1.8rem);
+}
+.CartPage__quantity{
+  .Quantity__control{
+    flex: 1;
+  }
+  .Quantity__state{
+    padding: 0;
+    flex: 2;
+  }
+}
+
+.CartPage__summary-row{
+  border-top: 1px solid $gray-lighter;
+  padding-top: 30px;
+}
+.CartPage__note-label{
+  @include newsI(1.8rem);
+  font-weight: normal;
+}
+.CartPage__note{
+  border: 1px solid $gray-lighter;
+  height: 100px;
+  @include newsI(1.6rem);
+  width: 100%;
+}
+.CartPage__subtotal{
+  margin-top: 31px;
+  @include newsI(2.8rem);
+  width: 280px;
+  max-width: 100%;
+  @include flex();
+  @include justify-content(space-between);
+  margin-left: auto;
+}
+.CartPage__subtotal-label{
+
+}
+.CartPage__subtotal-price{
+
+}
+.CartPage__checkout{
+  background-color: $primary-accent1;
+  color: white;
+  border-color: $primary-accent1;
+  width: 280px;
+  margin-left: auto;
+}
+
+@include maxQuery($s){
+  .CartPage__product{
+    @include justify-content(center);
+  }
+  .CartPage__column1{
+    position: relative;
+    @include align-items(flex-start);
+    max-width: 100%;
+    width: 500px !important;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .CartPage__image{
+    order: 1;
+    display: inline-block;
+    min-width: initial;
+    width: 130px;
+    @include maxQuery($s){
+      flex: 1;
+    }
+  }
+  .CartPage__title-container{
+    order: 2;
+    padding-right: 10px;
+    @include maxQuery($s){
+      flex: 2;
+    }
+  }
+  .CartPage__remove{
+    order: 3;
+    justify-self: flex-end;
+    margin-right: 0;
+    position: absolute;
+    top: 0;
+    right: 20px;
+  }
+  .CartPage__subtotal{
+    width: auto;
+  }
+  .CartPage__checkout{
+    width: 320px;
   }
 }

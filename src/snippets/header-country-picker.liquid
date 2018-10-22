@@ -1,0 +1,31 @@
+<li class="country-picker js-dropdown-trigger">
+  <a href="#" class="country-picker--choose-location">
+    {% if shop.permanent_domain == "seavees-uk.myshopify.com" %}
+     <img src="{{ 'flag-uk.svg' | asset_url }}" class="country-picker--choose-location-flag">
+    {% endif %}
+
+    {% if shop.permanent_domain == "seavees-eu.myshopify.com" %}
+      <img src="{{ 'flag-eu.svg' | asset_url }}" class="country-picker--choose-location-flag">
+    {% endif %}
+
+    {% if shop.permanent_domain == 'seavees.myshopify.com' or shop.permanent_domain == 'seavees-staging.myshopify.com' %}
+      <img src="{{ 'flag-usa.svg' | asset_url }}" class="country-picker--choose-location-flag">
+    {% endif %}
+
+    <i class="material-icons country-picker--choose-location-arrow">expand_more</i>
+  </a>
+
+  <ul class="country-picker__dropdown dropdown-menu">
+    <li class="sub-nav-item"><a href="https://www.seavees.com"><img src="{{ 'flag-usa.svg' | asset_url }}" /> US ($)</a></li>
+    <li class="sub-nav-item"><a href="https://uk.seavees.com"><img src="{{ 'flag-uk.svg' | asset_url }}" /> UK (£)</a></li>
+    <li class="sub-nav-item"><a href="https://eu.seavees.com"><img src="{{ 'flag-eu.svg' | asset_url }}" /> EU (€)</a></li>
+  </ul>
+</li>
+
+<script>
+jQuery(function($){
+  $('.country-picker--choose-location').on( 'click', function(e) {
+    e.preventDefault();
+  });
+});
+</script>

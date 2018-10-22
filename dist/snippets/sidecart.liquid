@@ -4,13 +4,13 @@
   <div class="SideCart popup-content" data-cart-view>
     <form class="SideCart__form" action="/cart" method="post" novalidate>
       <div class="SideCart__heading-row">
-        <h3 class="s-center SideCart__heading">My Cart <span rv-if="cart.item_count | gt 0">({cart.item_count})</span></h3>
+        <h3 class="s-center SideCart__heading">Your Cart <span rv-if="cart.item_count | gt 0">({cart.item_count})</span></h3>
         <span class="SideCart__heading-close js-cartClose"><i class="material-icons">close</i></span>
       </div>
       <div class="SideCart__gift js-sideCartGift">
       </div>
       <div class="SideCart__products-row margin-top-2x" rv-if="cart.item_count | gt 0">
-        <div class="SideCart__product margin-bottom-4x" rv-each-item="cart.items">
+        <div class="SideCart__product margin-bottom-2x" rv-each-item="cart.items">
           <div class="SideCart__column1">
             <a class="SideCart__image" rv-href="item.url">
               <img rv-src="item.image | product_image_size">
@@ -40,7 +40,11 @@
         </p>
         <div class="SideCart__buttons">
           <button class="Btn Btn--big SideCart__checkout" href="/cart" type="submit" name="checkout" class="btn" aria-label="{{ 'cart.checkout' | t }}">{{ 'cart.checkout' | t }}</button>
+          {% if shop.permanent_domain != "seavees-uk.myshopify.com" and shop.permanent_domain != "seavees-eu.myshopify.com" %}
+          <button type="button" class="Btn Btn--big SideCart__checkout" style="margin-top:5px;" onclick="javascript:document.location='/pages/international-checkout'">International Checkout</button>
+          {% else %}
           <a class="Btn Btn--big Btn--secondary SideCart__continue" href="#" class="SideCart__continue js-cartClose">{{ 'cart.continue_shopping' | t }}</a>
+          {% endif %} 
         </div>
       </div>
     </form>

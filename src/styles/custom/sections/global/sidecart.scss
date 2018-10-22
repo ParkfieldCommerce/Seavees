@@ -1,3 +1,6 @@
+#SideCart{
+  z-index: 999999;
+}
 #SideCart.visible .SideCart.popup-content{
   right: 0;
 }
@@ -47,6 +50,7 @@
 }
 .SideCart__heading{
   margin-bottom: 0;
+  @include newsR(1.4rem);
 }
 .SideCart__heading-close{
   position: absolute;
@@ -101,10 +105,12 @@
   text-decoration: none;
 }
 .SideCart__price{
-  @include newsR(1.4rem);
+  @include newsR(1.2rem);
+  color: $primary-accent2;
 }
 .SideCart__quantity{
   width: 120px;
+  margin-top: 10px;
   .Quantity__control{
     flex: 1;
     margin-bottom: 0 !important;
@@ -144,6 +150,7 @@
 }
 .SideCart__subtotal{
   @include newsR(1.4rem);
+  color: $primary-accent2;
   max-width: 100%;
   @include flex();
   @include justify-content(space-between);
@@ -151,8 +158,11 @@
   padding-right: 30px;
   margin-bottom: 10px;
 }
+.SideCart__subtotal-label{
+  text-transform: uppercase;
+}
 .SideCart__buttons{
-  background: $gray;
+  background: $gray-lighter;
   padding: 10px 30px;
   @include maxQuery($s){
     padding-top: 10px;
