@@ -44,13 +44,25 @@
     text-align: center;
   }
   form{
+    text-align: left;
     margin-left: auto;
     margin-right: auto;
     max-width: 100%;
     width: 510px;
   }
-  input{
+  input,
+  select{
     width: 240px;
-    width: 100%;
+    margin-bottom: 10px;
   }
+  @include maxQuery($s){
+    input,select,.select-wrapper,.province-wrapper{
+      width: 100%;
+    }
+  }
+}
+.AddressPopup__two-column{
+  @include flex();
+  flex-wrap: wrap;
+  @include justify-content(space-between);
 }

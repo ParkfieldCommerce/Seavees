@@ -70,6 +70,7 @@
       "delete_confirm": "Are you absolutely sure you wish to delete this address?",
       "default": "Default address",
       "set_default": "Set as default address",
+      "save":"Save",
       "count": {
         "one": "Address",
         "other": "Addresses"
