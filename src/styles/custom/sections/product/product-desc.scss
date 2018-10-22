@@ -6,6 +6,9 @@
   width: 240px;
   max-width: 100%;
   margin-right: 150px;
+  @include maxQuery(1100px){
+    margin-right: 50px;
+  }
   @include maxQuery($s){
     width: 100%;
     margin-right: 0;
@@ -15,7 +18,11 @@
 .ProductDesc__column--2{
   width: 300px;
   max-width: 100%;
+  @include maxQuery(935px){
+    margin-top: 30px;
+  }
   @include maxQuery($s){
+    margin-top: 0;
     width: 100%;
   }
 }

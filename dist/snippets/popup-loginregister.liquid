@@ -19,15 +19,37 @@
       </div>
       <div class="LoginRegister LoginRegister--register">
         <div class="container m center">
+          {% form 'create_customer' %}
           <div class="row">
-          <div class="column l6 m6 s12">
-            <h1 class="LoginRegister__heading">{{ 'account.register.title' | t }}</h1>
-            <p>{{'account.register.message' | t }}</p>
+            <div class="column l6 m6 s12">
+              <h1 class="LoginRegister__heading">{{ 'account.register.title' | t }}</h1>
+            </div>
+            <div class="column l6 m6 s12">
+              <p class="LoginRegister__register-message">{{'account.register.message' | t }}</p>
+            </div>
           </div>
-          <div class="column l6 m6 s12">
-            {% include 'form-register' %}
+          <div class="row">
+            <div class="column l6 m6 s12">
+              {{ form.errors | default_errors }}
+              <label class="hidden" for="Email">{{ 'form.email' | t }}</label>
+              <input placeholder="{{ 'form.email' | t }}*" type="email" name="customer[email]" id="Email"{% if form.errors contains 'email' %} class="error"{% endif %}{% if form.email %} value="{{ form.email }}"{% endif %} autocorrect="off" autocapitalize="off">
+            </div>
+            <div class="column l6 m6 s12">
+              <label class="hidden" for="CreatePassword">{{ 'form.password' | t }}</label>
+              <input placeholder="{{ 'form.password' | t }}*" type="password" name="customer[password]" id="CreatePassword"{% if form.errors contains 'password' %} class="error"{% endif %}>
+            </div>
           </div>
+          <div class="row flex v-center">
+            <div class="column l6 m6 s12">
+              <p class="LoginRegister__register-login-link">{{ 'account.register.already_registered' | t | customer_login_link }}</p>
+            </div>
+            <div class="column l6 m6 s12">
+              <button class="Btn Btn--big LoginRegister__submit margin-bottom-0x" type="submit" class="wide">{{ 'account.register.submit' | t }}</button>
+              <div class="LoginRegister__links">
+              </div>
+            </div>
           </div>
+          {% endform %}
         </div>
       </div>
       <div class="LoginRegister LoginRegister--recover">

@@ -1,4 +1,5 @@
 <!-- Homepage Hero -->
+{% assign hero = section.settings %}
 <section class="Hero margin-bottom-7x s-margin-bottom-2x">
   <div class="Hero__image">
     <picture>
@@ -11,17 +12,27 @@
         alt="{{section.settings.hero_image.alt}}"
       >
     </picture>
+    {% if hero.hero_video_mp4 != blank or hero.hero_video_webm != blank %}
+    <video class="Hero__video" autoplay loop muted poster="{{hero.hero_image | img_url:'master'}}">
+      {% unless hero.hero_video_webm == blank %}
+      <source src="{{hero.hero_video_webm}}" type="video/webm">
+      {% endunless %}
+      {% unless hero.hero_video_mp4 == blank %}
+      <source src="{{hero.hero_video_mp4}}" type="video/mp4">
+      {% endunless %}
+    </video> 
+    {% endif %}
   </div>
   <div class="Hero__text-container">
     <div class="container">
       <div class="row collapse">
         <div class="column l12 m12 s12">
-          <h2 class="Hero__main">{{section.settings.hero_maintext}}</h2>
-          {% unless section.settings.hero_button_text_1 == blank %}
-          <a class="Hero__button Btn Btn--tertiary Btn--big">{{section.settings.hero_button_text_1}}</a>
+          <h2 class="Hero__main">{{hero.hero_maintext}}</h2>
+          {% unless hero.hero_button_text_1 == blank %}
+          <a class="Hero__button Btn Btn--tertiary Btn--big">{{hero.hero_button_text_1}}</a>
           {% endunless %}
-          {% unless section.settings.hero_button_text_2 == blank %}
-          <a class="Hero__button Btn Btn--tertiary Btn--big">{{section.settings.hero_button_text_2}}</a>
+          {% unless hero.hero_button_text_2 == blank %}
+          <a class="Hero__button Btn Btn--tertiary Btn--big">{{hero.hero_button_text_2}}</a>
           {% endunless %}
         </div>
       </div>
@@ -30,7 +41,7 @@
 </section>
 <style>
   .Hero__main{
-    color: {{section.settings.hero_maintext_color}};
+    color: {{hero.hero_maintext_color}};
   }
 </style>
 {% schema %}
@@ -41,6 +52,16 @@
     {
       "type":"header",
       "content":"General Settings"
+    },
+    {
+      "id":"hero_video_webm",
+      "type":"text",
+      "label":"WebM Video Url"
+    },
+    {
+      "id":"hero_video_mp4",
+      "type":"text",
+      "label":"MP4 Video Url"
     },
     {
       "id": "hero_image",

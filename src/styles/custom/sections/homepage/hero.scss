@@ -8,12 +8,24 @@
     vertical-align: middle;
   }
 }
+.Hero__video{
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 2;
+  width: 100%;
+  @include maxQuery($s){
+    display: none;
+  }
+}
 .Hero__text-container{
   position: absolute;
   left: 50%;
   top: 50%;
   @include prefix(transform, translate(-50%,-50%));
-  z-index: 2;
+  z-index: 3;
   text-align: center;
   width: 100%;
 }

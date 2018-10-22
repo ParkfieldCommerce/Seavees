@@ -1,0 +1,43 @@
+#storemapper-form{
+  .storemapper-form-inner label{
+    @include newsR(1.8rem);
+    font-weight: 300 !important;
+    margin-bottom: 15px;
+  }
+  #storemapper-zip{
+    @include newsR(1.2rem);
+    color: $gray;
+  }
+}
+
+#storemapper-list{
+  li h4{
+    @include newsB(1.5rem);
+    text-transform: uppercase;
+    margin-bottom: 0 !important;
+  }
+  .storemapper-address{
+    @include newsR(1.2rem);
+    color: $primary-accent2;
+    margin-bottom: 15px;
+  }
+  .storemapper-phone a,
+  .storemapper-url a{
+    @include newsR(1.2rem);
+    color: $primary-accent1 !important;
+    text-transform: uppercase;
+  }
+
+  .storemapper_view a{
+    @include newsB(1.2rem);
+    color: $primary-accent1 !important;
+  }
+  .storemapper-distance{
+    @include newsR(1.2rem);
+  }
+}
+#storemapper #storemapper-form #storemapper-go{
+  background-color: $primary-accent1 !important;
+  @include newsR(1.6rem);
+  font-weight: 300 !important;
+}

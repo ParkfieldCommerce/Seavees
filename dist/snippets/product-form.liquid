@@ -39,7 +39,7 @@
     <meta itemprop="priceCurrency" content="{{ shop.currency }}">
     <link itemprop="availability" href="http://schema.org/{% if product.available %}InStock{% else %}OutOfStock{% endif %}">
 
-    <form action="/cart/add" method="post" enctype="multipart/form-data" id="AddToCartForm">
+    <form class="ProductForm__form" action="/cart/add" method="post" enctype="multipart/form-data" id="AddToCartForm">
       {% unless product.options.size == 1 and product.variants[0].title == 'Default Title' %}
           {% if hasColor %}
           <ul class="ProductForm__values ProductForm__values--color">
@@ -54,24 +54,70 @@
             {% endpaginate %}
           </ul>
           <span class="ProductForm__option--color-title">{{product.metafields.c_f.colorway}}</span>
+
+          <div class="SelectWrapper SelectWrapper--Swatches ProductFormMobile__option">
+            <div class="ProductFormMobile__active-color">
+              <div class="ProductForm__value ProductForm__value--color" style="background-color: {{product.metafields.c_f.color_swatch}}"></div>
+              <span>{{product.metafields.c_f.colorway}}</span>
+            </div>
+            <select class="ProductFormMobile__color-select js-colorMobileSelect" name="" id="#ProductFormMobileColor">
+              {% paginate collections.all.products by 1000 %}
+                {% for prod in collections.all.products %}
+                  {% if product.title == prod.title and product.type == prod.type and product.metafields.c_f.product_material == prod.metafields.c_f.product_material %}
+                    <option {% if product.url == prod.url %}selected{% endif %} value="{{prod.url}}"  title="{{prod.metafields.c_f.colorway}}">{{prod.metafields.c_f.colorway}}</option>
+                  {% endif %}
+                {% endfor %}
+              {% endpaginate %}
+            </select>
+          </div>
         {% endif %}
+
         {% for option in product.options_with_values %}
           <div class="ProductForm__option ProductForm__option--{{option.name}}">
             <label {% if option.name == 'default' %}class="hidden" {% endif %}for="SingleOptionSelector-{{ forloop.index }}">
               {{ option.name }}
             </label>
-            <select class="single-option-selector ProductForm__option-selector--{{option.name}} js-selector--{{option.name}}" id="SingleOptionSelector-{{ forloop.index }}" data-index="option{{ forloop.index }}">
-              {% for value in option.values %}
-                <option value="{{ value | escape }}"{% if option.selected_value == value %} selected="selected"{% endif %}>{{ value | remove:'mens' | remove:'womens' | remove:'kids' }}</option>
-              {% endfor %}
-            </select>
+            <div class="SelectWrapper SelectWrapper--{{option.name}}">
+              <select class="single-option-selector ProductForm__option-selector--{{option.name}} js-selector--{{option.name}}" id="SingleOptionSelector-{{ forloop.index }}" data-index="option{{ forloop.index }}">
+                {% for value in option.values %}
+                  {% include 'option-availability-check' %}
+                  <option
+                    value="{{ value | escape }}"{% if option.selected_value == value %} selected="selected"{% endif %}
+                    {% if optionDisabled %}disabled{% endif %}
+                    >
+                    {{ value | remove:'mens' | remove:'womens' | remove:'kids' }}
+                  </option>
+                {% endfor %}
+              </select>
+            </div>
             {% if option.name contains 'Size' %}
               <div class="ProductForm__values ProductForm__values--size">
               {% for value in option.values %}
-              <button class="ProductForm__value ProductForm__value--size js-sizeVariantButton {% if forloop.first %}active{% endif %}" type="button" value="{{value}}">{{ value | remove:'Mens' | remove:'Womens' | remove:'Kids' }}</button>
+              {% include 'option-availability-check' %}
+              <button
+                class="ProductForm__value
+                  ProductForm__value--size js-sizeVariantButton
+                  {% if optionDisabled %}disabled{% endif %}
+                  {% if current_variant.option1 == value or current_variant.option2 == value or current_variant.option3 == value %}active{% endif %}"
+                type="button" 
+                value="{{value}}" 
+              >
+                {% if value == 'X-Small' %}
+                XS
+                {% elsif value == 'Small' %}
+                S
+                {% elsif value == 'Medium' %}
+                M
+                {% elsif value == 'Large' %}
+                L
+                {% elsif value == 'X-Large' %}
+                XL
+                {% else %}
+                {{ value | remove:'Mens' | remove:'Womens' | remove:'Kids' }}
+                {% endif %}
+              </button>
               {% endfor %}
               </div>
-              <button class="ProductForm__fit-guide-trigger js-sizeChartPopupShow" type="button">Fit Guide</button>
             {% endif %}
           </div>
         {% endfor %}
@@ -97,9 +143,9 @@
           </select>
         </div>
       </div>
-
+        <button class="ProductForm__fit-guide-trigger js-sizeChartPopupShow" type="button">Fit Guide</button>
       {% if sold_out %}
-        <button type="submit" name="add" disabled>
+        <button class="ProductForm__submit Btn Btn--primary Btn--big" type="submit" name="add" disabled>
           <span id="AddToCartText">{{ 'product.sold_out' | t }}</span>
         </button>
       {% else %}

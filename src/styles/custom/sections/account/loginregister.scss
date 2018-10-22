@@ -4,14 +4,32 @@
     width: 350px;
   }
   @include flex-center();  
-  input,
-  button{
+  input{
     width: 100%;
     margin-bottom: 20px;
+  }
+  button{
+    width: 100%;
   }
 }
 .LoginRegister--register{
   min-height: initial;
+}
+.LoginRegister--register.active{
+  width: 540px;
+}
+.LoginRegister__register-message{
+  font-size: 1.2rem;
+  color: $primary-accent2;
+  line-height: 22px;
+  margin-bottom: 24px;
+  min-height: 110px;
+}
+.LoginRegister__register-login-link a{
+  color: $primary-accent1;
+}
+.LoginRegister--register .LoginRegister__links{
+  margin-top: 0;
 }
 .LoginRegister__heading{
   font-size: 3.6rem;

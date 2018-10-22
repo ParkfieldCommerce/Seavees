@@ -2,27 +2,29 @@
 
 {% assign pagination = 20 %}
 {% section 'account' %}
-<div class="container l  margin-bottom-10x s-margin-bottom-6x">
+<div class="container l  margin-bottom-4x s-margin-bottom-2x">
   <header class="center">
     <h1 class="AccountHeading">{{ 'account.orders.title' | t }}</h1>
   </header>
   <hr>
+</div>
+<div class="Orders__container container margin-bottom-12x s-margin-bottom-8x">
   <section>
     {% paginate customer.orders by pagination %}
       {% if customer.orders.size > 0 %}
         <div class="row table s-hide">
-          <div class="column l2"><label>{{ 'account.order.title' | t }}</label></div>
-          <div class="column l2"><label>{{ 'account.order.date' | t }}</label></div>
-          <div class="column l5"><label>{{ 'account.order.status' | t }}</label></div>
-          <div class="column l3 l-right"><label>{{ 'cart.total' | t }}</label></div>
+          <div class="column l2 left"><label class="Orders__order__label Orders__order__label--desktop">{{ 'account.order.title' | t }}</label></div>
+          <div class="column l4 center"><label class="Orders__order__label Orders__order__label--desktop">{{ 'account.order.date' | t }}</label></div>
+          <div class="column l4 center"><label class="Orders__order__label Orders__order__label--desktop">{{ 'account.order.status' | t }}</label></div>
+          <div class="column l2 right"><label class="Orders__order__label Orders__order__label--desktop">{{ 'cart.total' | t }}</label></div>
         </div>
 
         {% for order in customer.orders %}
-          <div class="row l-table m-table">
-            <div class="column l2 s12"><p><b>{{ order.name | link_to: order.customer_url }}</b></p></div>
-            <div class="column l2 s12"><p>{{ order.created_at | date: format: 'simple' }}</p></div>
-            <div class="column l5 s12"><p>{{ order.financial_status_label }} / {{ order.fulfillment_status_label }}</p></div>
-            <div class="column l3 s12 l-right"><p>{{ order.total_price | money }}</p></div>
+          <div class="Orders__order row l-table m-table">
+            <div class="column l2 left s-center s12"><p class="Orders__order__detail"><span class="Orders__order__label Orders__order__label--mobile">{{ 'account.order.title' | t }} / </span> {{ order.name | link_to: order.customer_url }}</p></div>
+            <div class="column l4 center s-center s12"><p class="Orders__order__detail"><span class="Orders__order__label Orders__order__label--mobile">{{ 'account.order.date' | t }} / </span> {{ order.created_at | date: "%b %d, %Y" }}</p></div>
+            <div class="column l4 center s-center s12"><p class="Orders__order__detail"><span class="Orders__order__label Orders__order__label--mobile">Status / </span> {{ order.fulfillment_status_label }}</p></div>
+            <div class="column l2 right s-center s12"><p class="Orders__order__detail"><span class="Orders__order__label Orders__order__label--mobile">{{ 'cart.total' | t }} / </span> {{ order.total_price | money }}</p></div>
           </div>
         {% endfor %}
       {% else %}

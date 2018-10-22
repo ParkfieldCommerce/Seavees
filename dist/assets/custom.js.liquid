@@ -202,6 +202,11 @@ class Theme{
     });
 
     this.initSizeChartPopup();
+
+    //Mobile Form
+    $('.js-colorMobileSelect').change(function(e){
+      window.location.href = e.target.value;
+    });
   }
 
   initCollectionPage(){
@@ -226,6 +231,7 @@ class Theme{
     let quickViewPopup = new Focus('.js-qvPopup');
     $('.js-qvPopupShow').click(function(){
       let url = $(this).val();
+      $(this).addClass('is-loading');
       fetchQViewData(url);
     });
     $('.js-qvPopupHide').click(function(){
@@ -237,7 +243,8 @@ class Theme{
         success:function(data){
           let QVProduct = $('.QView__product');
           let QVDetails = $('.QView__details.hidden');
-  
+          let QVButtons = $('.js-qvPopupShow');
+
           //Reset Containers
           QVProduct.empty();
           QVDetails.find('.QView__details__right').empty();
@@ -299,6 +306,9 @@ class Theme{
 
           //Show Popup
           quickViewPopup.show();
+
+          //Remove QV is Loading from buttons
+          QVButtons.removeClass('is-loading');
         }
       });
     }

@@ -2,7 +2,7 @@
 
 {% assign enable_search = section.settings.enable_search %}
 
-{% assign lightHeaderTemplates = 'index,collection.nested,page.preservedream,page.guidebar,page.sizing,page.privacy,blog.the-casual-types,page.careers,page.contact' %}
+{% assign lightHeaderTemplates = 'index,collection.nested,page.preservedream,page.guidebar,page.sizing,page.privacy,blog.the-casual-types,page.careers,page.contact,page.store-locator' %}
 {% assign headerColorModifier = 'is-dark' %}
 {% if lightHeaderTemplates contains template %}
   {% assign headerColorModifier = 'is-light' %}
@@ -45,7 +45,9 @@
             {% endif %}
           </div>
           <div class="Header__column--user-link Header__cart">
+            <button type="button" class="js-cartTrigger Header__user__popup-trigger">
             {% include 'custom-icon' with icon: 'cart' %}
+            </button>
           </div>
         </div>
       </div>

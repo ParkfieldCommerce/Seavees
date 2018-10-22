@@ -17,6 +17,7 @@
   },
   "date_formats": {
     "month_day_year": "%B %d, %Y",
+    "month_day": "%B %d",
     "day_month_year": "%d %B, %Y",
     "simple": "%d\/%m\/%y",
     "simple_usa": "%m\/%d\/%y"
@@ -48,7 +49,7 @@
       "cancelled": "Order cancelled on {{ date }}",
       "reason": "Reason: {{ reason }}",
       "date": "Date",
-      "status": "Status",
+      "status": "Fulfillment Status",
       "track": "Track order",
       "payment_status": "Payment status",
       "fulfillment_status": "Fullfilment status",
@@ -128,6 +129,7 @@
   "cart": {
     "title": "Cart",
     "view_cart": "View cart",
+    "continue_shopping":"Continue",
     "product": "Product",
     "sku": "SKU",
     "price": "Price",

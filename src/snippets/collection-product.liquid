@@ -46,5 +46,8 @@
       {% endif %}
     </span>
   </p>
-  <button type="button" class="Btn Btn--small CollectionProduct__quickshop js-qvPopupShow" value="/products/{{product.handle}}">Quick Shop</button>
+  <button type="button" class="Btn Btn--small CollectionProduct__quickshop js-qvPopupShow" value="/products/{{product.handle}}">
+    <span>Quick Shop</span>
+    <img class="CollectionProduct__qv-loading" src="{{'loading.gif' | asset_url}}" alt="Loading..">
+  </button>
 </div>

@@ -39,3 +39,98 @@
   font-size: 2.4rem;
   text-align: left;
 }
+
+/* Orders */
+.Orders__container{
+  width: 750px;
+}
+.Orders__order{
+  margin-bottom: 15px;
+  @include maxQuery($s){
+    margin-bottom: 25px;
+  }
+}
+.Orders__order__label{
+  @include newsB(1.5rem);
+  text-transform: uppercase;
+}
+.Orders__order__label--mobile{
+  display: none;
+  @include maxQuery($s){
+    display: inline;
+  }
+}
+.Orders__order__detail{
+  font-size: 1.5rem;
+  a{
+    color: $primary-accent1;
+    text-decoration: none;
+    &:hover{
+      text-decoration: underline;
+    }
+  }
+}
+
+/* Single Order Page */
+.Order__address-row{
+  @include flex();
+  flex-wrap: wrap;
+  @include maxQuery($s){
+    .column:nth-child(1){
+      order: 2;
+    }
+    .column:nth-child(2){
+      order: 3;
+    }
+    .column:nth-child(3){
+      order: 1;
+      margin-bottom: 15px;
+    }
+  }
+}
+.Order__label{
+  @include newsB(1.5rem);
+  text-transform: uppercase;
+  @include maxQuery($s){
+    font-size: 1.2rem;
+  }
+}
+.Order__label--mobile{
+  display: none;
+  margin-bottom: 0;
+  margin-right: 5px;
+  @include maxQuery($s){
+    display: inline;
+  }
+}
+.Order__date{
+  @include newsI(1.2rem);
+  color: $gray-dark;
+}
+
+.Order__line{
+  p{
+    @include flex-center();
+  }
+}
+.Order__line__link a{
+  color: $primary-accent1;
+  text-decoration: none;
+  &:hover{
+    text-decoration: underline;
+  }
+}
+.Order__break{
+  display: none;
+  @include maxQuery($s){
+    display: block;
+  }
+}
+.Order__summary__detail p{
+  @include maxQuery($s){
+    padding-left: 10px;
+  }
+}
+.Order__summary__label{
+  @include newsB(1.2rem);
+}
