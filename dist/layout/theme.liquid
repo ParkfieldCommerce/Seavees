@@ -61,7 +61,7 @@
     {% include 'popup-loginregister' %}
     {% include 'sidecart' %}
     <script>
-      console.log('Page Template: {{template}}');
+      console.log('Page Template: {{template}}, Page Suffix:{{template.suffix}}');
       const theme = new Theme();
       theme.globalInit();
 

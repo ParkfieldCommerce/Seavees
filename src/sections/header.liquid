@@ -7,6 +7,11 @@
 {% if lightHeaderTemplates contains template %}
   {% assign headerColorModifier = 'is-light' %}
 {% endif %}
+{% if template == 'page' %}
+  {% unless template.suffix %}
+    {% assign headerColorModifier = 'is-dark' %}
+  {% endunless %}
+{% endif %}
 
 <header class="Header js-header Header--{{headerColorModifier}}" role="banner">
   <div class="Header__content">
