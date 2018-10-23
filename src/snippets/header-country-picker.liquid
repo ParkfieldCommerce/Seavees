@@ -1,4 +1,4 @@
-<li class="country-picker js-dropdown-trigger">
+<li class="country-picker js-country-dropdown-trigger">
   <a href="#" class="country-picker--choose-location">
     {% if shop.permanent_domain == "seavees-uk.myshopify.com" %}
      <img src="{{ 'flag-uk.svg' | asset_url }}" class="country-picker--choose-location-flag">
@@ -25,6 +25,7 @@
 <script>
 jQuery(function($){
   $('.country-picker--choose-location').on( 'click', function(e) {
+    $(this).toggleClass('active');
     e.preventDefault();
   });
 });

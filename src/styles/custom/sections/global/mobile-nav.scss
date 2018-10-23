@@ -45,32 +45,67 @@
     right: 0;
     bottom: 0;
     background-color: white;
-    padding: 10px;
     text-align: center;
     overflow-y: scroll;
-    padding-bottom: 110px;
+    height: 0vh;
+    padding-top: 0;
+    padding-bottom: 0;
+    transition: height .2s, padding-top .2s, padding-bottom .2s;
+  }
+  .Header.nav-active{
+    .Nav{
+      height: 100vh;
+      padding-top: 10px;
+      padding-bottom: 50px;
+    }
   }
   .Nav__link{
     text-transform: uppercase;
     color: $primary-accent2;
     text-decoration: none;
+    @include flex();
+    text-align: left;
+    height: 24px;
+    margin-bottom: 10px;
+    padding-left: 10px;
   }
-  .Nav__dropdown-container{
-    .Nav__link--one{
-      &:after{
-        font-family: 'Material Icons';
-        font-style: normal;
-        content:'\e5cf';
-        position: absolute;
-        right: -15px;
-      }
+  .NavMobile__dropdown-trigger-container{
+    position: relative;
+    display: block;
+  }
+  .NavMobile__expand{
+    position: absolute;
+    right: 0;
+    top: 50%;
+    height: 24px;
+    width: 45px;
+    @include prefix(transform, translateY(-50%));
+    &:before{
+      transition: background .3s;
+      content:'';
+      display: block;
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      height: 100%;
+      background-color: $primary-accent2;
+    }
+    &:after{
+      font-family: 'Material Icons';
+      font-style: normal;
+      font-size: 24px;
+      content:'\e5cf';
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transition: color .3s;
+      @include prefix(transform, translate(-50%,-50%));
     }
   }
   .Nav__dropdown-container.active .Nav__link--one{
     color: $primary-accent1;
-    &:after{
-      content:'\e5cd';
-    }
     &:before{
       opacity: 1;
     }
@@ -78,35 +113,128 @@
   .Nav__link--one{
     text-decoration: none;
     position: relative;
-    &:before{
-      content:'';
-      height: 2px;
-      width: 80%;
-      position: absolute;
-      bottom: 0;
-      background-color: $primary-accent1;
-      left: 50%;
-      @include prefix(transform, translateX(-50%));
-      opacity: 0;
-    }
+    font-size: 1.4rem;
   }
   .Nav__menu-container--two{
     @include flex();
     @include align-items(center);
     flex-wrap: wrap;
     img{
-      display: none;
+      max-width: 50px;
+      margin-right: 10px;
+    }
+  }
+  .Nav__menu--two{
+    display: none;
+  }
+  .Nav__dropdown-container.active{
+    .Nav__menu--two{
+      display: block;
+    }
+    .NavMobile__expand--one{
+      color: $primary-accent1;
+      &:before{
+        background-color: $primary-accent1;
+      }
+      &:after{
+        content:'\e5cd';
+      }
     }
   }
   .Nav__menu--two__link{
     width: 100%;
     padding-left: 10px;
-    padding-right: 10px;
+    padding-right: 0;
+  }
+  .Nav__menu--three{
+    display: none;
+  }
+  .Nav__menu--two__link.active{
+    .Nav__link--two{
+      color: $primary-accent1;
+    }
+    .Nav__menu--three{
+      display: block;
+    }
+    .NavMobile__expand--two{
+      color: $primary-accent1;
+      &:before{
+        background-color: $primary-accent1;
+      }
+      &:after{
+        content:'\e5cd';
+      }
+    }
   }
   .Nav__menu-container--three{
+    padding-left: 10px;
   }
 }
-
+.MobileNavFooter{
+  display: none;
+  @include maxQuery(850px){
+    display: block;
+  }
+  form{
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 320px;
+  }
+  input[type="text"]{
+    width: 95%;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    text-align: center;
+    @include newsI(1.2rem);
+  }
+  .country-picker-mobile{
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    list-style: none;
+    .sub-nav-item{
+      margin-bottom: 5px;
+    }
+    .sub-nav-item a{
+      text-decoration: none;
+      background: $gray-lighter;
+      padding: 10px;
+    }
+  }
+  .country-picker-mobile.active{
+    .country-picker__dropdown{
+      display: block;
+    }
+  }
+  .country-picker-mobile button{
+    margin-left: auto;
+    margin-right: auto;
+    border: none;
+    color: $primary-accent2;
+    position: relative;
+    width: 60px;
+    &:hover{
+      background: transparent;
+      color: $primary-accent2;
+    }
+    i{
+      right: 5px;
+    }
+    img{
+      width: 25px;
+    }
+  }
+  .country-picker--choose-location .country-picker--choose-location-arrow{
+    color: $primary-accent2;
+  }
+  .country-picker__dropdown{
+    position: static;
+    width: 100%;
+    padding-top: 15px;
+  }
+}
 .Header.nav-active{
   .NavHam__line{
     background-color: $primary-accent2;

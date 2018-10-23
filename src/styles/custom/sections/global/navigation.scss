@@ -1,4 +1,7 @@
 @include minQuery(850px){
+  .NavMobile__expand{
+    display: none;
+  }
   .Nav__link{
     color: $white;
     text-transform: uppercase;

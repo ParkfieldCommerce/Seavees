@@ -121,6 +121,9 @@
   flex-wrap: wrap;
 }
 @include maxQuery(850px){
+  .Header__column-row{
+    padding-top: 10px;
+  }
   .Header__column--logo{
     order: 2;
     width: 50% !important;

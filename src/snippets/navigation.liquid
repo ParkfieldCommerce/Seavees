@@ -4,22 +4,28 @@
   {% for link in nav.links %}
     {% if link.levels > 0 %}
       <li class="Nav__dropdown-container js-navDropdown" aria-haspopup="true">
-        <a href="{{ link.url }}" class="Nav__link Nav__link--one js-navLinkOne{% if link.active %} active{% endif %}">
-          {{ link.title }}
-        </a>
+        <span class="NavMobile__dropdown-trigger-container">
+          <a href="{{ link.url }}" class="Nav__link Nav__link--one {% if link.active %} active{% endif %}">
+            {{ link.title }}
+          </a>
+          <span class="NavMobile__expand NavMobile__expand--one js-navLinkOne"></span>
+        </span>
         <ul class="Nav__dropdown-menu Nav__menu--two">
           <div class="Nav__menu-container Nav__menu-container--two">
           {% for childlink in link.links %}
-            <li class="Nav__menu--two__link">
-              <a href="{{ childlink.url }}" class="Nav__link Nav__link--two{% if childlink.active %} active{% endif %}">
-                {% if childlink.type == 'collection_link' %}
-                <div class="Nav__link__image">
-                  <img src="{{childlink.object.image | img_url:'master'}}" alt="{{collection.image.alt}}">
-                </div>
-                {% endif %}
-                <span>{{ childlink.title }}</span>
-              </a>
-              {% if childlink.levels > 0 %}
+            {% if childlink.levels > 0 %}
+            <li class="Nav__menu--two__link hasDropdown js-navDropdownTwo">
+              <span class="NavMobile__dropdown-trigger-container">
+                <a href="{{ childlink.url }}" class="Nav__link Nav__link--two{% if childlink.active %} active{% endif %}">
+                  {% if childlink.type == 'collection_link' %}
+                  <div class="Nav__link__image">
+                    <img src="{{childlink.object.image | img_url:'master'}}" alt="{{collection.image.alt}}">
+                  </div>
+                  {% endif %}
+                  <span>{{ childlink.title }}</span>
+                </a>
+                <span class="NavMobile__expand NavMobile__expand--two js-navLinkTwo"></span>
+              </span>
               <ul class="Nav__dropdown-menu Nav__menu--three">
                 <div class="Nav__menu-container Nav__menu-container--three">
                 {% for grandchildlink in childlink.links %}
@@ -29,8 +35,19 @@
                 {% endfor %}
                 </div>
               </ul>
-              {% endif %}
             </li>
+            {% else %}
+            <li class="Nav__menu--two__link">
+              <a href="{{ childlink.url }}" class="Nav__link Nav__link--two{% if childlink.active %} active{% endif %}">
+                {% if childlink.type == 'collection_link' %}
+                <div class="Nav__link__image">
+                  <img src="{{childlink.object.image | img_url:'master'}}" alt="{{collection.image.alt}}">
+                </div>
+                {% endif %}
+                <span>{{ childlink.title }}</span>
+              </a>
+            </li>
+            {% endif %}
           {% endfor %}
           </div>
         </ul>
@@ -42,4 +59,9 @@
     {% endif %}
   {% endfor %}
   </ul>
+  <div class="MobileNavFooter">
+    {% include 'mobile-header-country-picker' %}
+    {% include 'form-search' %}
+    <div class="column l4 m4 s12 left s-center s-margin-bottom-3x margin-top-2x"><img src="{{'CA64.png' | asset_url}}" alt=""></div>
+  </div>
 </nav>

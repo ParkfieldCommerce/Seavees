@@ -58,7 +58,11 @@ class Theme{
 
       $('.js-navLinkOne').click(function(e){
         e.preventDefault();
-        $(this).parent().toggleClass('active');
+        $(this).closest('.js-navDropdown').toggleClass('active');
+      });
+      $('.js-navLinkTwo').click(function(e){
+        e.preventDefault();
+        $(this).closest('.js-navDropdownTwo').toggleClass('active');
       });
     }
 
