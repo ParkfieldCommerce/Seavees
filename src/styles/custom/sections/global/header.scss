@@ -116,16 +116,36 @@
     }
   }
 }
-
-@include maxQuery($s){
+.Header__column-row{
+  @include flex-center();
+  flex-wrap: wrap;
+}
+@include maxQuery(850px){
   .Header__column--logo{
     order: 2;
+    width: 50% !important;
   }
   .Header__column--nav{
     order: 1;
+    width: 25% !important;
   }
   .Header__column--user{
     order: 3;
+    width: 25% !important;
+  }
+
+  .Header__search,
+  .Header__user,
+  .Header__column--country{
+    display: none;
+  }
+
+  .Header__logo{
+    text-align: center;
+  }
+  .Header__logo-image--dark{
+    @include prefix(transform, translate(-50%,-50%));
+    left: 50%;
   }
 }
 

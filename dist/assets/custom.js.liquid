@@ -41,7 +41,7 @@ class Theme{
     let hamburger = $('.js-hamburger');
     let body = $('body');
 
-    if($(window).width() > 550){
+    if($(window).width() > 850){
       menu.mouseenter(function(){
         header.addClass('active');
       });
@@ -51,6 +51,7 @@ class Theme{
       });
     }else{
       hamburger.click(function(){
+        header.toggleClass('nav-active');
         header.toggleClass('active');
         body.toggleClass('fixed');
       });

@@ -638,16 +638,36 @@ input[type="number"].Quantity__state,
     }
   }
 }
-
-@include maxQuery($s){
+.Header__column-row{
+  @include flex-center();
+  flex-wrap: wrap;
+}
+@include maxQuery(850px){
   .Header__column--logo{
     order: 2;
+    width: 50% !important;
   }
   .Header__column--nav{
     order: 1;
+    width: 25% !important;
   }
   .Header__column--user{
     order: 3;
+    width: 25% !important;
+  }
+
+  .Header__search,
+  .Header__user,
+  .Header__column--country{
+    display: none;
+  }
+
+  .Header__logo{
+    text-align: center;
+  }
+  .Header__logo-image--dark{
+    @include prefix(transform, translate(-50%,-50%));
+    left: 50%;
   }
 }
 
@@ -655,7 +675,7 @@ input[type="number"].Quantity__state,
   position: static;
 }
 
-@include minQuery($s){
+@include minQuery(850px){
   .Nav__link{
     color: $white;
     text-transform: uppercase;
@@ -749,6 +769,7 @@ input[type="number"].Quantity__state,
       }
       .Nav__menu--three{
         opacity: 1;
+        display: block;
       }
     }
   }
@@ -761,6 +782,7 @@ input[type="number"].Quantity__state,
     line-height: 70px;
     background-color: $gray-lighter;
     opacity: 0;
+    display: none;
   }
   .Nav__link--three{
     color: $primary-accent2;
@@ -770,9 +792,9 @@ input[type="number"].Quantity__state,
   }
 }
 
-@include maxQuery($s){
+@include maxQuery(850px){
   .Header{
-    display: none !important;
+    //display: none !important;
   }
   .Header{
     padding-top: 0;
@@ -785,6 +807,9 @@ input[type="number"].Quantity__state,
     &:hover{
       cursor: pointer;
     }
+  }
+  .Header--is-dark .NavHam__line{
+    background-color: $primary-accent2;
   }
   .NavHam__line{
     height: 2px;
@@ -863,29 +888,20 @@ input[type="number"].Quantity__state,
     @include flex();
     @include align-items(center);
     flex-wrap: wrap;
+    img{
+      display: none;
+    }
   }
   .Nav__menu--two__link{
-    width: 50%;
+    width: 100%;
     padding-left: 10px;
     padding-right: 10px;
   }
   .Nav__menu-container--three{
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    background-color: $gray-lighter;
-    @include flex();
-    @include align-items(center);
-    flex-wrap: wrap;
-    height: 110px;
-    >li{
-      width: 50%;
-    }
   }
 }
 
-.Header.active{
+.Header.nav-active{
   .NavHam__line{
     background-color: $primary-accent2;
   }
@@ -1213,6 +1229,8 @@ input[type="number"].Quantity__state,
   @include maxQuery($s){
     padding-top: 10px;
     padding-bottom: 10px;
+    padding-left: 0;
+    padding-right: 0;
   }
 }
 .SideCart__checkout{
@@ -1220,6 +1238,10 @@ input[type="number"].Quantity__state,
   color: white;
   border-color: $primary-accent1;
   width: 280px;
+  @include maxQuery($s){
+    margin-left: auto;
+    margin-right: auto;
+  }
 }
 .SideCart__continue{
   @include newsR(1.4rem);
@@ -1227,6 +1249,10 @@ input[type="number"].Quantity__state,
   display: block;
   margin-top: 10px;
   width: 280px;
+  @include maxQuery($s){
+    margin-left: auto;
+    margin-right: auto;
+  }
 }
 
 
@@ -1242,12 +1268,16 @@ li.country-picker {
   padding-right: 10px;
   .sub-nav-item{
     text-align: center;
-    background: $white;
+    background: $gray-lighter;
+    transition: background .3s;
     a{
       padding-top: 5px;
       padding-bottom: 5px;
       display: block;
       text-decoration: none;
+    }
+    &:hover{
+      background-color: $gray;
     }
   }
   &:hover{
@@ -1547,7 +1577,10 @@ li.country-picker > a {
 }
 .NestedCollection__banner{
   position: relative;
-  img{vertical-align: middle;}
+  img{
+    vertical-align: middle;
+    width: 100%;
+  }
 }
 .NestedCollection__heading{
   position: absolute;
@@ -3483,6 +3516,10 @@ li.country-picker > a {
 
 .CartPage__heading-row{
   border-bottom: 1px solid $gray-lighter;
+  h3{
+    @include newsB(1.5rem);
+    text-transform: uppercase;
+  }
 }
 
 .CartPage__product{
@@ -3511,8 +3548,21 @@ li.country-picker > a {
     max-height: 95px;
   }
 }
+.CartPage__title{
+  display: inline-block;
+  margin-bottom: 5px;
+  text-decoration: none;
+  font-size: 1.4rem;
+}
+.CartPage__variants{
+  font-size: 1.2rem;
+  color: $gray-dark;
+}
 .CartPage__price{
-  @include newsI(1.8rem);
+  @include newsR(1.2rem);
+}
+.CartPage__price--mobile{
+  color: $gray-dark;
 }
 .CartPage__quantity{
   .Quantity__control{
@@ -3522,30 +3572,40 @@ li.country-picker > a {
     padding: 0;
     flex: 2;
   }
+  @include maxQuery($s){
+    max-width: 100px;
+    margin-top: 10px;
+  }
 }
-
+.CartPage__quantity--mobile{
+  @include minQuery($s){
+    display: none;
+  }
+}
 .CartPage__summary-row{
   border-top: 1px solid $gray-lighter;
   padding-top: 30px;
 }
 .CartPage__note-label{
-  @include newsI(1.8rem);
+  @include newsR(1.2rem);
   font-weight: normal;
 }
 .CartPage__note{
   border: 1px solid $gray-lighter;
   height: 100px;
-  @include newsI(1.6rem);
+  @include newsR(1.2rem);
   width: 100%;
 }
 .CartPage__subtotal{
   margin-top: 31px;
-  @include newsI(2.8rem);
+  @include newsR(1.6rem);
   width: 280px;
   max-width: 100%;
   @include flex();
   @include justify-content(space-between);
   margin-left: auto;
+  text-transform: uppercase;
+  margin-bottom: 20px;
 }
 .CartPage__subtotal-label{
 
@@ -3557,8 +3617,16 @@ li.country-picker > a {
   background-color: $primary-accent1;
   color: white;
   border-color: $primary-accent1;
+}
+
+.CartPage__checkout,
+.CartPage__intl{
   width: 280px;
+  max-width: 100%;
   margin-left: auto;
+  @include maxQuery($s){
+    margin-right: auto;
+  }
 }
 
 @include maxQuery($s){
@@ -3599,8 +3667,5 @@ li.country-picker > a {
   }
   .CartPage__subtotal{
     width: auto;
-  }
-  .CartPage__checkout{
-    width: 320px;
   }
 }

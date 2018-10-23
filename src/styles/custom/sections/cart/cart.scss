@@ -9,6 +9,10 @@
 
 .CartPage__heading-row{
   border-bottom: 1px solid $gray-lighter;
+  h3{
+    @include newsB(1.5rem);
+    text-transform: uppercase;
+  }
 }
 
 .CartPage__product{
@@ -37,8 +41,21 @@
     max-height: 95px;
   }
 }
+.CartPage__title{
+  display: inline-block;
+  margin-bottom: 5px;
+  text-decoration: none;
+  font-size: 1.4rem;
+}
+.CartPage__variants{
+  font-size: 1.2rem;
+  color: $gray-dark;
+}
 .CartPage__price{
-  @include newsI(1.8rem);
+  @include newsR(1.2rem);
+}
+.CartPage__price--mobile{
+  color: $gray-dark;
 }
 .CartPage__quantity{
   .Quantity__control{
@@ -48,30 +65,40 @@
     padding: 0;
     flex: 2;
   }
+  @include maxQuery($s){
+    max-width: 100px;
+    margin-top: 10px;
+  }
 }
-
+.CartPage__quantity--mobile{
+  @include minQuery($s){
+    display: none;
+  }
+}
 .CartPage__summary-row{
   border-top: 1px solid $gray-lighter;
   padding-top: 30px;
 }
 .CartPage__note-label{
-  @include newsI(1.8rem);
+  @include newsR(1.2rem);
   font-weight: normal;
 }
 .CartPage__note{
   border: 1px solid $gray-lighter;
   height: 100px;
-  @include newsI(1.6rem);
+  @include newsR(1.2rem);
   width: 100%;
 }
 .CartPage__subtotal{
   margin-top: 31px;
-  @include newsI(2.8rem);
+  @include newsR(1.6rem);
   width: 280px;
   max-width: 100%;
   @include flex();
   @include justify-content(space-between);
   margin-left: auto;
+  text-transform: uppercase;
+  margin-bottom: 20px;
 }
 .CartPage__subtotal-label{
 
@@ -83,8 +110,16 @@
   background-color: $primary-accent1;
   color: white;
   border-color: $primary-accent1;
+}
+
+.CartPage__checkout,
+.CartPage__intl{
   width: 280px;
+  max-width: 100%;
   margin-left: auto;
+  @include maxQuery($s){
+    margin-right: auto;
+  }
 }
 
 @include maxQuery($s){
@@ -125,8 +160,5 @@
   }
   .CartPage__subtotal{
     width: auto;
-  }
-  .CartPage__checkout{
-    width: 320px;
   }
 }

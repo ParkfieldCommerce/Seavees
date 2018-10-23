@@ -41,7 +41,7 @@
         <div class="SideCart__buttons">
           <button class="Btn Btn--big SideCart__checkout" href="/cart" type="submit" name="checkout" class="btn" aria-label="{{ 'cart.checkout' | t }}">{{ 'cart.checkout' | t }}</button>
           {% if shop.permanent_domain != "seavees-uk.myshopify.com" and shop.permanent_domain != "seavees-eu.myshopify.com" %}
-          <button type="button" class="Btn Btn--big SideCart__checkout" style="margin-top:5px;" onclick="javascript:document.location='/pages/international-checkout'">International Checkout</button>
+          <button type="button" class="Btn Btn--big Btn--secondary SideCart__continue" style="margin-top:5px;" onclick="javascript:document.location='/pages/international-checkout'">International Checkout</button>
           {% else %}
           <a class="Btn Btn--big Btn--secondary SideCart__continue" href="#" class="SideCart__continue js-cartClose">{{ 'cart.continue_shopping' | t }}</a>
           {% endif %} 

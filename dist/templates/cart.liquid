@@ -1,4 +1,4 @@
-<div class="CartPage"  data-cart-view rv-cloak>
+<div class="CartPage margin-bottom-10x s-margin-bottom-6x"  data-cart-view rv-cloak>
   <form rv-if="cart.item_count | gt 0" class="CartPage__form" action="/cart" method="post" novalidate>
     <div class="container m">
       <div class="row collapse CartPage__heading-row margin-bottom-2x">
@@ -25,11 +25,11 @@
               <a class="CartPage__title" rv-href="item.url">
                 { item.product_title }
               </a>
-              <div class="CartPage__item__variants">
+              <div class="CartPage__variants">
                 { item.variant_title }
               </div>
-              <span class="s-show CartPage__price">{ item.line_price | money_with_currency }</span>
-              <div class="s-show CartPage__quantity Quantity">
+              <span class="s-show CartPage__price CartPage__price--mobile">{ item.line_price | money_with_currency }</span>
+              <div class="CartPage__quantity CartPage__quantity--mobile Quantity">
                 <button type="button" class="Quantity__control" rv-data-cart-update="index | plus 1" rv-data-cart-quantity="item.quantity | minus 1">&#8722;</button>
                 <input type="number" disabled="true" class="Quantity__state" rv-value="item.quantity"/>
                 <button type="button" class="Quantity__control" rv-data-cart-update="index | plus 1" rv-data-cart-quantity="item.quantity | plus 1">&#43;</button>
@@ -56,7 +56,7 @@
           </p>
           <button class="Btn Btn--big CartPage__checkout" href="/cart" type="submit" name="checkout" class="btn" aria-label="{{ 'cart.checkout' | t }}">{{ 'cart.checkout' | t }}</button>
           {% if shop.permanent_domain != "seavees-uk.myshopify.com" and shop.permanent_domain != "seavees-eu.myshopify.com" %}
-          <button type="button" class="Btn Btn--big CartPage__checkout" style="margin-top:5px;" onclick="javascript:document.location='/pages/international-checkout'">International Checkout</button>
+          <button type="button" class="CartPage__intl Btn Btn--big Btn--secondary" style="margin-top:5px;" onclick="javascript:document.location='/pages/international-checkout'">International Checkout</button>
           {% endif %}
         </div>
       </div>

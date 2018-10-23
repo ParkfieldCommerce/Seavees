@@ -9,7 +9,10 @@
 }
 .NestedCollection__banner{
   position: relative;
-  img{vertical-align: middle;}
+  img{
+    vertical-align: middle;
+    width: 100%;
+  }
 }
 .NestedCollection__heading{
   position: absolute;

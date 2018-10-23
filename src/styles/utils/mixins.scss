@@ -142,7 +142,7 @@
   .flex > & {
     width: auto;
     max-width: 100%;
-    @include flex-distribution(0 0 $width !important);
+    @include flex-distribution(0 0 $width);
   }
 }
 

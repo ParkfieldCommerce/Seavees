@@ -1,4 +1,4 @@
-@include minQuery($s){
+@include minQuery(850px){
   .Nav__link{
     color: $white;
     text-transform: uppercase;
@@ -92,6 +92,7 @@
       }
       .Nav__menu--three{
         opacity: 1;
+        display: block;
       }
     }
   }
@@ -104,6 +105,7 @@
     line-height: 70px;
     background-color: $gray-lighter;
     opacity: 0;
+    display: none;
   }
   .Nav__link--three{
     color: $primary-accent2;

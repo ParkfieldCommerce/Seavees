@@ -10,12 +10,16 @@ li.country-picker {
   padding-right: 10px;
   .sub-nav-item{
     text-align: center;
-    background: $white;
+    background: $gray-lighter;
+    transition: background .3s;
     a{
       padding-top: 5px;
       padding-bottom: 5px;
       display: block;
       text-decoration: none;
+    }
+    &:hover{
+      background-color: $gray;
     }
   }
   &:hover{

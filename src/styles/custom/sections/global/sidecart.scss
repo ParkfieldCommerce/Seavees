@@ -167,6 +167,8 @@
   @include maxQuery($s){
     padding-top: 10px;
     padding-bottom: 10px;
+    padding-left: 0;
+    padding-right: 0;
   }
 }
 .SideCart__checkout{
@@ -174,6 +176,10 @@
   color: white;
   border-color: $primary-accent1;
   width: 280px;
+  @include maxQuery($s){
+    margin-left: auto;
+    margin-right: auto;
+  }
 }
 .SideCart__continue{
   @include newsR(1.4rem);
@@ -181,5 +187,9 @@
   display: block;
   margin-top: 10px;
   width: 280px;
+  @include maxQuery($s){
+    margin-left: auto;
+    margin-right: auto;
+  }
 }
 

@@ -1,6 +1,6 @@
-@include maxQuery($s){
+@include maxQuery(850px){
   .Header{
-    display: none !important;
+    //display: none !important;
   }
   .Header{
     padding-top: 0;
@@ -13,6 +13,9 @@
     &:hover{
       cursor: pointer;
     }
+  }
+  .Header--is-dark .NavHam__line{
+    background-color: $primary-accent2;
   }
   .NavHam__line{
     height: 2px;
@@ -91,29 +94,20 @@
     @include flex();
     @include align-items(center);
     flex-wrap: wrap;
+    img{
+      display: none;
+    }
   }
   .Nav__menu--two__link{
-    width: 50%;
+    width: 100%;
     padding-left: 10px;
     padding-right: 10px;
   }
   .Nav__menu-container--three{
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    background-color: $gray-lighter;
-    @include flex();
-    @include align-items(center);
-    flex-wrap: wrap;
-    height: 110px;
-    >li{
-      width: 50%;
-    }
   }
 }
 
-.Header.active{
+.Header.nav-active{
   .NavHam__line{
     background-color: $primary-accent2;
   }

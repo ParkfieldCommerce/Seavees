@@ -91,6 +91,7 @@
               </select>
             </div>
             {% if option.name contains 'Size' %}
+              {% assign hasSizeOption = true %}
               <div class="ProductForm__values ProductForm__values--size">
               {% for value in option.values %}
               {% include 'option-availability-check' %}
@@ -143,7 +144,9 @@
           </select>
         </div>
       </div>
+      {% if hasSizeOption %}
         <button class="ProductForm__fit-guide-trigger js-sizeChartPopupShow" type="button">Fit Guide</button>
+      {% endif %}
       {% if sold_out %}
         <button class="ProductForm__submit Btn Btn--primary Btn--big" type="submit" name="add" disabled>
           <span id="AddToCartText">{{ 'product.sold_out' | t }}</span>

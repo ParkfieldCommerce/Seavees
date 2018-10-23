@@ -11,13 +11,13 @@
 <header class="Header js-header Header--{{headerColorModifier}}" role="banner">
   <div class="Header__content">
     <div class="container xl">
-      <div class="row flex v-center">
-        <div class="Header__column--logo column l3 s6 left">
+      <div class="Header__column-row row v-center">
+        <div class="Header__column--logo column l3 left">
           <div class="Header__logo">
             {% include 'theme-logo' %}
           </div>
         </div>
-        <div class="Header__column--nav column l5 s3">
+        <div class="Header__column--nav column l5">
           <div class="Nav__hamburger js-hamburger">
             <span class="NavHam__line NavHam__line--1"></span>
             <span class="NavHam__line NavHam__line--2"></span>
@@ -26,7 +26,7 @@
           {% assign nav = linklists[section.settings.navigation] %}
           {% include 'navigation' %}
         </div>
-        <div class="Header__column--user column l4 s3 right">
+        <div class="Header__column--user column l4 right">
           <div class="Header__column--user-link Header__search">
             <div class="Header__search__form js-headerSearchForm">
               {% include 'form-search' %}
